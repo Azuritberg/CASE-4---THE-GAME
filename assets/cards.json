@@ -1,0 +1,22 @@
+{
+    "cards":[
+        {
+            "id":1,
+            "type":"Finish the lyric",
+            "question":"Hit me baby...",
+            "alternatives":["\"...one more time\"", "\"...one last time\"", "\"...one time\"", "\"...one one time\""],
+            "correct":0,
+            "difficulty": "EASY",
+            "points": 10
+        }, 
+        {
+            "id":2,
+            "type":"Guess the artist",
+            "question":"Who made this song?",
+            "alternatives":["Metallica", "ACDC", "Red Hot Chilli Peppers", "Nirvana"],
+            "correct":3,
+            "difficulty": "MEDIUM",
+            "points": 20
+        }
+    ]
+}
