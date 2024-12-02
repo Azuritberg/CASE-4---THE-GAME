@@ -53,19 +53,19 @@ async function fetchCard(index) {
             <div id="type"></div>
             <div id="questions"></div>
             <div id="alternatives">
-                <button id="0"></button>
-                <button id="1"></button>
-                <button id="2"></button>
-                <button id="3"></button>
+                <button id="alternative0"></button>
+                <button id="alternative1"></button>
+                <button id="alternative2"></button>
+                <button id="alternative3"></button>
             </div>
         `;
 
         let type = document.querySelector("#type");
         let questions = document.querySelector("#questions");
-        let child0 = document.querySelector("#0");
-        let child1 = document.querySelector("#1");
-        let child2 = document.querySelector("#2");
-        let child3 = document.querySelector("#3");
+        let child0 = document.querySelector("#alternative0");
+        let child1 = document.querySelector("#alternative1");
+        let child2 = document.querySelector("#alternative2");
+        let child3 = document.querySelector("#alternative3");
         let correct;
 
         for (let i = 0; i < cards.length; i++) {
@@ -98,7 +98,8 @@ async function fetchCard(index) {
 
         function correctChoise(event) {
             const selectedId = event.target.id; // Get the ID of the clicked button
-            if (selectedId == correct.toString()) {
+            const selectedNumber = selectedId.replace("alternative", ""); // Remove the "alternative" part
+            if (selectedNumber === correct.toString()) { // Compare only the numeric part
                 let p = document.createElement("p");
                 p.textContent = "YOU GOT IT!!!";
                 questions.appendChild(p);
@@ -108,6 +109,7 @@ async function fetchCard(index) {
                 questions.appendChild(p);
             }
         }
+        
         
 
  
