@@ -1,26 +1,48 @@
 {
-    "cards":[
+  "cards": [
+    {
+      "id": 1,
+      "type": "Finish the lyric",
+      "question": "Hit me baby...",
+      "alternatives": [
+        "\"...one more time\"",
+        "\"...one last time\"",
+        "\"...one time\"",
+        "\"...one one time\""
+      ],
+      "correct": 0,
+      "difficulty": "EASY",
+      "points": 10
+    },
+    {
+      "id": 2,
+      "type": "Guess the artist",
+      "question": "Who made this song?",
+      "alternatives": [
+        "Metallica",
+        "ACDC",
+        "Red Hot Chilli Peppers",
+        "Nirvana"
+      ],
+      "correct": 3,
+      "difficulty": "MEDIUM",
+      "points": 20
+    }
+  ],
+  "games": [
+    {
+      "id": 1,
+      "hostName": "rere",
+      "name": "bibi",
+      "hostID": 1,
+      "players": [
         {
-            "id":1,
-            "type":"Finish the lyric",
-            "question":"Hit me baby...",
-            "alternatives":["\"...one more time\"", "\"...one last time\"", "\"...one time\"", "\"...one one time\""],
-            "correct":0,
-            "difficulty": "EASY",
-            "points": 10
-        }, 
-        {
-            "id":2,
-            "type":"Guess the artist",
-            "question":"Who made this song?",
-            "alternatives":["Metallica", "ACDC", "Red Hot Chilli Peppers", "Nirvana"],
-            "correct":3,
-            "difficulty": "MEDIUM",
-            "points": 20
+          "id": 1,
+          "name": "rere",
+          "points": 0,
+          "turn": true
         }
-    ]
-
- 
-
-    
+      ]
+    }
+  ]
 }

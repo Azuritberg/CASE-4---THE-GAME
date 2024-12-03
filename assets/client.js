@@ -1,6 +1,32 @@
+const socket = new WebSocket("http://localhost:8000")
+
+let myID = null;
+
+// Listen for messages from the server to retrieve myID
+socket.addEventListener("message", (event) => {
+    const data = JSON.parse(event.data);
+    if (data.myID) {
+        myID = data.myID; // Store the assigned connection ID
+    }
+});
+
+console.log(socket)
+
+socket.addEventListener("open", (event) =>{
+  console.log("Connected!")
+})
+
+socket.addEventListener("message", (event) =>{
+    
+})
+
+socket.addEventListener("close", (event) =>{
+    console.log("Disconnected!")
+})
+
 let main = document.querySelector("main");
 
-function startApp() 
+async function startApp() 
 {
    main.innerHTML= `<button id="btnCreateForm">Create Game</button>
                     <button id="btnJoinForm">Join Game</button>`
@@ -10,6 +36,9 @@ function startApp()
 
 btnCreateForm.addEventListener("click", createGame);
 btnJoinForm.addEventListener("click", joinGame);
+
+
+
 }
 
 function startAppError() 
@@ -22,21 +51,62 @@ function startAppError()
  btn.addEventListener("click", makeField);
  }
 
+ 
 
 function createGame() 
 {
-     main.innerHTML= `<input type="text" id="userName" placeholder=" Enter your name" />
-                      <input type="text" id="createGameCode" placeholder=" Enter game code" />
-                      <button id="btnCreateGame">Create Game</button> 
-        <p id="feedback"></p>`
+     main.innerHTML= `<form id = createGameForm>
+                        <input type="text" name="hostName" placeholder=" Enter your name">
+                        <input type="text" name="name" placeholder=" Enter game code">
+                        <button id="btnCreateGame" type="submit">Create Game</button> 
+                        <button id="btnBack">back</button> 
+                      </form>
+                      <p id="feedback"></p>`
+
+    let btnBack = document.querySelector("#btnBack")
+    btnBack.addEventListener("click", startApp)
+
+    
+
+
+    const createGameForm = document.querySelector("#createGameForm")
+    createGameForm.addEventListener("submit", async (event) => {
+        event.preventDefault()
+        const formData= new FormData(createGameForm)
+        const game = {}
+        formData.forEach((value, key)=>{game[key]=value}) 
+        // game.hostID
+
+        game.hostID = myID;
+        game.players = [{id: myID, name:game.hostName, points: 0, turn:true}]
+
+        const request = new Request("/api/cards",{
+            method: "POST",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(game)
+        })
+        const response = await fetch(request)
+
+        if(response.ok)
+            {
+                const data = await response.json()
+                console.log(data)
+            }
+            createGameForm.reset()
+    })
+    
+    
 }
 
 function joinGame() 
 {
      main.innerHTML= `<input type="text" id="userName" placeholder=" Enter your name" />
                       <input type="text" id="joinGameCode" placeholder=" Enter game code" />
-                      <button id="btnJoinGame">Join Game</button> 
+                      <button id="btnJoinGame">Join Game</button>
+                      <button id="btnBack">back</button>  
         <p id="feedback"></p>`
+     let btnBack = document.querySelector("#btnBack")
+     btnBack.addEventListener("click", startApp)
 }
 
 
