@@ -4,7 +4,7 @@ import {serveDir, serveFile} from "jsr:@std/http/file-server";
 const jsonData = await Deno.readTextFile("./database.json")
 const DATA = JSON.parse(jsonData)
 let CARDS = DATA.cards
-let GAMES = DATA.games
+let GAMES = {rooms:[]}
 
 
 async function handleHTTPRequest(request)
@@ -35,20 +35,23 @@ async function handleHTTPRequest(request)
             const requestData = await request.json();
             console.log(requestData);
         
-            // Generate a new ID
-            const newId = GAMES.reduce((acc, next) => (next.id > acc ? next.id : acc), 0) + 1;
+            let roomID = GAMES.rooms.length +1
+            
         
             // Create a new object with the "id" key first
             const game = {
-                id: newId,
-                ...requestData // Spread the remaining keys from the request
+                    roomID,
+                ...requestData,
+                
+                
             };
         
-            GAMES.push(game);
+            GAMES.rooms.push(game);
+            console.log(GAMES)
         
             // Write the updated data back to the JSON file
-            DATA.games = GAMES; // Update the main data structure
-            await Deno.writeTextFile("./database.json", JSON.stringify(DATA, null, 2));
+            // DATA.games = GAMES; 
+            // await Deno.writeTextFile("./database.json", JSON.stringify(DATA, null, 2));
         
             return new Response(JSON.stringify(game), options);
         }
@@ -56,8 +59,8 @@ async function handleHTTPRequest(request)
         
 
         if (request.method == "DELETE") {
-            DATA.games = []; // Reassign to an empty array
-            await Deno.writeTextFile("./database.json", JSON.stringify(DATA, null, 2)); // Save the change
+            GAMES.rooms = []; // Reassign to an empty array
+            
             console.log("GAMES array has been emptied");
         }
     }
@@ -72,13 +75,15 @@ let connectionID = 1
 function handleWebSocketRequest(request)
 {
     const {socket, response} = Deno.upgradeWebSocket(request)
-
     let myID = connectionID++
+    let userName
+    let roomID
+    let connection={myID,userName,roomID,socket}
 
     socket.addEventListener("open", (event) =>{
-        console.log(`Connection ${myID} connected`)
-        connections[myID] = socket
-        socket.send(JSON.stringify({ myID }));
+        console.log(`Connection ${connection.myID} connected`)
+        connections[myID] = connection
+        socket.send(JSON.stringify({ connection}));
         console.log(connections)
     })
 
@@ -101,5 +106,6 @@ function handleRequest(request)
         return handleWebSocketRequest(request)
     } else {return handleHTTPRequest(request)}
 }
+
 
 Deno.serve(handleRequest)
