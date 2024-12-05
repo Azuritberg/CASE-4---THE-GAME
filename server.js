@@ -103,7 +103,7 @@ function handleWebSocketRequest(request)
         //console.log("CONNECTIONS",connections);
         
         if(data.message = "initalizeLobbyJoin"){
-            console.log(`user:${data.userID} joining game ${data.gameName}`);
+            //console.log(`user:${data.userID} joining game ${data.gameName}`);
             for(let i=0; i<GAMES.rooms.length; i++){
                 if(GAMES.rooms[i].name === data.gameName){
                     GAMES.rooms[i].players.push({
@@ -123,7 +123,7 @@ function handleWebSocketRequest(request)
                     let players = GAMES.rooms[i].players;
                     
                     for(let j=0; j<players.length; j++){
-                        console.log("notifying: ", connections[String(players[j].id)]);
+                        //console.log("notifying: ", connections[String(players[j].id)]);
                         let notification = {
                             message: "YOU HAVE BEEN NOTIFIED"
                         }
