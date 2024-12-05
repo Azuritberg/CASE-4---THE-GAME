@@ -10,8 +10,15 @@ socket.addEventListener("open", (event) =>{
 // Listen for messages from the server to retrieve myID
 socket.addEventListener("message", (event) => {
     const data = JSON.parse(event.data);
-    
-    if (data.connection.myID) {
+    if(data.message === "returningInitializeLobbyJoin"){
+        console.log("we should now initialize", data);
+        //here we should render the game data
+        renderLobby(JSON.stringify(data.data));
+    }
+    else if(data.message === "YOU HAVE BEEN NOTIFIED"){
+        console.log(data.message);
+    }
+    else if (data.connection.myID) {
         myID = data.connection.myID; // Store the assigned connection ID
     }
 });
@@ -99,16 +106,32 @@ function createGame()
 
 function joinGame() 
 {
-     main.innerHTML= `<input type="text" id="userName" placeholder=" Enter your name" />
-                      <input type="text" id="joinGameCode" placeholder=" Enter game code" />
-                      <button id="btnJoinGame">Join Game</button>
-                      <button id="btnBack">back</button>  
-        <p id="feedback"></p>`
-     let btnBack = document.querySelector("#btnBack")
-     btnBack.addEventListener("click", startApp)
+    main.innerHTML= `<input type="text" id="userName" placeholder=" Enter your name" />
+        <input type="text" id="joinGameCode" placeholder=" Enter game code" />
+        <button id="btnJoinGame">Join Game</button>
+        <button id="btnBack">back</button>  
+        <p id="feedback"></p>`;
+    let btnBack = document.querySelector("#btnBack");
+    btnBack.addEventListener("click", startApp);
+    let btnJoinGame = document.querySelector("#btnJoinGame");
+
+    btnJoinGame.addEventListener("click", ()=> {
+        let gameName = document.querySelector("#joinGameCode").value
+        initializeLobby("initalizeLobbyJoin ", gameName);
+    });
 }
-
-
+async function initializeLobby(modifier, gameName){
+    let data = {
+        message : modifier,
+        gameName : gameName,
+        userID: myID
+    }
+    socket.send(JSON.stringify(data));
+}
+async function renderLobby(lobbyData) {
+    document.querySelector("main").innerHTML = "";
+    document.body.append(lobbyData);
+}
 function makeField() {
     main.innerHTML = `
         <input type="text" id="input" placeholder="Enter ID" />
