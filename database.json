@@ -28,21 +28,5 @@
       "difficulty": "MEDIUM",
       "points": 20
     }
-  ],
-  "games": [
-    {
-      "id": 1,
-      "hostName": "rere",
-      "name": "bibi",
-      "hostID": 1,
-      "players": [
-        {
-          "id": 1,
-          "name": "rere",
-          "points": 0,
-          "turn": true
-        }
-      ]
-    }
   ]
 }

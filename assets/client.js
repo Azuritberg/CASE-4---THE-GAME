@@ -2,23 +2,22 @@ const socket = new WebSocket("http://localhost:8000")
 
 let myID = null;
 
+
+socket.addEventListener("open", (event) =>{
+    console.log("Connected!")
+})
+
 // Listen for messages from the server to retrieve myID
 socket.addEventListener("message", (event) => {
     const data = JSON.parse(event.data);
-    if (data.myID) {
-        myID = data.myID; // Store the assigned connection ID
+    
+    if (data.connection.myID) {
+        myID = data.connection.myID; // Store the assigned connection ID
     }
 });
 
 console.log(socket)
 
-socket.addEventListener("open", (event) =>{
-  console.log("Connected!")
-})
-
-socket.addEventListener("message", (event) =>{
-    
-})
 
 socket.addEventListener("close", (event) =>{
     console.log("Disconnected!")
