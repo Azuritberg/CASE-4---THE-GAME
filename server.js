@@ -12,7 +12,7 @@ async function handleHTTPRequest(request)
     const pathname = new URL(request.url).pathname
 
     if (pathname.startsWith("/static")) {
-        return serveDir(request, 
+        return serveDir(request,
         {
             fsRoot: "assets",
             urlRoot: "static"
