@@ -5,7 +5,20 @@ const jsonData = await Deno.readTextFile("./database.json")
 const DATA = JSON.parse(jsonData)
 let CARDS = DATA.cards
 let GAMES = DATA.games
-
+let STATE = {
+    games: [
+        {
+            "id": 1,
+            "hostName": "rere",
+            "name": "bibi",
+            "hostID": 1,
+            "isActive": false,
+            "players": [
+              
+            ]
+          }
+    ]
+}
 
 async function handleHTTPRequest(request)
 {
@@ -79,15 +92,55 @@ function handleWebSocketRequest(request)
         console.log(`Connection ${myID} connected`)
         connections[myID] = socket
         socket.send(JSON.stringify({ myID }));
-        console.log(connections)
+        //console.log("CONNECTIONS",connections);
     })
 
     socket.addEventListener("message", (event) =>{
+        const data = JSON.parse(event.data);
+        //console.log("CONNECTIONS",connections);
         
+        if(data.message = "initalizeLobbyJoin"){
+            console.log(`user:${data.userID} joining game ${data.gameName}`);
+            for(let i=0; i<STATE.games.length; i++){
+                if(STATE.games[i].name === data.gameName){
+                    STATE.games[i].players.push({
+                        id: data.userID,
+                        "name": "example",
+                        "points": 0,
+                        "turn": true
+                    });
+                    let returnData = JSON.stringify({
+                        message: "returningInitializeLobbyJoin",
+                        data: STATE.games[i]
+                    });
+                    //console.log("going to send", returnData);
+                    socket.send(returnData);
+                    //send to all other users connected to this game
+                    //console.log(STATE.games[i]);
+                    let players = STATE.games[i].players;
+                    for(let j=0; j<players.length; j++){
+                        console.log("notifying: ", connections[String(players[j].id)]);
+                        let notification = {
+                            message: "YOU HAVE BEEN NOTIFIED"
+                        }
+
+                        connections[String(players[j].id)].send(JSON.stringify(notification));
+                    }
+                    //console.log("these players shhould be notified", STATE.games[i].players);
+                }
+            }
+            //save new user
+            //add user to game room
+            //send room info back to user for rendering
+
+        }
+
     })
 
     socket.addEventListener("close", (event) =>{
         console.log(`Connection ${myID} disconnected`)
+        let user = connections[myID];
+        console.log(user);
         delete connections[myID]
     })
 

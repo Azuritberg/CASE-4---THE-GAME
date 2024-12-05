@@ -17,7 +17,15 @@ socket.addEventListener("open", (event) =>{
 })
 
 socket.addEventListener("message", (event) =>{
-    
+    data = JSON.parse(event.data);
+    if(data.message === "returningInitializeLobbyJoin"){
+        console.log("we should now initialize", data);
+        //here we should render the game data
+        renderLobby(JSON.stringify(data.data));
+    }
+    if(data.message === "YOU HAVE BEEN NOTIFIED"){
+        console.log(data.message);
+    }
 })
 
 socket.addEventListener("close", (event) =>{
@@ -107,6 +115,25 @@ function joinGame()
         <p id="feedback"></p>`
      let btnBack = document.querySelector("#btnBack")
      btnBack.addEventListener("click", startApp)
+     let btnJoinGame = document.querySelector("#btnJoinGame");
+     
+     btnJoinGame.addEventListener("click", ()=> {
+        let gameName = document.querySelector("#joinGameCode").value
+        initializeLobby("initalizeLobbyJoin ", gameName);
+     })
+}
+
+async function initializeLobby(modifier, gameName){
+    let data = {
+        message : modifier,
+        gameName : gameName,
+        userID: myID
+    }
+    socket.send(JSON.stringify(data));
+}
+async function renderLobby(lobbyData) {
+    document.querySelector("main").innerHTML = "";
+    document.body.append(lobbyData);
 }
 
 
