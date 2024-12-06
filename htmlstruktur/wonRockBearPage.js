@@ -106,7 +106,7 @@ function renderWonRockBearPage() {
 
 // Append buttons to the card container
     wonRockBearButton.appendChild(greenButton);
-//foundBearButton.appendChild(redButton);
+//wonRockBearButton.appendChild(redButton);
 
 // Footer
     const footer = document.createElement("footer");
