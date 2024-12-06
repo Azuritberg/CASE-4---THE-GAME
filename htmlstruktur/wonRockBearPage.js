@@ -104,7 +104,7 @@ function renderWonRockBearPage() {
     redButton.innerHTML = `<p class="button-text">Jag hatar att vinna, ingen björn!</p>`;
      */
 
-// Append buttons to the card container
+// Append buttons to the button container
     wonRockBearButton.appendChild(greenButton);
 //wonRockBearButton.appendChild(redButton);
 
@@ -124,7 +124,7 @@ function renderWonRockBearPage() {
 // Append main to body
     body.appendChild(main);
 
-// Eventlyssnare på knapparna - vet inte om vi ska ha något liknande
+// Eventlyssnare på knapparna
     greenButton.addEventListener("click", () => {
         alert("Grattis! Du har valt Rockbjörnen!");
     });
