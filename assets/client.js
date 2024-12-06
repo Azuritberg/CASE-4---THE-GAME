@@ -12,8 +12,9 @@ socket.addEventListener("message", (event) => {
     const data = JSON.parse(event.data);
     if(data.message === "returningInitializeLobbyJoin"){
         console.log("we should now initialize", data);
+        
         //here we should render the game data
-        renderLobby(JSON.stringify(data.data));
+        renderLobby(data.data.players);
     }else if (data.message === "returningInitializeLobbyCreate"){
         console.log("recived this data from server: ", data, ":3");
     }else if(data.message === "YOU HAVE BEEN NOTIFIED"){
@@ -136,8 +137,23 @@ async function initializeLobby(modifier, gameName, userName){
     socket.send(JSON.stringify(data));
 }
 async function renderLobby(lobbyData) {
-    document.querySelector("main").innerHTML = "";
-    document.body.append(lobbyData);
+   let main = document.querySelector("main")
+   main.innerHTML = "";
+    console.log(lobbyData)
+
+    let nameCont = document.createElement("div")
+    nameCont.id="nameCont"
+
+
+    for (let i = 0; i < lobbyData.length; i++) {
+        let div = document.createElement("div")
+        div.id="nameDiv" + i
+        div.textContent=lobbyData[i].name
+        nameCont.appendChild(div)
+        
+        
+    }
+    main.appendChild(nameCont)
 }
 function makeField() {
     main.innerHTML = `

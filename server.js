@@ -106,9 +106,9 @@ function handleWebSocketRequest(request)
                 if(GAMES.rooms[i].name === data.gameName){
                     GAMES.rooms[i].players.push({
                         id: data.userID,
-                        "name": "example",
-                        "points": 0,
-                        "turn": true
+                        name: data.userName,
+                        points: 0,
+                        turn: false
                     });
                     let returnData = JSON.stringify({
                         message: "returningInitializeLobbyJoin",
@@ -125,6 +125,7 @@ function handleWebSocketRequest(request)
                         }
                         connections[String(players[j].id)].socket.send(JSON.stringify(notification));
                     }
+                    console.log(GAMES.rooms[i])
                 }
             }
         } else if (data.message === "initalizeLobbyCreate"){
