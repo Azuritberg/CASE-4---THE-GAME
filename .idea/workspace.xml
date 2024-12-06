@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e0048b4d-5069-4752-a166-dd1ad0b2428d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlstruktur/foundBearPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/htmlstruktur/wonRockBearPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlstruktur/foundBearPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/htmlstruktur/wonRockBearPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlstruktur/testapp.html" beforeDir="false" afterPath="$PROJECT_DIR$/htmlstruktur/testapp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/wonRockBearPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/htmlstruktur/wonRockBearPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,11 +35,11 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="bojana" />
-                    <option name="lastUsedInstant" value="1733518008" />
+                    <option name="lastUsedInstant" value="1733522062" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1733517993" />
+                    <option name="lastUsedInstant" value="1733522047" />
                   </RecentBranch>
                 </list>
               </option>

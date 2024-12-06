@@ -1,6 +1,6 @@
 "use strict";
 
-function renderFoundBearPage() {
+function renderWonRockBearPage() {
     const body = document.body;
 
 // Main container
@@ -136,4 +136,4 @@ function renderFoundBearPage() {
      */
 }
 
-renderFoundBearPage();
+renderWonRockBearPage();
