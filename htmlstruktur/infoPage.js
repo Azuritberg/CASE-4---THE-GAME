@@ -1,38 +1,39 @@
-// Hämta body
-const body = document.body;
+function renderInfoPage(){
+    // Hämta body
+    const body = document.body;
 
 // Skapa huvudcontainer
-const main = document.createElement('main');
-main.id = 'infoPage-main';
+    const main = document.createElement('main');
+    main.id = 'infoPage-main';
 
 // Skapa sektionen för tillbaka-knappen och grafiken
-const goBackArrow = document.createElement('div');
-goBackArrow.id = 'go-back-arrow';
+    const goBackArrow = document.createElement('div');
+    goBackArrow.id = 'go-back-arrow';
 
 // Skapa top bar
-const topBar = document.createElement('div');
-topBar.className = 'top-bar';
+    const topBar = document.createElement('div');
+    topBar.className = 'top-bar';
 
 // Lägg till ikonen för "backarrow"
-const backArrow = document.createElement('div');
-backArrow.className = 'info-icon';
-const backArrowImg = document.createElement('img');
-backArrowImg.src = '../icons/backarrow.svg';
-backArrowImg.alt = 'Back Arrow';
-backArrow.appendChild(backArrowImg);
-topBar.appendChild(backArrow);
-goBackArrow.appendChild(topBar);
+    const backArrow = document.createElement('div');
+    backArrow.className = 'info-icon';
+    const backArrowImg = document.createElement('img');
+    backArrowImg.src = '../icons/backarrow.svg';
+    backArrowImg.alt = 'Back Arrow';
+    backArrow.appendChild(backArrowImg);
+    topBar.appendChild(backArrow);
+    goBackArrow.appendChild(topBar);
 
 // Skapa grafiska linjen
-const infoPageGraphic = document.createElement('div');
-infoPageGraphic.id = 'info-page-graphic';
+    const infoPageGraphic = document.createElement('div');
+    infoPageGraphic.id = 'info-page-graphic';
 
-const graphicSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-graphicSvg.setAttribute('width', '393');
-graphicSvg.setAttribute('height', '45');
-graphicSvg.setAttribute('viewBox', '0 0 393 45');
-graphicSvg.setAttribute('fill', 'none');
-graphicSvg.innerHTML = `
+    const graphicSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    graphicSvg.setAttribute('width', '393');
+    graphicSvg.setAttribute('height', '45');
+    graphicSvg.setAttribute('viewBox', '0 0 393 45');
+    graphicSvg.setAttribute('fill', 'none');
+    graphicSvg.innerHTML = `
    <path d="M0 44L393 44" stroke="#BB3B4E" stroke-width="2"/>
    <path d="M0 1L393 1" stroke="#BB3B4E" stroke-width="2"/>
    <line x1="273" y1="44" x2="273" y2="1" stroke="#BB3B4E" stroke-width="2"/>
@@ -40,21 +41,21 @@ graphicSvg.innerHTML = `
    <line x1="294" y1="44" x2="294" y2="1" stroke="#BB3B4E" stroke-width="2"/>
 `;
 
-infoPageGraphic.appendChild(graphicSvg);
-goBackArrow.appendChild(infoPageGraphic);
+    infoPageGraphic.appendChild(graphicSvg);
+    goBackArrow.appendChild(infoPageGraphic);
 
 // Skapa innehållssektionen
-const howToInfoPage = document.createElement('div');
-howToInfoPage.id = 'how-to-info-page';
+    const howToInfoPage = document.createElement('div');
+    howToInfoPage.id = 'how-to-info-page';
 
 // Skapa rubrik
-const heading = document.createElement('h1');
-heading.textContent = 'Hur man spelar';
-howToInfoPage.appendChild(heading);
+    const heading = document.createElement('h1');
+    heading.textContent = 'Hur man spelar';
+    howToInfoPage.appendChild(heading);
 
 // Skapa text
-const paragraph = document.createElement('p');
-paragraph.innerHTML = `
+    const paragraph = document.createElement('p');
+    paragraph.innerHTML = `
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
     <br>dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
@@ -62,19 +63,19 @@ paragraph.innerHTML = `
     <br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     Ut enim ad minim veniam, quis nostrud
 `;
-howToInfoPage.appendChild(paragraph);
-goBackArrow.appendChild(howToInfoPage);
+    howToInfoPage.appendChild(paragraph);
+    goBackArrow.appendChild(howToInfoPage);
 
 // Skapa SVG-sektionen längst ner
-const svgInfoPage = document.createElement('div');
-svgInfoPage.className = 'svg-info-page';
+    const svgInfoPage = document.createElement('div');
+    svgInfoPage.className = 'svg-info-page';
 
-const svgFooter = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-svgFooter.setAttribute('width', '393');
-svgFooter.setAttribute('height', '140');
-svgFooter.setAttribute('viewBox', '0 0 393 140');
-svgFooter.setAttribute('fill', 'none');
-svgFooter.innerHTML = `
+    const svgFooter = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svgFooter.setAttribute('width', '393');
+    svgFooter.setAttribute('height', '140');
+    svgFooter.setAttribute('viewBox', '0 0 393 140');
+    svgFooter.setAttribute('fill', 'none');
+    svgFooter.innerHTML = `
     <path d="M0 1L393 1" stroke="#BB3B4E" stroke-width="2"/>
                 <path d="M0 139H393" stroke="#BB3B4E" stroke-width="2"/>
                 <line x1="137" y1="140" x2="137" y2="1" stroke="#BB3B4E" stroke-width="2"/>
@@ -86,10 +87,14 @@ svgFooter.innerHTML = `
                 <rect x="364.625" y="12" width="34.375" height="118" fill="#BB3B4E" stroke="#BB3B4E" stroke-width="2"/>
                 <path d="M178.016 14.7857C178.008 14.7694 178 14.7533 177.991 14.7374C177.532 13.9024 177.233 13.3434 177.068 12.954C177.16 12.9488 177.267 12.9451 177.392 12.9432C177.714 12.9382 178.066 12.944 178.488 12.951C178.898 12.9577 179.374 12.9656 179.95 12.9656L288.512 12.9656C288.983 12.9656 289.357 12.9657 289.663 12.9773C289.786 12.9819 289.888 12.9882 289.974 12.9956C289.951 13.0595 289.923 13.1336 289.889 13.2192C289.776 13.4985 289.617 13.8465 289.404 14.2899C289.292 14.5247 289.166 14.7838 289.028 15.0681C288.653 15.8391 288.189 16.7954 287.659 17.9551L234.786 125.608C234.04 126.992 233.513 127.938 233.095 128.533C232.955 128.732 232.844 128.867 232.76 128.956C232.669 128.849 232.552 128.686 232.405 128.448C232.08 127.922 231.702 127.186 231.198 126.201C231.103 126.017 231.004 125.823 230.899 125.621L178.016 14.7857ZM290.305 13.0502C290.305 13.0503 290.303 13.0496 290.3 13.0482C290.304 13.0495 290.305 13.0502 290.305 13.0502ZM232.899 129.093C232.899 129.093 232.898 129.093 232.896 129.091C232.898 129.092 232.899 129.093 232.899 129.093Z" fill="#F9E396" stroke="#BB3B4E" stroke-width="1.88297" stroke-linecap="round" stroke-linejoin="round"/>
 `;
-svgInfoPage.appendChild(svgFooter);
+    svgInfoPage.appendChild(svgFooter);
 
-main.appendChild(goBackArrow);
-main.appendChild(svgInfoPage);
+    main.appendChild(goBackArrow);
+    main.appendChild(svgInfoPage);
 
 // Lägg till huvudcontainern i body
-body.appendChild(main);
+    body.appendChild(main);
+
+}
+
+renderInfoPage();

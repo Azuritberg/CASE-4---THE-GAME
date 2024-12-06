@@ -1,56 +1,60 @@
+"use strict";
+
+function renderMakeRoomPage() {
+
 // Hämta body
-const body = document.body;
+    const body = document.body;
 
 // Skapa huvudcontainer
-const main = document.createElement('main');
-main.id = 'makeRoomPage-main';
+    const main = document.createElement('main');
+    main.id = 'makeRoomPage-main';
 
 // Skapa "go-back-info"-container
-const goBackInfo = document.createElement('div');
-goBackInfo.id = 'go-back-info';
+    const goBackInfo = document.createElement('div');
+    goBackInfo.id = 'go-back-info';
 
 // Skapa "top-bar"-container
-const topBar = document.createElement('div');
-topBar.className = 'top-bar';
+    const topBar = document.createElement('div');
+    topBar.className = 'top-bar';
 
-const goBack = document.createElement('div');
-goBack.className = 'go-back';
+    const goBack = document.createElement('div');
+    goBack.className = 'go-back';
 
-const goBackImg = document.createElement('img');
-goBackImg.src = '../icons/backarrow.svg';
-goBackImg.alt = 'Back';
-goBack.appendChild(goBackImg);
+    const goBackImg = document.createElement('img');
+    goBackImg.src = '../icons/backarrow.svg';
+    goBackImg.alt = 'Back';
+    goBack.appendChild(goBackImg);
 
-const iconInfo = document.createElement('div');
-iconInfo.className = 'icon-info';
+    const iconInfo = document.createElement('div');
+    iconInfo.className = 'icon-info';
 
-const iconInfoImg = document.createElement('img');
-iconInfoImg.src = '../icons/info.svg';
-iconInfoImg.alt = 'Info';
-iconInfo.appendChild(iconInfoImg);
+    const iconInfoImg = document.createElement('img');
+    iconInfoImg.src = '../icons/info.svg';
+    iconInfoImg.alt = 'Info';
+    iconInfo.appendChild(iconInfoImg);
 
-topBar.appendChild(goBack);
-topBar.appendChild(iconInfo);
+    topBar.appendChild(goBack);
+    topBar.appendChild(iconInfo);
 
-goBackInfo.appendChild(topBar);
+    goBackInfo.appendChild(topBar);
 
 // Lägg till "go-back-info" som första element i "main"
-main.insertBefore(goBackInfo, main.firstChild);
+    main.insertBefore(goBackInfo, main.firstChild);
 
 
 // Skapa header med SVG
-const header = document.createElement('div');
-header.className = 'svg-header';
+    const header = document.createElement('div');
+    header.className = 'svg-header';
 
-const svgHeader = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-svgHeader.classList = 'svg-icon-loginPage';
-svgHeader.setAttribute('width', '393');
-svgHeader.setAttribute('height', '317');
-svgHeader.setAttribute('viewBox', '0 0 393 317');
-svgHeader.setAttribute('fill', 'none');
+    const svgHeader = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svgHeader.classList = 'svg-icon-loginPage';
+    svgHeader.setAttribute('width', '393');
+    svgHeader.setAttribute('height', '317');
+    svgHeader.setAttribute('viewBox', '0 0 393 317');
+    svgHeader.setAttribute('fill', 'none');
 
 // Lägg till SVG-paths
-svgHeader.innerHTML = `
+    svgHeader.innerHTML = `
       <path d="M0 1L393 1" stroke="#BB3B4E" stroke-width="2"/>
           <path d="M-1 278L393 278" stroke="#BB3B4E" stroke-width="2"/>
           <path d="M-1 140L393 140" stroke="#BB3B4E" stroke-width="2"/>
@@ -72,65 +76,65 @@ svgHeader.innerHTML = `
           <path d="M198.377 265.384C198.379 265.389 198.382 265.393 198.384 265.398C198.387 265.402 198.389 265.405 198.391 265.409C198.971 266.335 199.347 266.954 199.53 267.38C199.614 267.576 199.637 267.686 199.639 267.74C199.602 267.759 199.519 267.79 199.353 267.815C199.155 267.845 198.891 267.859 198.543 267.864C198.179 267.869 197.761 267.863 197.269 267.856C196.799 267.85 196.261 267.842 195.639 267.842H72.8143C71.7338 267.842 71.0695 267.839 70.6793 267.754C70.5433 267.725 70.4874 267.694 70.4689 267.681C70.4673 267.667 70.4668 267.639 70.4739 267.592C70.4933 267.462 70.5583 267.265 70.6945 266.967C70.828 266.675 71.015 266.319 71.2556 265.877C71.3845 265.64 71.5281 265.38 71.6851 265.096C72.1091 264.329 72.6314 263.384 73.2292 262.234L133.056 155.175C133.898 153.802 134.511 152.833 135.007 152.213C135.255 151.902 135.454 151.705 135.617 151.589C135.775 151.478 135.869 151.465 135.925 151.469C135.986 151.473 136.087 151.505 136.246 151.643C136.406 151.782 136.592 152.001 136.817 152.321C137.195 152.861 137.634 153.613 138.205 154.591C138.313 154.775 138.425 154.968 138.543 155.168L198.377 265.384ZM70.4718 267.694C70.4716 267.694 70.4708 267.693 70.47 267.689C70.4716 267.692 70.472 267.694 70.4718 267.694Z" fill="#BB3B4E" stroke="#BB3B4E" stroke-width="0.936171" stroke-linecap="round" stroke-linejoin="round"/>
 `;
 
-header.appendChild(svgHeader);
-main.appendChild(header);
+    header.appendChild(svgHeader);
+    main.appendChild(header);
 
 // Skapa innehåll
-const content = document.createElement('div');
-content.className = 'content';
+    const content = document.createElement('div');
+    content.className = 'content';
 
 // Inputfält för spelnamn
-const inputField1 = document.createElement('div');
-inputField1.className = 'input-field';
+    const inputField1 = document.createElement('div');
+    inputField1.className = 'input-field';
 
-const input1 = document.createElement('input');
-input1.type = 'text';
-input1.placeholder = 'Ditt spelnamn';
-inputField1.appendChild(input1);
-content.appendChild(inputField1);
+    const input1 = document.createElement('input');
+    input1.type = 'text';
+    input1.placeholder = 'Ditt spelnamn';
+    inputField1.appendChild(input1);
+    content.appendChild(inputField1);
 
 // Inputfält för rummets namn
-const inputField2 = document.createElement('div');
-inputField2.className = 'input-field';
+    const inputField2 = document.createElement('div');
+    inputField2.className = 'input-field';
 
-const input2 = document.createElement('input');
-input2.type = 'text';
-input2.placeholder = 'Rummets namn';
-inputField2.appendChild(input2);
-content.appendChild(inputField2);
+    const input2 = document.createElement('input');
+    input2.type = 'text';
+    input2.placeholder = 'Rummets namn';
+    inputField2.appendChild(input2);
+    content.appendChild(inputField2);
 
 // Knapp för att skapa rum
-const button = document.createElement('button');
-button.id = 'btnMakeRoom';
-button.textContent = 'Skapa rum';
+    const button = document.createElement('button');
+    button.id = 'btnMakeRoom';
+    button.textContent = 'Skapa rum';
 
-button.addEventListener('click', () => {
-    const playerName = input1.value.trim();
-    const roomName = input2.value.trim();
+    button.addEventListener('click', () => {
+        const playerName = input1.value.trim();
+        const roomName = input2.value.trim();
 
-    if (!playerName || !roomName) {
-        alert('Vänligen fyll i både spelnamn och rummets namn.');
-    } else {
-        alert(`Rum skapat!\nSpelarnamn: ${playerName}\nRumsnamn: ${roomName}`);
-    }
-});
+        if (!playerName || !roomName) {
+            alert('Vänligen fyll i både spelnamn och rummets namn.');
+        } else {
+            alert(`Rum skapat!\nSpelarnamn: ${playerName}\nRumsnamn: ${roomName}`);
+        }
+    });
 
-content.appendChild(button);
-main.appendChild(content);
+    content.appendChild(button);
+    main.appendChild(content);
 
 // Skapa footer med SVG
-const footer = document.createElement('div');
-footer.className = 'footer';
+    const footer = document.createElement('div');
+    footer.className = 'footer';
 
-const svgFooter = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-svgFooter.classList = 'svg-icon-footer';
-svgFooter.setAttribute('width', '393');
-svgFooter.setAttribute('height', '168');
-svgFooter.setAttribute('viewBox', '0 0 393 168');
-svgFooter.setAttribute('fill', 'none');
+    const svgFooter = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svgFooter.classList = 'svg-icon-footer';
+    svgFooter.setAttribute('width', '393');
+    svgFooter.setAttribute('height', '168');
+    svgFooter.setAttribute('viewBox', '0 0 393 168');
+    svgFooter.setAttribute('fill', 'none');
 
 // Lägg till SVG-paths
-svgFooter.innerHTML = `
+    svgFooter.innerHTML = `
         <path d="M-1 29H393.5" stroke="#BB3B4E" stroke-width="2"/>
         <path d="M-2 167H392.5" stroke="#BB3B4E" stroke-width="2"/>
         <line x1="136" y1="168.004" x2="136" y2="29.0001" stroke="#BB3B4E" stroke-width="2"/>
@@ -147,7 +151,11 @@ svgFooter.innerHTML = `
         <path d="M290.276 40.5L233 155.753L175.724 40.5L290.276 40.5Z" fill="#F9E396" stroke="#BB3B4E" stroke-width="2"/>
 `;
 
-footer.appendChild(svgFooter);
-main.appendChild(footer);
+    footer.appendChild(svgFooter);
+    main.appendChild(footer);
 
-body.appendChild(main);
+    body.appendChild(main);
+
+}
+
+renderMakeRoomPage();

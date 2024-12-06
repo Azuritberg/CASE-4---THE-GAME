@@ -1,18 +1,22 @@
+"use strict";
+
+function renderLeaderboardPage() {
+
 // Hämta body
-const body = document.body;
+    const body = document.body;
 
 // Main container
-const main = document.createElement("main");
-main.id = "leaderboardPage-main";
+    const main = document.createElement("main");
+    main.id = "leaderboardPage-main";
 
 // Progress container
-const progressContainer = document.createElement("div");
-progressContainer.className = "progress-container";
+    const progressContainer = document.createElement("div");
+    progressContainer.className = "progress-container";
 
-const svgIcon = document.createElement("div");
-svgIcon.className = "svg-icon";
+    const svgIcon = document.createElement("div");
+    svgIcon.className = "svg-icon";
 // Add SVG icon here
-svgIcon.innerHTML = `
+    svgIcon.innerHTML = `
     <svg width="187" height="155" viewBox="0 0 187 155" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M97.0078 24.2439V34.748" stroke="#BB3B4E" stroke-width="2"/>
                 <path d="M89.5938 24.2439V34.748" stroke="#BB3B4E" stroke-width="2"/>
@@ -52,9 +56,9 @@ svgIcon.innerHTML = `
             </svg>
 `;
 
-const progressText = document.createElement("div");
-progressText.className = "progress-text";
-progressText.innerHTML = `
+    const progressText = document.createElement("div");
+    progressText.className = "progress-text";
+    progressText.innerHTML = `
 <svg width="65" height="65" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
     <mask id="mask0_370_795" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-1" y="-1" width="67" height="67">
         <rect x="-0.5" y="-0.5" width="65.4688" height="65.4688" fill="#F9E396" stroke="#BB3B4E"/>
@@ -66,68 +70,71 @@ progressText.innerHTML = `
 `;
 
 // Append elements to progress container
-progressContainer.appendChild(svgIcon);
-progressContainer.appendChild(progressText);
+    progressContainer.appendChild(svgIcon);
+    progressContainer.appendChild(progressText);
 
 // Leaderboard text
-const leaderboardText = document.createElement("div");
-leaderboardText.className = "leaderboardPage-text";
-leaderboardText.innerHTML = "<h2>LEADERBOARD</h2>";
+    const leaderboardText = document.createElement("div");
+    leaderboardText.className = "leaderboardPage-text";
+    leaderboardText.innerHTML = "<h2>LEADERBOARD</h2>";
 
 // Leaderboard cards
-const leaderboardCard = document.createElement("div");
-leaderboardCard.id = "leaderboardPage-card";
+    const leaderboardCard = document.createElement("div");
+    leaderboardCard.id = "leaderboardPage-card";
 
-const players = [
-    { icon: "1", name: "Ronja77", place: "1st place", points: "24p" },
-    { icon: "2", name: "BBell", place: "2nd place", points: "19p" },
-    { icon: "3", name: "Bullwhips", place: "3rd place", points: "13p" },
-    { icon: "4", name: "Linnsant", place: "4th place", points: "9p" },
-    { icon: "5", name: "Venni", place: "5th place", points: "3p" },
-];
+    const players = [
+        { icon: "1", name: "Ronja77", place: "1st place", points: "24p" },
+        { icon: "2", name: "BBell", place: "2nd place", points: "19p" },
+        { icon: "3", name: "Bullwhips", place: "3rd place", points: "13p" },
+        { icon: "4", name: "Linnsant", place: "4th place", points: "9p" },
+        { icon: "5", name: "Venni", place: "5th place", points: "3p" },
+    ];
 
-players.forEach(player => {
-    const card = document.createElement("div");
-    card.className = "cards-score";
+    players.forEach(player => {
+        const card = document.createElement("div");
+        card.className = "cards-score";
 
-    const cardIcon = document.createElement("div");
-    cardIcon.className = "card-icon";
-    cardIcon.textContent = player.icon;
+        const cardIcon = document.createElement("div");
+        cardIcon.className = "card-icon";
+        cardIcon.textContent = player.icon;
 
-    const cardText = document.createElement("p");
-    cardText.className = "card-text";
-    cardText.textContent = player.name;
+        const cardText = document.createElement("p");
+        cardText.className = "card-text";
+        cardText.textContent = player.name;
 
-    //const cardPlace = document.createElement("p");
-    //cardPlace.className = "card-place";
-    //cardPlace.textContent = player.place;
+        //const cardPlace = document.createElement("p");
+        //cardPlace.className = "card-place";
+        //cardPlace.textContent = player.place;
 
-    const cardPoints = document.createElement("p");
-    cardPoints.className = "card-points";
-    cardPoints.textContent = player.points;
+        const cardPoints = document.createElement("p");
+        cardPoints.className = "card-points";
+        cardPoints.textContent = player.points;
 
-    // Append all elements to the card
-    card.appendChild(cardIcon);
-    card.appendChild(cardText);
-    //card.appendChild(cardPlace);
-    card.appendChild(cardPoints);
+        // Append all elements to the card
+        card.appendChild(cardIcon);
+        card.appendChild(cardText);
+        //card.appendChild(cardPlace);
+        card.appendChild(cardPoints);
 
-    // Append card to leaderboard
-    leaderboardCard.appendChild(card);
-});
+        // Append card to leaderboard
+        leaderboardCard.appendChild(card);
+    });
 
 // Footer
-const footer = document.createElement("footer");
-const footerP = document.createElement("div");
-footerP.className = "footer-p";
-footerP.innerHTML = "<p>©rockbjörnen</p>";
-footer.appendChild(footerP);
+    const footer = document.createElement("footer");
+    const footerP = document.createElement("div");
+    footerP.className = "footer-p";
+    footerP.innerHTML = "<p>©rockbjörnen</p>";
+    footer.appendChild(footerP);
 
 // Append everything to the main
-main.appendChild(progressContainer);
-main.appendChild(leaderboardText);
-main.appendChild(leaderboardCard);
-main.appendChild(footer);
+    main.appendChild(progressContainer);
+    main.appendChild(leaderboardText);
+    main.appendChild(leaderboardCard);
+    main.appendChild(footer);
 
 // Append main to the body
-body.appendChild(main);
+    body.appendChild(main);
+}
+
+renderLeaderboardPage();

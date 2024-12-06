@@ -1,17 +1,20 @@
-const body = document.body;
+"use strict";
+
+function renderFoundBearPage() {
+    const body = document.body;
 
 // Main container
-const main = document.createElement("main");
-main.id = "foundBearPage-main";
+    const main = document.createElement("main");
+    main.id = "foundBearPage-main";
 
 // Progress container
-const progressContainer = document.createElement("div");
-progressContainer.className = "progress-container-big";
+    const progressContainer = document.createElement("div");
+    progressContainer.className = "progress-container-big";
 
 // SVG icon
-const svgIconBig = document.createElement("div");
-svgIconBig.className = "svg-icon-big";
-svgIconBig.innerHTML = `
+    const svgIconBig = document.createElement("div");
+    svgIconBig.className = "svg-icon-big";
+    svgIconBig.innerHTML = `
  <svg width="309" height="251" viewBox="0 0 309 251" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M161.188 38.2927V55.4309" stroke="#BB3B4E" stroke-width="2"/>
                 <path d="M148.867 38.2927V55.4309" stroke="#BB3B4E" stroke-width="2"/>
@@ -51,9 +54,9 @@ svgIconBig.innerHTML = `
 `;
 
 // Lägg till text i progress container
-const progressTextBig = document.createElement("div");
-progressTextBig.className = "progress-text-big";
-progressTextBig.innerHTML = `
+    const progressTextBig = document.createElement("div");
+    progressTextBig.className = "progress-text-big";
+    progressTextBig.innerHTML = `
   <svg width="62" height="96" viewBox="0 0 62 96" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_d_346_2161)">
                     <path d="M32.1593 5.56519C28.6011 3.19227 24.5046 0.480858 20.1865 0C17.8743 0.0587279 17.8743 0.0587281 15.1111 3.61249L14.4604 4.52375C12.7085 3.93959 11.0936 3.64952 9.25488 3.48231L8.21377 4.52375L7.19706 4.36509L6.00141 4.06812C4.47222 3.86548 3.81325 3.80794 2.5263 4.69054C0.499272 7.08116 -0.128729 9.43257 0.0211274 12.542C0.494402 14.2103 1.10667 14.7523 2.45513 15.8168L3.61418 16.6691C4.72942 17.6874 4.87405 18.1449 4.99284 19.6246L5.02537 20.6742C5.20639 23.5487 6.69391 25.5693 8.73433 27.4354C9.58628 28.099 9.58629 28.099 10.4261 28.8999L10.4261 28.8999C12.3071 32.6367 12.3071 32.6367 11.9898 36.9873L11.8577 38.8912C11.8203 41.7115 11.5385 43.4737 9.90558 45.8233C6.72373 50.2439 4.92168 54.7441 5.611 60.2407C6.20088 61.237 6.20088 61.237 6.15761 62.2802C6.00032 66.2466 5.58037 70.4559 6.59314 74.3306C7.6138 77.6014 8.36155 80.5377 8.43643 83.9647L8.44152 85.3003C8.46822 87.5288 8.5262 89.3151 7.49191 91.3232C6.65211 92.5253 6.65211 92.5253 6.05835 94H52.5985C52.5489 93.6503 52.4999 93.3088 52.461 93.046C52.0686 91.1089 52.5519 92.4636 53.4519 90.6871C53.7748 90.2127 53.1385 87.2046 53.4519 86.7442C56.5371 80.2348 59.4776 73.2407 57.1785 66.0012C54.8702 62.5726 52.5515 60.3682 48.4329 59.4236C47.3965 59.2016 46.3637 58.9742 45.3338 58.7233C43.588 58.1501 43.0821 57.9563 42.2125 56.4004C41.2878 54.3822 40.1371 52.8316 38.7104 51.1472L37.8529 50.1518C36.5089 48.55 35.3359 47.0443 33.5278 45.9657L32.6799 45.6606C32.7121 44.7156 32.746 43.7707 32.7887 42.8261L32.8425 41.6575C32.9769 37.3617 34.2512 34.842 37.3425 31.8025C39.1578 30.57 40.9895 30.7037 43.091 31.0804C44.5351 31.8027 45.635 32.0284 47.2554 32.1219C48.9689 31.2481 50.0767 30.4458 51.2247 28.8999L51.9404 27.4354C53.3081 24.6836 54.4167 22.2037 54.5432 19.1039L53.5021 18.0624C53.3279 16.349 53.3279 16.349 53.5021 14.4174L54.1202 12.4973C54.5432 10.7724 54.5432 10.7724 53.9881 9.69229C51.1973 6.91191 51.1973 6.91191 38.2758 6.02082L36.5289 5.92089L34.8841 5.82148C33.4413 5.77056 33.4413 5.77056 32.1593 5.56519Z" fill="#F9E396"/>
@@ -74,60 +77,63 @@ progressTextBig.innerHTML = `
 `;
 
 // Append SVG och text i progress-container
-progressContainer.appendChild(svgIconBig);
-progressContainer.appendChild(progressTextBig);
+    progressContainer.appendChild(svgIconBig);
+    progressContainer.appendChild(progressTextBig);
 
 // Text Section
-const foundBearText = document.createElement("div");
-foundBearText.className = "foundBearPage-text";
-foundBearText.innerHTML = `
+    const foundBearText = document.createElement("div");
+    foundBearText.className = "foundBearPage-text";
+    foundBearText.innerHTML = `
     <h2>Du har hittat Rockbjörnen!</h2>
     <p>Du har över 20 kändis poäng och kan därför <br>plocka upp björnen!</p>
 `;
 
 // Button Section
-const foundBearButton = document.createElement("div");
-foundBearButton.id = "foundBearPage-button";
+    const foundBearButton = document.createElement("div");
+    foundBearButton.id = "foundBearPage-button";
 
-const greenButton = document.createElement("div");
-greenButton.id = "green";
-greenButton.className = "buttons";
-greenButton.innerHTML = `<p class="button-text">Plocka upp och vinn björnen</p>`;
+    const greenButton = document.createElement("div");
+    greenButton.id = "green";
+    greenButton.className = "buttons";
+    greenButton.innerHTML = `<p class="button-text">Plocka upp och vinn björnen</p>`;
 
-/*
-const redCard = document.createElement("div");
-redCard.id = "red";
-redCard.className = "cards";
-redCard.innerHTML = `<p class="card-text">Jag hatar att vinna, ingen björn!</p>`;
- */
+    /*
+    const redButton = document.createElement("div");
+    redButton.id = "red";
+    redButton.className = "buttons";
+    redButton.innerHTML = `<p class="button-text">Jag hatar att vinna, ingen björn!</p>`;
+     */
 
 // Append buttons to the card container
-foundBearButton.appendChild(greenButton);
+    foundBearButton.appendChild(greenButton);
 //foundBearButton.appendChild(redButton);
 
 // Footer
-const footer = document.createElement("footer");
-const footerP = document.createElement("div");
-footerP.className = "footer-p";
-footerP.innerHTML = `<p>©rockbjörnen</p>`;
-footer.appendChild(footerP);
+    const footer = document.createElement("footer");
+    const footerP = document.createElement("div");
+    footerP.className = "footer-p";
+    footerP.innerHTML = `<p>©rockbjörnen</p>`;
+    footer.appendChild(footerP);
 
 // Append everything to the main container
-main.appendChild(progressContainer);
-main.appendChild(foundBearText);
-main.appendChild(foundBearButton);
-main.appendChild(footer);
+    main.appendChild(progressContainer);
+    main.appendChild(foundBearText);
+    main.appendChild(foundBearButton);
+    main.appendChild(footer);
 
 // Append main to body
-body.appendChild(main);
+    body.appendChild(main);
 
 // Eventlyssnare på knapparna - vet inte om vi ska ha något liknande
-greenButton.addEventListener("click", () => {
-    alert("Grattis! Du har valt Rockbjörnen!");
-});
+    greenButton.addEventListener("click", () => {
+        alert("Grattis! Du har valt Rockbjörnen!");
+    });
 
-/*
-redCard.addEventListener("click", () => {
-    alert("Oj! Du valde att inte ta Rockbjörnen.");
-});
- */
+    /*
+    redButton.addEventListener("click", () => {
+        alert("Oj! Du valde att inte ta Rockbjörnen.");
+    });
+     */
+}
+
+renderFoundBearPage();

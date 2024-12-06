@@ -1,15 +1,20 @@
+"use strict";
+
+
+function renderWaitYourTurnPage() {
+
 // Skapa huvudelementet
-const main = document.createElement("main");
-main.id = "waitYourTurnPage-main";
+    const main = document.createElement("main");
+    main.id = "waitYourTurnPage-main";
 
 // Progress Container
-const progressContainer = document.createElement("div");
-progressContainer.className = "progress-container";
+    const progressContainer = document.createElement("div");
+    progressContainer.className = "progress-container";
 
 // SVG Icon
-const svgIcon = document.createElement("div");
-svgIcon.classList.add("svg-icon");
-svgIcon.innerHTML = `
+    const svgIcon = document.createElement("div");
+    svgIcon.classList.add("svg-icon");
+    svgIcon.innerHTML = `
      <svg width="187" height="155" viewBox="0 0 187 155" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M97.0078 24.2439V34.748" stroke="#BB3B4E" stroke-width="2"/>
                     <path d="M89.5938 24.2439V34.748" stroke="#BB3B4E" stroke-width="2"/>
@@ -51,32 +56,32 @@ svgIcon.innerHTML = `
 
 
 // Lägg till SVG i Progress Container
-progressContainer.appendChild(svgIcon);
+    progressContainer.appendChild(svgIcon);
 
 // Progress Text
-const progressText = document.createElement("div");
-progressText.className = "progress-text";
-progressText.innerHTML = "<p>20p</p>";
-progressContainer.appendChild(progressText);
+    const progressText = document.createElement("div");
+    progressText.className = "progress-text";
+    progressText.innerHTML = "<p>20p</p>";
+    progressContainer.appendChild(progressText);
 
 // Lägg till Progress Container i Main
-main.appendChild(progressContainer);
+    main.appendChild(progressContainer);
 
 // Second Page Text
-const waitYourTurnPageText = document.createElement("div");
-waitYourTurnPageText.className = "waitYourTurnPage-text";
-waitYourTurnPageText.innerHTML = `
+    const waitYourTurnPageText = document.createElement("div");
+    waitYourTurnPageText.className = "waitYourTurnPage-text";
+    waitYourTurnPageText.innerHTML = `
     <h2>Venni gissar just nu!</h2>
     <p>Det kan bli din tur härnäst</p>
 `;
-main.appendChild(waitYourTurnPageText);
+    main.appendChild(waitYourTurnPageText);
 
 // Second Page Soundwave
-const soundwave = document.createElement("div");
-soundwave.id = "soundwawe";
-const svgWave = document.createElement("div");
-svgWave.className = "svg-wawe";
-svgWave.innerHTML = `
+    const soundwave = document.createElement("div");
+    soundwave.id = "soundwawe";
+    const svgWave = document.createElement("div");
+    svgWave.className = "svg-wawe";
+    svgWave.innerHTML = `
      <svg width="363" height="159" viewBox="0 0 363 159" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <line x1="86.0449" y1="158.437" x2="86.0449" y2="79.2182" stroke="#BB3B4E" stroke-width="2"/>
                     <line x1="1" y1="158.437" x2="1" y2="81.1986" stroke="#BB3B4E" stroke-width="2"/>
@@ -120,27 +125,31 @@ svgWave.innerHTML = `
                     <line x1="361.969" y1="158.437" x2="361.969" y2="136.652" stroke="#CCC5B9" stroke-width="2"/>
                 </svg>
 `;
-soundwave.appendChild(svgWave);
+    soundwave.appendChild(svgWave);
 
 // Time Text
-const timeText = document.createElement("div");
-timeText.className = "time-text";
-timeText.innerHTML = "<p>00:10</p>";
-soundwave.appendChild(timeText);
+    const timeText = document.createElement("div");
+    timeText.className = "time-text";
+    timeText.innerHTML = "<p>00:10</p>";
+    soundwave.appendChild(timeText);
 
 // Lägg till Soundwave i Main
-main.appendChild(soundwave);
+    main.appendChild(soundwave);
 
 // Footer
-const footer = document.createElement("footer");
-footer.innerHTML = `
+    const footer = document.createElement("footer");
+    footer.innerHTML = `
     <div class="footer-p">
         <p>©rockbjörnen</p>
     </div>
 `;
 
 // Lägg till Footer i Main
-main.appendChild(footer);
+    main.appendChild(footer);
 
 // Lägg till Main i Body
-document.body.appendChild(main);
+    document.body.appendChild(main);
+
+}
+
+renderWaitYourTurnPage();

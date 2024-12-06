@@ -1,19 +1,23 @@
-// Hämta body
-const body = document.body;
+"use strict";
+
+function renderQuestionPage(questionTexts) {
+    // Hämta body
+    const body = document.body;
+    body.innerHTML = "";
 
 // Main container
-const main = document.createElement("main");
-main.id = "questionPage-main";
+    const main = document.createElement("main");
+    main.id = "questionPage-main";
 
 // Progress-container
-const progressContainer = document.createElement("div");
-progressContainer.classList.add("progress-container");
+    const progressContainer = document.createElement("div");
+    progressContainer.classList.add("progress-container");
 
-const svgIcon = document.createElement("div");
-svgIcon.classList.add("svg-icon");
+    const svgIcon = document.createElement("div");
+    svgIcon.classList.add("svg-icon");
 
 // Add SVG icon here
-svgIcon.innerHTML = `
+    svgIcon.innerHTML = `
      <svg width="187" height="155" viewBox="0 0 187 155" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M97.0078 24.2439V34.748" stroke="#BB3B4E" stroke-width="2"/>
                     <path d="M89.5938 24.2439V34.748" stroke="#BB3B4E" stroke-width="2"/>
@@ -53,25 +57,73 @@ svgIcon.innerHTML = `
                 </svg>
 `;
 
-const progressText = document.createElement("div");
-progressText.classList.add("progress-text");
-progressText.innerHTML = `<p>8p</p>`;
+    // Intervall till Timer
+    let seconds = 10;
 
-progressContainer.appendChild(svgIcon);
-progressContainer.appendChild(progressText);
+    const progressText = document.createElement("div");
+    progressText.classList.add("progress-text");
+    progressText.innerHTML = `<p>${seconds}</p>`;
+
+    const interval = setInterval(() => {
+        seconds -= 1;
+        progressText.innerHTML = `<p>${seconds}</p>`;
+        if ( seconds == 0 ) {
+            clearInterval(interval);
+        }
+    },1000)
+
+    progressContainer.appendChild(svgIcon);
+    progressContainer.appendChild(progressText);
 
 // Text under progress
-const questionPageText = document.createElement("div");
-questionPageText.classList.add("questionPage-text");
-questionPageText.innerHTML = `
+    const questionPageText = document.createElement("div");
+    questionPageText.classList.add("questionPage-text");
+    questionPageText.innerHTML = `
     <h2>Finnish the lyrics!</h2>
     <p>SOUND ON</p>
 `;
 
 // Cards
-const questionContainer = document.createElement("div");
-questionContainer.id = "questionPage-card";
+    const questionContainer = document.createElement("div");
+    questionContainer.id = "questionPage-card";
 
+
+    questionTexts.forEach((text) => {
+        const question = document.createElement("div");
+        question.classList.add("question");
+
+        const questionText = document.createElement("p");
+        questionText.classList.add("question-text");
+        questionText.textContent = text;
+
+        question.appendChild(questionText);
+        questionContainer.appendChild(question);
+
+        // Lägg till klickhändelse
+        question.addEventListener("click", () => {
+            markSelectedQuestion(question);
+        });
+    });
+
+// Footer
+    const footer = document.createElement("footer");
+    footer.innerHTML = `
+    <div class="footer-p">
+        <p>©rockbjörnen</p>
+    </div>
+`;
+
+// Lägg till alla element i sektionen
+    main.appendChild(progressContainer);
+    main.appendChild(questionPageText);
+    main.appendChild(questionContainer);
+    main.appendChild(footer);
+
+// Lägg till sektionen i body
+    body.appendChild(main);
+}
+
+// Card Questions Array
 const questionTexts = [
     "Hit me baby one more time...",
     "Hit me lady one more time...",
@@ -79,37 +131,4 @@ const questionTexts = [
     "Hit me baby six more times...",
 ];
 
-questionTexts.forEach((text) => {
-    const question = document.createElement("div");
-    question.classList.add("question");
-
-    const questionText = document.createElement("p");
-    questionText.classList.add("question-text");
-    questionText.textContent = text;
-
-    question.appendChild(questionText);
-    questionContainer.appendChild(question);
-
-    // Lägg till klickhändelse
-    question.addEventListener("click", () => {
-        markSelectedQuestion(question);
-    });
-});
-
-// Footer
-const footer = document.createElement("footer");
-footer.innerHTML = `
-    <div class="footer-p">
-        <p>©rockbjörnen</p>
-    </div>
-`;
-
-// Lägg till alla element i sektionen
-main.appendChild(progressContainer);
-main.appendChild(questionPageText);
-main.appendChild(questionContainer);
-main.appendChild(footer);
-
-// Lägg till sektionen i body
-body.appendChild(main);
-
+renderQuestionPage(questionTexts);

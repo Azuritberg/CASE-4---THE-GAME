@@ -1,41 +1,44 @@
+"use strict";
 
-const body = document.body;
+function renderMainPage() {
 
-body.innerHTML = "";
+    const body = document.body;
+
+    body.innerHTML = "";
 
 // Main container
-const main = document.createElement("main");
-main.id = "mainPage-main";
+    const main = document.createElement("main");
+    main.id = "mainPage-main";
 
 // Graphic container
-const graphic = document.createElement("div");
-graphic.id = "graphic";
+    const graphic = document.createElement("div");
+    graphic.id = "graphic";
 
 // Top bar with text and icon
-const topBar = document.createElement("div");
-topBar.classList.add("top-bar");
+    const topBar = document.createElement("div");
+    topBar.classList.add("top-bar");
 
-const mainText = document.createElement("h2");
-mainText.classList.add("main-text");
-mainText.textContent = "Den försvunna";
+    const mainText = document.createElement("h2");
+    mainText.classList.add("main-text");
+    mainText.textContent = "Den försvunna";
 
-const infoIcon = document.createElement("div");
-infoIcon.classList.add("info-icon");
-const iconImage = document.createElement("img");
-iconImage.src = "../icons/info.svg";
-iconImage.alt = "info";
-infoIcon.appendChild(iconImage);
+    const infoIcon = document.createElement("div");
+    infoIcon.classList.add("info-icon");
+    const iconImage = document.createElement("img");
+    iconImage.src = "../icons/info.svg";
+    iconImage.alt = "info";
+    infoIcon.appendChild(iconImage);
 
 // Add elements to the top bar
-topBar.appendChild(mainText);
-topBar.appendChild(infoIcon);
+    topBar.appendChild(mainText);
+    topBar.appendChild(infoIcon);
 
-graphic.appendChild(topBar);
+    graphic.appendChild(topBar);
 
 // SVG container
-const svgContainer = document.createElement("div");
-svgContainer.classList.add("svg-main-page");
-svgContainer.innerHTML = `
+    const svgContainer = document.createElement("div");
+    svgContainer.classList.add("svg-main-page");
+    svgContainer.innerHTML = `
     <!-- SVG content -->
     <svg width="393" height="557" viewBox="0 0 393 557" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M0 1L393 1" stroke="#BB3B4E" stroke-width="2"/>
@@ -80,38 +83,42 @@ svgContainer.innerHTML = `
 `;
 
 // Append the text and SVG to the graphic container
-graphic.appendChild(svgContainer);
+    graphic.appendChild(svgContainer);
 
 // Buttons container
-const buttonContent = document.createElement("div");
-buttonContent.classList.add("button-content");
+    const buttonContent = document.createElement("div");
+    buttonContent.classList.add("button-content");
 
 // Create "Skapa ett rum" button
-const btnMakeRoom = document.createElement("button");
-btnMakeRoom.id = "btnMakeRoom";
-btnMakeRoom.textContent = "Skapa ett rum";
+    const btnMakeRoom = document.createElement("button");
+    btnMakeRoom.id = "btnMakeRoom";
+    btnMakeRoom.textContent = "Skapa ett rum";
 
 // Create "Gå med i ett rum" button
-const btnJoinRoom = document.createElement("button");
-btnJoinRoom.id = "btnJoinRoom";
-btnJoinRoom.textContent = "Gå med i ett rum";
+    const btnJoinRoom = document.createElement("button");
+    btnJoinRoom.id = "btnJoinRoom";
+    btnJoinRoom.textContent = "Gå med i ett rum";
 
 // Append buttons to the button content container
-buttonContent.appendChild(btnMakeRoom);
-buttonContent.appendChild(btnJoinRoom);
+    buttonContent.appendChild(btnMakeRoom);
+    buttonContent.appendChild(btnJoinRoom);
 
 // Append graphic and button content to the main container
-main.appendChild(graphic);
-main.appendChild(buttonContent);
+    main.appendChild(graphic);
+    main.appendChild(buttonContent);
 
 // Append the main container to the body
-body.appendChild(main);
+    body.appendChild(main);
 
 // Add functionality to the buttons
-btnMakeRoom.addEventListener("click", () => {
-    alert("Skapa ett rum");
-});
+    btnMakeRoom.addEventListener("click", () => {
+        alert("Skapa ett rum");
+    });
 
-btnJoinRoom.addEventListener("click", () => {
-    alert("Gå med i ett rum");
-});
+    btnJoinRoom.addEventListener("click", () => {
+        alert("Gå med i ett rum");
+    });
+
+}
+
+renderMainPage();
