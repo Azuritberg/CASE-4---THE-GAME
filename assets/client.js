@@ -14,8 +14,9 @@ socket.addEventListener("message", (event) => {
         console.log("we should now initialize", data);
         //here we should render the game data
         renderLobby(JSON.stringify(data.data));
-    }
-    else if(data.message === "YOU HAVE BEEN NOTIFIED"){
+    }else if (data.message === "returningInitializeLobbyCreate"){
+        console.log("recived this data from server: ", data, ":3");
+    }else if(data.message === "YOU HAVE BEEN NOTIFIED"){
         console.log(data.message);
     }
     else if (data.connection.myID) {
@@ -61,21 +62,24 @@ function startAppError()
 
 function createGame() 
 {
-     main.innerHTML= `<form id = createGameForm>
-                        <input type="text" name="hostName" placeholder=" Enter your name">
-                        <input type="text" name="name" placeholder=" Enter game code">
-                        <button id="btnCreateGame" type="submit">Create Game</button> 
+     main.innerHTML= `<input type="text" id="hostName" name="hostName" placeholder=" Enter your name">
+                        <input type="text" id="gameName" name="name" placeholder=" Enter game code">
+                        <button id="btnCreateGame">Create Game</button> 
                         <button id="btnBack">back</button> 
-                      </form>
                       <p id="feedback"></p>`
 
-    let btnBack = document.querySelector("#btnBack")
-    btnBack.addEventListener("click", startApp)
+    let btnBack = document.querySelector("#btnBack");
+    btnBack.addEventListener("click", startApp);
+    let btnCreate = document.querySelector("#btnCreateGame");
+    btnCreate.addEventListener("click", () => {
+        let gameName = document.querySelector("#gameName").value;
+        let hostName = document.querySelector("#hostName").value;
+        initializeLobby("initalizeLobbyCreate", gameName, hostName);
+        console.log("HEJ")
+    })
 
-    
 
-
-    const createGameForm = document.querySelector("#createGameForm")
+    /* const createGameForm = document.querySelector("#createGameForm")
     createGameForm.addEventListener("submit", async (event) => {
         event.preventDefault()
         const formData= new FormData(createGameForm)
@@ -99,7 +103,7 @@ function createGame()
                 console.log(data)
             }
             createGameForm.reset()
-    })
+    }) */
     
     
 }
@@ -116,16 +120,19 @@ function joinGame()
     let btnJoinGame = document.querySelector("#btnJoinGame");
 
     btnJoinGame.addEventListener("click", ()=> {
-        let gameName = document.querySelector("#joinGameCode").value
-        initializeLobby("initalizeLobbyJoin ", gameName);
+        let gameName = document.querySelector("#joinGameCode").value;
+        let userName = document.querySelector("#userName").value;
+        initializeLobby("initalizeLobbyJoin", gameName, userName);
     });
 }
-async function initializeLobby(modifier, gameName){
+async function initializeLobby(modifier, gameName, userName){
     let data = {
         message : modifier,
         gameName : gameName,
-        userID: myID
+        userID: myID,
+        userName: userName
     }
+    console.log(data);
     socket.send(JSON.stringify(data));
 }
 async function renderLobby(lobbyData) {

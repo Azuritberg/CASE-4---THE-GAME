@@ -100,10 +100,8 @@ function handleWebSocketRequest(request)
 
     socket.addEventListener("message", (event) =>{
         const data = JSON.parse(event.data);
-        //console.log("CONNECTIONS",connections);
-        
-        if(data.message = "initalizeLobbyJoin"){
-            //console.log(`user:${data.userID} joining game ${data.gameName}`);
+        console.log(data.message);
+        if(data.message === "initalizeLobbyJoin"){
             for(let i=0; i<GAMES.rooms.length; i++){
                 if(GAMES.rooms[i].name === data.gameName){
                     GAMES.rooms[i].players.push({
@@ -116,28 +114,52 @@ function handleWebSocketRequest(request)
                         message: "returningInitializeLobbyJoin",
                         data: GAMES.rooms[i]
                     });
-                    //console.log("going to send", returnData);
                     socket.send(returnData);
+                    
                     //send to all other users connected to this game
-                    //console.log(GAMES.rooms[i]);
                     let players = GAMES.rooms[i].players;
                     
                     for(let j=0; j<players.length; j++){
-                        //console.log("notifying: ", connections[String(players[j].id)]);
                         let notification = {
                             message: "YOU HAVE BEEN NOTIFIED"
                         }
-                        //console.log("PLAYERS",String(players[j].id),"PLAYERS");
-                        //console.log("HERE->>",connections["1"],"END",);
                         connections[String(players[j].id)].socket.send(JSON.stringify(notification));
                     }
-                    //console.log("these players shhould be notified", STATE.games[i].players);
                 }
             }
-            //save new user
-            //add user to game room
-            //send room info back to user for rendering
-
+        } else if (data.message === "initalizeLobbyCreate"){
+            //we should now create a game and add the host
+            //increment ID for new room
+            console.log("TJA");
+            let newID = 0;
+            for(let i = 0; i < GAMES.rooms.length; i++){
+                newID = GAMES.rooms[i].id;
+            }
+            newID++;
+            //push new game with host member into GAMES(state)
+            let newGame = {
+                id: newID,
+                hostName: data.userName,
+                name: data.gameName,
+                hostID: data.userID,
+                isActive: false,
+                players
+                : [
+                    {
+                        id: data.userID, 
+                        name: data.userName, 
+                        points: 0, 
+                        turn:false
+                    }
+                ]
+            }
+            GAMES.rooms.push(newGame);
+            let returnData = JSON.stringify({
+                message: "returningInitializeLobbyCreate",
+                data: newGame
+            });
+            console.log(GAMES);
+            socket.send(returnData);
         }
     })
 
