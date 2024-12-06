@@ -5,24 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0048b4d-5069-4752-a166-dd1ad0b2428d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/htmlstruktur/waitRoomAllPlayerPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/htmlstruktur/waitRoomAllPlayerPage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/htmlstruktur/waitRoomAllPlayerPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/htmlstruktur/waitRoomGameLeaderPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/htmlstruktur/waitRoomGameLeaderPage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/htmlstruktur/waitRoomGameLeaderPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlstruktur/foundBearPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/htmlstruktur/foundBearPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlstruktur/infoPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/htmlstruktur/infoPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlstruktur/joinRoomPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/htmlstruktur/joinRoomPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlstruktur/leaderboardPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/htmlstruktur/leaderboardPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlstruktur/mainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/htmlstruktur/mainPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlstruktur/makeRoomPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/htmlstruktur/makeRoomPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlstruktur/questionPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/htmlstruktur/questionPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlstruktur/testapp.html" beforeDir="false" afterPath="$PROJECT_DIR$/htmlstruktur/testapp.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlstruktur/waitYourTurnPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/htmlstruktur/waitYourTurnPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlstruktur/wonTheGamePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/htmlstruktur/wonTheGamePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,11 +34,11 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="bojana" />
-                    <option name="lastUsedInstant" value="1733429340" />
+                    <option name="lastUsedInstant" value="1733498499" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1733429280" />
+                    <option name="lastUsedInstant" value="1733498495" />
                   </RecentBranch>
                 </list>
               </option>
@@ -109,7 +92,7 @@
       <workItem from="1733215518303" duration="276000" />
       <workItem from="1733215800344" duration="33000" />
       <workItem from="1733215838978" duration="6716000" />
-      <workItem from="1733265739836" duration="86077000" />
+      <workItem from="1733265739836" duration="87681000" />
     </task>
     <servers />
   </component>
