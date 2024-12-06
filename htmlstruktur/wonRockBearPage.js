@@ -5,7 +5,7 @@ function renderFoundBearPage() {
 
 // Main container
     const main = document.createElement("main");
-    main.id = "foundBearPage-main";
+    main.id = "wonRockBearPage-main";
 
 // Progress container
     const progressContainer = document.createElement("div");
@@ -81,16 +81,16 @@ function renderFoundBearPage() {
     progressContainer.appendChild(progressTextBig);
 
 // Text Section
-    const foundBearText = document.createElement("div");
-    foundBearText.className = "foundBearPage-text";
-    foundBearText.innerHTML = `
+    const wonRockBearText = document.createElement("div");
+    wonRockBearText.className = "wonRockBearPage-text";
+    wonRockBearText.innerHTML = `
     <h2>Du har hittat Rockbjörnen!</h2>
     <p>Du har över 20 kändis poäng och kan därför <br>plocka upp björnen!</p>
 `;
 
 // Button Section
-    const foundBearButton = document.createElement("div");
-    foundBearButton.id = "foundBearPage-button";
+    const wonRockBearButton = document.createElement("div");
+    wonRockBearButton.id = "wonRockBearPage-button";
 
     const greenButton = document.createElement("div");
     greenButton.id = "green";
@@ -105,7 +105,7 @@ function renderFoundBearPage() {
      */
 
 // Append buttons to the card container
-    foundBearButton.appendChild(greenButton);
+    wonRockBearButton.appendChild(greenButton);
 //foundBearButton.appendChild(redButton);
 
 // Footer
@@ -117,8 +117,8 @@ function renderFoundBearPage() {
 
 // Append everything to the main container
     main.appendChild(progressContainer);
-    main.appendChild(foundBearText);
-    main.appendChild(foundBearButton);
+    main.appendChild(wonRockBearText);
+    main.appendChild(wonRockBearButton);
     main.appendChild(footer);
 
 // Append main to body

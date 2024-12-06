@@ -22,7 +22,7 @@
 
 
 /* jag positionerade footern med position: fixed - vet inte om vi kommer skala appen såfall får vi kolla på css:en då */
-#foundBearPage-main {
+#wonRockBearPage-main {
     position: relative; /* Gör att alla absoluta positioner inom detta block blir relativa till det */
     display: flex;
     flex-direction: column;
@@ -76,19 +76,19 @@
 }
 
 /* Text section */
-.foundBearPage-text {
+.wonRockBearPage-text {
     margin-top: 20px;
     text-align: center;
     font-family: "Playfair Display", serif;
 }
 
-.foundBearPage-text h2 {
+.wonRockBearPage-text h2 {
     font-size: 37px;
     font-weight: normal;
     color: #000000;
 }
 
-.foundBearPage-text p {
+.wonRockBearPage-text p {
     font-size: 14px;
     color: #000000;
     margin-top: 5px;
@@ -96,7 +96,7 @@
 }
 
 /* Card container */
-#foundBearPage-button {
+#wonRockBearPage-button {
     margin-top: 20px;
     width: 96%;
     display: flex;
