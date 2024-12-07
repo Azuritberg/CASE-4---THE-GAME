@@ -3,15 +3,21 @@
 
 function renderWaitYourTurnPage() {
 
-// Skapa huvudelementet
+    // Hämta body
+    const body = document.body;
+
+    // Töm body
+    body.innerHTML = "";
+
+    // Skapa huvudelementet
     const main = document.createElement("main");
     main.id = "waitYourTurnPage-main";
 
-// Progress Container
+    // Progress Container
     const progressContainer = document.createElement("div");
     progressContainer.className = "progress-container";
 
-// SVG Icon
+    // SVG Icon
     const svgIcon = document.createElement("div");
     svgIcon.classList.add("svg-icon");
     svgIcon.innerHTML = `
@@ -52,31 +58,32 @@ function renderWaitYourTurnPage() {
                     <line x1="77.5862" y1="11.6317" x2="83.7651" y2="35.1114" stroke="#BB3B4E" stroke-width="2"/>
                     <circle cx="92.682" cy="81.0895" r="46.9594" fill="#F3F0E7"/>
                 </svg>
-`;
+    `;
 
 
-// Lägg till SVG i Progress Container
+    // Lägg till SVG i Progress Container
     progressContainer.appendChild(svgIcon);
 
-// Progress Text
+    // Progress Text
     const progressText = document.createElement("div");
     progressText.className = "progress-text";
     progressText.innerHTML = "<p>20p</p>";
     progressContainer.appendChild(progressText);
 
-// Lägg till Progress Container i Main
+    // Lägg till Progress Container i Main
     main.appendChild(progressContainer);
 
-// Second Page Text
+    // Second Page Text
     const waitYourTurnPageText = document.createElement("div");
     waitYourTurnPageText.className = "waitYourTurnPage-text";
     waitYourTurnPageText.innerHTML = `
     <h2>Venni gissar just nu!</h2>
     <p>Det kan bli din tur härnäst</p>
-`;
+    `;
+
     main.appendChild(waitYourTurnPageText);
 
-// Second Page Soundwave
+    // Second Page Soundwave
     const soundwave = document.createElement("div");
     soundwave.id = "soundwawe";
     const svgWave = document.createElement("div");
@@ -124,31 +131,33 @@ function renderWaitYourTurnPage() {
                     <line x1="352.518" y1="158.437" x2="352.518" y2="106.945" stroke="#CCC5B9" stroke-width="2"/>
                     <line x1="361.969" y1="158.437" x2="361.969" y2="136.652" stroke="#CCC5B9" stroke-width="2"/>
                 </svg>
-`;
+    `;
+
     soundwave.appendChild(svgWave);
 
-// Time Text
+    // Time Text
     const timeText = document.createElement("div");
     timeText.className = "time-text";
     timeText.innerHTML = "<p>00:10</p>";
     soundwave.appendChild(timeText);
 
-// Lägg till Soundwave i Main
+    // Lägg till Soundwave i Main
     main.appendChild(soundwave);
 
-// Footer
+    // Footer
     const footer = document.createElement("footer");
     footer.innerHTML = `
     <div class="footer-p">
         <p>©rockbjörnen</p>
     </div>
-`;
+    `;
 
-// Lägg till Footer i Main
+    // Lägg till Footer i Main
     main.appendChild(footer);
 
-// Lägg till Main i Body
-    document.body.appendChild(main);
+    // Lägg till Main i Body
+    body.appendChild(main);
+    //document.body.appendChild(main);
 
 }
 

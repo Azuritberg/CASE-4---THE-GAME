@@ -2,21 +2,26 @@
 
 
 function renderWonTheGamePage() {
+
+   //Hämta body
     const body = document.body;
 
-// Main container
+    // Töm body
+    body.innerHTML = "";
+
+    // Main container
     const main = document.createElement("main");
     main.id = "wonTheGamePage-main";
 
-// Progress container
+    // Progress container
     const progressContainer = document.createElement("div");
     progressContainer.className = "progress-container-big";
 
-// SVG icon
+    // SVG icon
     const svgIconBig = document.createElement("div");
     svgIconBig.className = "svg-icon-big";
     svgIconBig.innerHTML = `
- <svg width="309" height="251" viewBox="0 0 309 251" fill="none" xmlns="http://www.w3.org/2000/svg">
+     <svg width="309" height="251" viewBox="0 0 309 251" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M161.188 38.2927V55.4309" stroke="#BB3B4E" stroke-width="2"/>
                 <path d="M148.867 38.2927V55.4309" stroke="#BB3B4E" stroke-width="2"/>
                 <path d="M181.699 18.3281L173.506 57.4473" stroke="#BB3B4E" stroke-width="2"/>
@@ -52,30 +57,30 @@ function renderWonTheGamePage() {
                 <line y1="-1" x2="58.1827" y2="-1" transform="matrix(0.352912 0.935656 -0.93978 0.341781 104.723 6.03235)" stroke="#BB3B4E" stroke-width="2"/>
                 <line y1="-1" x2="39.6608" y2="-1" transform="matrix(0.258862 0.965914 -0.968197 0.250188 127.309 18.1302)" stroke="#BB3B4E" stroke-width="2"/>
             </svg>
-`;
+    `;
 
-// Lägg till text i progress container
+    // Lägg till text i progress container
     const progressTextBig = document.createElement("div");
     progressTextBig.className = "progress-text-big-win";
     progressTextBig.innerHTML = `
     <svg width="35" height="91" viewBox="0 0 35 91" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M34.568 91H23.688V25.976H0.136001V17.272C3.208 17.272 6.19467 17.0587 9.096 16.632C11.9973 16.12 14.6 15.224 16.904 13.944C19.2933 12.664 21.2987 10.9147 22.92 8.696C24.5413 6.47733 25.6507 3.66133 26.248 0.247993H34.568V91Z" fill="#BB3B4E"/>
     </svg>
-`;
+    `;
 
-// Append SVG och text i progress-container
+    // Append SVG och text i progress-container
     progressContainer.appendChild(svgIconBig);
     progressContainer.appendChild(progressTextBig);
 
-// Text Section
+    // Text Section
     const wonTheGamePageText = document.createElement("div");
     wonTheGamePageText.className = "wonTheGamePage-text";
     wonTheGamePageText.innerHTML = `
     <h2>GRATTIS!!</h2>
     <h3>Venni har vunnit!!</h3>
-`;
+    `;
 
-// Button Section
+    // Button Section
     const wonTheGamePageButton = document.createElement("div");
     wonTheGamePageButton.id = "wonTheGamePage-card";
 
@@ -89,27 +94,27 @@ function renderWonTheGamePage() {
     redButton.className = "button";
     redButton.innerHTML = `<p class="button-text">Avsluta</p>`;
 
-// Append buttons to the card container
+    // Append buttons to the card container
     wonTheGamePageButton.appendChild(greenButton);
     wonTheGamePageButton.appendChild(redButton);
 
-// Footer
+    // Footer
     const footer = document.createElement("footer");
     const footerP = document.createElement("div");
     footerP.className = "footer-p";
     footerP.innerHTML = `<p>©rockbjörnen</p>`;
     footer.appendChild(footerP);
 
-// Append everything to the main container
+    // Append everything to the main container
     main.appendChild(progressContainer);
     main.appendChild(wonTheGamePageText);
     main.appendChild(wonTheGamePageButton);
     main.appendChild(footer);
 
-// Append main to body
+    // Append main to body
     body.appendChild(main);
 
-// Eventlyssnare på knapparna - vet inte om vi ska ha något liknande
+    // Eventlyssnare på knapparna - vet inte om vi ska ha något liknande
     greenButton.addEventListener("click", () => {
         alert("Grattis! Du har valt Rockbjörnen!");
     });

@@ -1,8 +1,12 @@
 "use strict";
 
 function renderWaitRoomGameLeaderPage() {
+
     // Hämta body
     const body = document.body;
+
+    // Töm body
+    body.innerHTML = "";
 
     // Skapa huvudcontainer
     const main = document.createElement('main');

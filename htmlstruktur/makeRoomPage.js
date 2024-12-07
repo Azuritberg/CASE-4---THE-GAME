@@ -2,18 +2,21 @@
 
 function renderMakeRoomPage() {
 
-// Hämta body
+    // Hämta body
     const body = document.body;
 
-// Skapa huvudcontainer
+    // Töm body
+    body.innerHTML = "";
+
+    // Skapa huvudcontainer
     const main = document.createElement('main');
     main.id = 'makeRoomPage-main';
 
-// Skapa "go-back-info"-container
+    // Skapa "go-back-info"-container
     const goBackInfo = document.createElement('div');
     goBackInfo.id = 'go-back-info';
 
-// Skapa "top-bar"-container
+    // Skapa "top-bar"-container
     const topBar = document.createElement('div');
     topBar.className = 'top-bar';
 
@@ -21,7 +24,7 @@ function renderMakeRoomPage() {
     goBack.className = 'go-back';
 
     const goBackImg = document.createElement('img');
-    goBackImg.src = '../icons/backarrow.svg';
+    goBackImg.src = '../icons/redbackarrow.svg';
     goBackImg.alt = 'Back';
     goBack.appendChild(goBackImg);
 
@@ -38,11 +41,11 @@ function renderMakeRoomPage() {
 
     goBackInfo.appendChild(topBar);
 
-// Lägg till "go-back-info" som första element i "main"
+    // Lägg till "go-back-info" som första element i "main"
     main.insertBefore(goBackInfo, main.firstChild);
 
 
-// Skapa header med SVG
+    // Skapa header med SVG
     const header = document.createElement('div');
     header.className = 'svg-header';
 
@@ -53,7 +56,7 @@ function renderMakeRoomPage() {
     svgHeader.setAttribute('viewBox', '0 0 393 317');
     svgHeader.setAttribute('fill', 'none');
 
-// Lägg till SVG-paths
+    // Lägg till SVG-paths
     svgHeader.innerHTML = `
       <path d="M0 1L393 1" stroke="#BB3B4E" stroke-width="2"/>
           <path d="M-1 278L393 278" stroke="#BB3B4E" stroke-width="2"/>
@@ -79,11 +82,11 @@ function renderMakeRoomPage() {
     header.appendChild(svgHeader);
     main.appendChild(header);
 
-// Skapa innehåll
+    // Skapa innehåll
     const content = document.createElement('div');
     content.className = 'content';
 
-// Inputfält för spelnamn
+    // Inputfält för spelnamn
     const inputField1 = document.createElement('div');
     inputField1.className = 'input-field';
 
@@ -93,7 +96,7 @@ function renderMakeRoomPage() {
     inputField1.appendChild(input1);
     content.appendChild(inputField1);
 
-// Inputfält för rummets namn
+    // Inputfält för rummets namn
     const inputField2 = document.createElement('div');
     inputField2.className = 'input-field';
 
@@ -103,7 +106,7 @@ function renderMakeRoomPage() {
     inputField2.appendChild(input2);
     content.appendChild(inputField2);
 
-// Knapp för att skapa rum
+    // Knapp för att skapa rum
     const button = document.createElement('button');
     button.id = 'btnMakeRoom';
     button.textContent = 'Skapa rum';
@@ -122,7 +125,7 @@ function renderMakeRoomPage() {
     content.appendChild(button);
     main.appendChild(content);
 
-// Skapa footer med SVG
+    // Skapa footer med SVG
     const footer = document.createElement('div');
     footer.className = 'footer';
 
@@ -133,7 +136,7 @@ function renderMakeRoomPage() {
     svgFooter.setAttribute('viewBox', '0 0 393 168');
     svgFooter.setAttribute('fill', 'none');
 
-// Lägg till SVG-paths
+    // Lägg till SVG-paths
     svgFooter.innerHTML = `
         <path d="M-1 29H393.5" stroke="#BB3B4E" stroke-width="2"/>
         <path d="M-2 167H392.5" stroke="#BB3B4E" stroke-width="2"/>

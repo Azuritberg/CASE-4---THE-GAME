@@ -1,22 +1,25 @@
 "use strict";
 
 function renderQuestionPage(questionTexts) {
+
     // Hämta body
     const body = document.body;
+
+    //Töm body
     body.innerHTML = "";
 
-// Main container
+    // Main container
     const main = document.createElement("main");
     main.id = "questionPage-main";
 
-// Progress-container
+    // Progress-container
     const progressContainer = document.createElement("div");
     progressContainer.classList.add("progress-container");
 
     const svgIcon = document.createElement("div");
     svgIcon.classList.add("svg-icon");
 
-// Add SVG icon here
+    // Add SVG icon here
     svgIcon.innerHTML = `
      <svg width="187" height="155" viewBox="0 0 187 155" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M97.0078 24.2439V34.748" stroke="#BB3B4E" stroke-width="2"/>
@@ -55,7 +58,7 @@ function renderQuestionPage(questionTexts) {
                     <line x1="77.5862" y1="11.6317" x2="83.7651" y2="35.1114" stroke="#BB3B4E" stroke-width="2"/>
                     <circle cx="92.682" cy="81.0895" r="46.9594" fill="#F3F0E7"/>
                 </svg>
-`;
+    `;
 
     // Intervall till Timer
     let seconds = 10;
@@ -75,15 +78,15 @@ function renderQuestionPage(questionTexts) {
     progressContainer.appendChild(svgIcon);
     progressContainer.appendChild(progressText);
 
-// Text under progress
+    // Text under progress
     const questionPageText = document.createElement("div");
     questionPageText.classList.add("questionPage-text");
     questionPageText.innerHTML = `
     <h2>Finnish the lyrics!</h2>
     <p>SOUND ON</p>
-`;
+    `;
 
-// Cards
+    // Cards
     const questionContainer = document.createElement("div");
     questionContainer.id = "questionPage-card";
 
@@ -105,21 +108,21 @@ function renderQuestionPage(questionTexts) {
         });
     });
 
-// Footer
+    // Footer
     const footer = document.createElement("footer");
     footer.innerHTML = `
     <div class="footer-p">
         <p>©rockbjörnen</p>
     </div>
-`;
+    `;
 
-// Lägg till alla element i sektionen
+    // Lägg till alla element i sektionen
     main.appendChild(progressContainer);
     main.appendChild(questionPageText);
     main.appendChild(questionContainer);
     main.appendChild(footer);
 
-// Lägg till sektionen i body
+    // Lägg till sektionen i body
     body.appendChild(main);
 }
 

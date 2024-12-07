@@ -5,6 +5,9 @@ function renderWaitRoomAllPlayersPage() {
     // Hämta body
     const body = document.body;
 
+    // Töm body
+    body.innerHTML = "";
+
     // Skapa huvudcontainer
     const main = document.createElement('main');
     main.id = 'waitRoomAllPlayerPage-main';
@@ -102,7 +105,7 @@ function renderWaitRoomAllPlayersPage() {
     buttonContainer.appendChild(button);
     main.appendChild(buttonContainer);
 
-/*
+    /*
     // Skapa footer
     const footer = document.createElement('footer');
     const footerTextContainer = document.createElement('div');
@@ -114,8 +117,7 @@ function renderWaitRoomAllPlayersPage() {
 
     footer.appendChild(footerTextContainer);
     main.appendChild(footer);
-
- */
+    */
 
     // Lägg till huvudcontainern i body
     body.appendChild(main);

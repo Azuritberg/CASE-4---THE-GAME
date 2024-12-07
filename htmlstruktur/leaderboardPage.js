@@ -2,20 +2,23 @@
 
 function renderLeaderboardPage() {
 
-// Hämta body
+    // Hämta body
     const body = document.body;
 
-// Main container
+    // Töm body
+    body.innerHTML = "";
+
+    // Main container
     const main = document.createElement("main");
     main.id = "leaderboardPage-main";
 
-// Progress container
+    // Progress container
     const progressContainer = document.createElement("div");
     progressContainer.className = "progress-container";
 
     const svgIcon = document.createElement("div");
     svgIcon.className = "svg-icon";
-// Add SVG icon here
+    // Add SVG icon here
     svgIcon.innerHTML = `
     <svg width="187" height="155" viewBox="0 0 187 155" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M97.0078 24.2439V34.748" stroke="#BB3B4E" stroke-width="2"/>
@@ -54,31 +57,31 @@ function renderLeaderboardPage() {
                 <line x1="77.5862" y1="11.6317" x2="83.7651" y2="35.1114" stroke="#BB3B4E" stroke-width="2"/>
                 <circle cx="92.682" cy="81.0895" r="46.9594" fill="#F3F0E7"/>
             </svg>
-`;
+    `;
 
     const progressText = document.createElement("div");
     progressText.className = "progress-text";
     progressText.innerHTML = `
-<svg width="65" height="65" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <mask id="mask0_370_795" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-1" y="-1" width="67" height="67">
-        <rect x="-0.5" y="-0.5" width="65.4688" height="65.4688" fill="#F9E396" stroke="#BB3B4E"/>
-    </mask>
-    <g mask="url(#mask0_370_795)">
-        <path d="M18.8034 56.4101V51.0377H29.5482V42.7105C27.3544 42.218 25.3958 41.289 23.6721 39.9236C21.9485 38.5581 20.6837 36.8456 19.8779 34.7862C16.5201 34.3833 13.7108 32.9171 11.4499 30.3876C9.18904 27.858 8.05859 24.892 8.05859 21.4895V18.8033C8.05859 17.3259 8.58464 16.0612 9.63674 15.0091C10.6888 13.957 11.9536 13.4309 13.431 13.4309H18.8034V8.05853H45.6654V13.4309H51.0378C52.5152 13.4309 53.7799 13.957 54.832 15.0091C55.8841 16.0612 56.4102 17.3259 56.4102 18.8033V21.4895C56.4102 24.892 55.2797 27.858 53.0188 30.3876C50.758 32.9171 47.9486 34.3833 44.5909 34.7862C43.785 36.8456 42.5203 38.5581 40.7966 39.9236C39.073 41.289 37.1143 42.218 34.9206 42.7105V51.0377H45.6654V56.4101H18.8034ZM18.8034 29.0109V18.8033H13.431V21.4895C13.431 23.1908 13.9235 24.7242 14.9084 26.0896C15.8933 27.4551 17.1917 28.4289 18.8034 29.0109ZM32.2344 37.6067C34.4729 37.6067 36.3756 36.8232 37.9425 35.2563C39.5095 33.6893 40.293 31.7866 40.293 29.5481V13.4309H24.1758V29.5481C24.1758 31.7866 24.9593 33.6893 26.5262 35.2563C28.0932 36.8232 29.9959 37.6067 32.2344 37.6067ZM45.6654 29.0109C47.2771 28.4289 48.5754 27.4551 49.5604 26.0896C50.5453 24.7242 51.0378 23.1908 51.0378 21.4895V18.8033H45.6654V29.0109Z" fill="#F9E396" stroke="#BB3B4E"/>
-    </g>
-</svg>
-`;
+    <svg width="65" height="65" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <mask id="mask0_370_795" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-1" y="-1" width="67" height="67">
+            <rect x="-0.5" y="-0.5" width="65.4688" height="65.4688" fill="#F9E396" stroke="#BB3B4E"/>
+        </mask>
+        <g mask="url(#mask0_370_795)">
+            <path d="M18.8034 56.4101V51.0377H29.5482V42.7105C27.3544 42.218 25.3958 41.289 23.6721 39.9236C21.9485 38.5581 20.6837 36.8456 19.8779 34.7862C16.5201 34.3833 13.7108 32.9171 11.4499 30.3876C9.18904 27.858 8.05859 24.892 8.05859 21.4895V18.8033C8.05859 17.3259 8.58464 16.0612 9.63674 15.0091C10.6888 13.957 11.9536 13.4309 13.431 13.4309H18.8034V8.05853H45.6654V13.4309H51.0378C52.5152 13.4309 53.7799 13.957 54.832 15.0091C55.8841 16.0612 56.4102 17.3259 56.4102 18.8033V21.4895C56.4102 24.892 55.2797 27.858 53.0188 30.3876C50.758 32.9171 47.9486 34.3833 44.5909 34.7862C43.785 36.8456 42.5203 38.5581 40.7966 39.9236C39.073 41.289 37.1143 42.218 34.9206 42.7105V51.0377H45.6654V56.4101H18.8034ZM18.8034 29.0109V18.8033H13.431V21.4895C13.431 23.1908 13.9235 24.7242 14.9084 26.0896C15.8933 27.4551 17.1917 28.4289 18.8034 29.0109ZM32.2344 37.6067C34.4729 37.6067 36.3756 36.8232 37.9425 35.2563C39.5095 33.6893 40.293 31.7866 40.293 29.5481V13.4309H24.1758V29.5481C24.1758 31.7866 24.9593 33.6893 26.5262 35.2563C28.0932 36.8232 29.9959 37.6067 32.2344 37.6067ZM45.6654 29.0109C47.2771 28.4289 48.5754 27.4551 49.5604 26.0896C50.5453 24.7242 51.0378 23.1908 51.0378 21.4895V18.8033H45.6654V29.0109Z" fill="#F9E396" stroke="#BB3B4E"/>
+        </g>
+    </svg>
+    `;
 
-// Append elements to progress container
+    // Append elements to progress container
     progressContainer.appendChild(svgIcon);
     progressContainer.appendChild(progressText);
 
-// Leaderboard text
+    // Leaderboard text
     const leaderboardText = document.createElement("div");
     leaderboardText.className = "leaderboardPage-text";
     leaderboardText.innerHTML = "<h2>LEADERBOARD</h2>";
 
-// Leaderboard cards
+    // Leaderboard cards
     const leaderboardCard = document.createElement("div");
     leaderboardCard.id = "leaderboardPage-card";
 
@@ -120,20 +123,20 @@ function renderLeaderboardPage() {
         leaderboardCard.appendChild(card);
     });
 
-// Footer
+    // Footer
     const footer = document.createElement("footer");
     const footerP = document.createElement("div");
     footerP.className = "footer-p";
     footerP.innerHTML = "<p>©rockbjörnen</p>";
     footer.appendChild(footerP);
 
-// Append everything to the main
+    // Append everything to the main
     main.appendChild(progressContainer);
     main.appendChild(leaderboardText);
     main.appendChild(leaderboardCard);
     main.appendChild(footer);
 
-// Append main to the body
+    // Append main to the body
     body.appendChild(main);
 }
 
