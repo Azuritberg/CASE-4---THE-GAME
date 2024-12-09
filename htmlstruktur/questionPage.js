@@ -126,12 +126,12 @@ function renderQuestionPage(questionTexts) {
     body.appendChild(main);
 }
 
-// Card Questions Array
-const questionTexts = [
-    "Hit me baby one more time...",
-    "Hit me lady one more time...",
-    "Hit me baby two more times...",
-    "Hit me baby six more times...",
-];
+    // Card Questions Array
+    const questionTexts = [
+        "Hit me baby one more time...",
+        "Hit me lady one more time...",
+        "Hit me baby two more times...",
+        "Hit me baby six more times...",
+    ];
 
 renderQuestionPage(questionTexts);
