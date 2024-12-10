@@ -5,9 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0048b4d-5069-4752-a166-dd1ad0b2428d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/app.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/infoPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/infoPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/joinRoomPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/joinRoomPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/leaderboardPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/leaderboardPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/mainPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/mainPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/makeRoomPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/makeRoomPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/popUpPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/popUpPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/questionPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/questionPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/waitRoomAllPlayerPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/waitRoomAllPlayerPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/waitRoomGameLeaderPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/waitRoomGameLeaderPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/waitYourTurnPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/waitYourTurnPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/wonRockBearPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/wonRockBearPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/wonTheGamePage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlstruktur/wonTheGamePage.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,11 +58,11 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="bojana" />
-                    <option name="lastUsedInstant" value="1733826333" />
+                    <option name="lastUsedInstant" value="1733838572" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1733826329" />
+                    <option name="lastUsedInstant" value="1733838568" />
                   </RecentBranch>
                 </list>
               </option>
