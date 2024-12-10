@@ -101,6 +101,10 @@ function handleWebSocketRequest(request)
     socket.addEventListener("message", (event) =>{
         const data = JSON.parse(event.data);
         console.log(data.message);
+
+        //###              ###
+        //PLAYER JOINING LOBBY
+        //###              ###
         if(data.message === "initalizeLobbyJoin"){
             for(let i=0; i<GAMES.rooms.length; i++){
                 if(GAMES.rooms[i].name === data.gameName){
@@ -127,6 +131,10 @@ function handleWebSocketRequest(request)
                     }
                 }
             }
+
+        //####            ####
+        //USER CREATING A GAME
+        //####            ####
         } else if (data.message === "initalizeLobbyCreate"){
             //we should now create a game and add the host
             //increment ID for new room
@@ -160,6 +168,14 @@ function handleWebSocketRequest(request)
             });
             console.log(GAMES);
             socket.send(returnData);
+        } else if(data.message === "gameStartRequestByHost"){
+            //get the game info from hostID
+            //set the game to active
+            //select starting player
+            //send info back to clients to render the needed
+            //game views
+            //return "newTurn"? "turnStarted"? to clients
+            //turn {nr: 1, question: {question info}, yourTurn: false/true}
         }
     })
 

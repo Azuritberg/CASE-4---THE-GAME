@@ -16,18 +16,26 @@ socket.addEventListener("message", (event) => {
         renderLobby(JSON.stringify(data.data));
     }else if (data.message === "returningInitializeLobbyCreate"){
         console.log("recived this data from server: ", data, ":3");
+        renderLobby(JSON.stringify(data.data));
     }else if(data.message === "YOU HAVE BEEN NOTIFIED"){
         console.log(data.message);
     }
     else if (data.connection.myID) {
         myID = data.connection.myID; // Store the assigned connection ID
     }
+    
+    //else if(data.messsage === "new turn"){
+    //  if(data.data.yourTurn){it's my turn!! do my turn}
+    //  else {other players turn render waiting room}
+    //}
 });
 
 console.log(socket)
 
 
 socket.addEventListener("close", (event) =>{
+    //deal with closed tab
+    //remove users and such
     console.log("Disconnected!")
 })
 
@@ -43,11 +51,11 @@ async function startApp()
 
 btnCreateForm.addEventListener("click", createGame);
 btnJoinForm.addEventListener("click", joinGame);
-
-
-
 }
-
+function startGame(){
+    //starting the game from client side
+    //send by socket that game is started
+}
 function startAppError() 
 {
     main.innerHTML= `<button id="btnStart">Start</button>
@@ -137,6 +145,7 @@ async function initializeLobby(modifier, gameName, userName){
 }
 async function renderLobby(lobbyData) {
     document.querySelector("main").innerHTML = "";
+    //the lobby should be rendered here based on players in the room
     document.body.append(lobbyData);
 }
 function makeField() {
