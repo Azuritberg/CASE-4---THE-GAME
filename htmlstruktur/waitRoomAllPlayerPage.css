@@ -142,7 +142,7 @@
 }
 
 .button {
-    background-color: #CCC5B9;
+    background-color: rgba(75, 129, 71, 0.5); /* #4B815B */
     width: 80%;
     padding: 16px;
     border-radius: 5px;
