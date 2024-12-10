@@ -207,7 +207,27 @@ function handleWebSocketRequest(request)
                 }
             }
         }
-        //message all users in leftRoom if hostLeave = false
+        let data;
+        if(!hostLeave){
+            for(const player of leftRoom.players){
+                data = {
+                    message: "playerLeftRoom",
+                    newRoom: leftRoom 
+                }
+                connections[String(player.id)].send(JSON.stringify(data))
+            }
+        } else {
+            for(const player of leftRoom.players){
+                data = {
+                    message: "hostLeftRoom",
+                    newRoom: leftRoom 
+                }
+                for (const element of object) {
+                    //find room and splice it
+                }
+            }
+
+        }
         //delete room if host leaves.
         delete connections[myID]
     })
