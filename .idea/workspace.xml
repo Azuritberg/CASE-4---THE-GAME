@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e0048b4d-5069-4752-a166-dd1ad0b2428d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/cssPages/wonTheGamePage.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/cssPages/wonTheGamePage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/wonRockBearPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/wonRockBearPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/wonTheGamePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/wonTheGamePage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,11 +34,11 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="bojana" />
-                    <option name="lastUsedInstant" value="1733839273" />
+                    <option name="lastUsedInstant" value="1733841106" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1733839258" />
+                    <option name="lastUsedInstant" value="1733841091" />
                   </RecentBranch>
                 </list>
               </option>
