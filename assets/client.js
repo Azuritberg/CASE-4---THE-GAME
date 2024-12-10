@@ -19,6 +19,7 @@ socket.addEventListener("message", (event) => {
         renderLobby(JSON.stringify(data.data));
     }else if(data.message === "YOU HAVE BEEN NOTIFIED"){
         console.log(data.message);
+        
     }
     else if (data.connection.myID) {
         myID = data.connection.myID; // Store the assigned connection ID

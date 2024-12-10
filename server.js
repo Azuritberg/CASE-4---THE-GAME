@@ -4,6 +4,19 @@ import {serveDir, serveFile} from "jsr:@std/http/file-server";
 const jsonData = await Deno.readTextFile("./database.json")
 const DATA = JSON.parse(jsonData)
 let CARDS = DATA.cards
+let Cardsssss = [{
+    question: "blablabla",
+    answers: [
+        "blablaasdwa",
+        "oaijsdlkwa",
+        "aölksdwa",
+        "aöldwaldas äasöld"
+    ],
+    cardCode: "BHDJA ASKDJ",
+    correctAnswer: 2
+},{
+
+}]
 let GAMES = {rooms:[
     {
         "id": 1,
@@ -127,7 +140,7 @@ function handleWebSocketRequest(request)
                         let notification = {
                             message: "YOU HAVE BEEN NOTIFIED"
                         }
-                        connections[String(players[j].id)].socket.send(JSON.stringify(notification));
+                        connections[String(players[j].id)].socket.send(JSON.stringify(returnData));
                     }
                 }
             }
@@ -181,6 +194,21 @@ function handleWebSocketRequest(request)
 
     socket.addEventListener("close", (event) =>{
         console.log(`Connection ${myID} disconnected`)
+        //find game associated to user
+        let leftRoom
+        let hostLeave = false;
+        for (const room of GAMES.rooms) {
+            for(const player of room.players){
+                if(myID = player.id){
+                    leftRoom = room;
+                    if(myID === room.hostID){
+                        hostLeave = true;
+                    }
+                }
+            }
+        }
+        //message all users in leftRoom if hostLeave = false
+        //delete room if host leaves.
         delete connections[myID]
     })
 
