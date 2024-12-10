@@ -1,5 +1,211 @@
 import {serveDir, serveFile} from "jsr:@std/http/file-server";
 
+// Alla spel QUESTION CARDS till spelet
+const questionCard = [ {
+    "question": "...",
+    "answers": [
+        "...",
+        "...",
+        "...",
+        "..."
+    ],
+    "cardCode": "...",
+    "correctAnswer": 2
+},{
+    "question": "...",
+    "answers": [
+        "...",
+        "...",
+        "...",
+        "..."
+    ],
+    "cardCode": "...",
+    "correctAnswer": 2
+},{
+    "question": "...",
+    "answers": [
+        "...",
+        "...",
+        "...",
+        "..."
+    ],
+    "cardCode": "...",
+    "correctAnswer": 2
+},{
+    "question": "...",
+    "answers": [
+        "...",
+        "...",
+        "...",
+        "..."
+    ],
+    "cardCode": "...",
+    "correctAnswer": 2
+},{
+    "question": "...",
+    "answers": [
+        "...",
+        "...",
+        "...",
+        "..."
+    ],
+    "cardCode": "...",
+    "correctAnswer": 2
+},{
+    "question": "...",
+    "answers": [
+        "...",
+        "...",
+        "...",
+        "..."
+    ],
+    "cardCode": "...",
+    "correctAnswer": 2
+},{
+    "question": "...",
+    "answers": [
+        "...",
+        "...",
+        "...",
+        "..."
+    ],
+    "cardCode": "...",
+    "correctAnswer": 2
+},{
+    "question": "...",
+    "answers": [
+        "...",
+        "...",
+        "...",
+        "..."
+    ],
+    "cardCode": "...",
+    "correctAnswer": 2
+},{
+    "question": "...",
+    "answers": [
+        "...",
+        "...",
+        "...",
+        "..."
+    ],
+    "cardCode": "...",
+    "correctAnswer": 2
+},{
+    "question": "...",
+    "answers": [
+        "...",
+        "...",
+        "...",
+        "..."
+    ],
+    "cardCode": "...",
+    "correctAnswer": 2
+},{
+    "question": "...",
+    "answers": [
+        "...",
+        "...",
+        "...",
+        "..."
+    ],
+    "cardCode": "...",
+    "correctAnswer": 2
+},{
+    "question": "...",
+    "answers": [
+        "...",
+        "...",
+        "...",
+        "..."
+    ],
+    "cardCode": "...",
+    "correctAnswer": 2
+},{
+    "question": "...",
+    "answers": [
+        "...",
+        "...",
+        "...",
+        "..."
+    ],
+    "cardCode": "...",
+    "correctAnswer": 2
+},{
+    "question": "...",
+    "answers": [
+        "...",
+        "...",
+        "...",
+        "..."
+    ],
+    "cardCode": "...",
+    "correctAnswer": 2
+},{
+    "question": "...",
+    "answers": [
+        "...",
+        "...",
+        "...",
+        "..."
+    ],
+    "cardCode": "...",
+    "correctAnswer": 2
+},{
+    "question": "...",
+    "answers": [
+        "...",
+        "...",
+        "...",
+        "..."
+    ],
+    "cardCode": "...",
+    "correctAnswer": 2
+},{
+    "question": "...",
+    "answers": [
+        "...",
+        "...",
+        "...",
+        "..."
+    ],
+    "cardCode": "...",
+    "correctAnswer": 2
+},{
+    "question": "...",
+    "answers": [
+        "...",
+        "...",
+        "...",
+        "..."
+    ],
+    "cardCode": "...",
+    "correctAnswer": 2
+},{
+    "question": "...",
+    "answers": [
+        "...",
+        "...",
+        "...",
+        "..."
+    ],
+    "cardCode": "...",
+    "correctAnswer": 2
+},{
+    "question": "...",
+    "answers": [
+        "...",
+        "...",
+        "...",
+        "..."
+    ],
+    "cardCode": "...",
+    "correctAnswer": 2
+}]
+
+
+
+
 
 const jsonData = await Deno.readTextFile("./database.json")
 const DATA = JSON.parse(jsonData)
@@ -12,7 +218,6 @@ let GAMES = {rooms:[
         "hostID": 1,
         "isActive": false,
         "players": [
-          
         ]
       }
 ]}
