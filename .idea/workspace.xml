@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e0048b4d-5069-4752-a166-dd1ad0b2428d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlstruktur/popUpPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/htmlstruktur/popUpPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlstruktur/testapp.html" beforeDir="false" afterPath="$PROJECT_DIR$/htmlstruktur/testapp.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmlstruktur/waitRoomAllPlayerPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/htmlstruktur/waitRoomAllPlayerPage.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
