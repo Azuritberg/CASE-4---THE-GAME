@@ -51,10 +51,10 @@
 }
 
 .game-pin-container {
-    background: #fff;
+    /* background: #fff; */
     border-radius: 10px;
 
-    padding: 25px 35px;
+    padding: 25px 25px;
     width: fit-content;
 }
 
@@ -79,12 +79,13 @@
     position: relative;
 }
 
-.waitRoomGameLeaderPage-container h2 {
+#back-arrow h2 {
     font-family: 'Playfair Display', serif;
     font-size: 30px;
     font-weight: 400;
-    color: #000;
-    margin-bottom: 16px;
+    color: #FFF;
+    margin-top: 65px;
+    text-align: center;
 }
 
 .icon-number {
