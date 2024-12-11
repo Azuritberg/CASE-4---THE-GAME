@@ -197,32 +197,48 @@ function handleWebSocketRequest(request)
             console.log(returnData)
             socket.send(returnData);
         }
-
-        else if(data.message==="handleTurn")
-            
-            {
-                
-                for (let i = 0; i < data.players.length; i++) {
-                    if (data.players[i].turn === true) { // Check for the current player's turn
-                        data.players[i].turn = false; // End the current player's turn
-                        const nextPlayerIndex = (i + 1) % data.players.length; // Move to the next player, wrapping around
-                        data.players[nextPlayerIndex].turn = true; // Start the next player's turn
-                        break; // Exit the loop once the turn is updated
-                    }
+        else if (data.message === "handleTurn") {
+            // Update player turns
+            for (let i = 0; i < data.players.players.length; i++) {
+                if (data.players.players[i].turn === true) { // Check for the current player's turn
+                    data.players.players[i].turn = false; // End the current player's turn
+                    const nextPlayerIndex = (i + 1) % data.players.players.length; // Move to the next player, wrapping around
+                    data.players.players[nextPlayerIndex].turn = true; // Start the next player's turn
+                    break; // Exit the loop once the turn is updated
                 }
-                
-                GAMES.rooms[0].players = data.players; // Update the room with the modified player turns
-
-
-                
-                let returnData = JSON.stringify({
-                    message: "returningHandleTurn",
-                    data: GAMES.rooms[0],
-                    
-                });
-                console.log(returnData)
-                socket.send(returnData);
             }
+        
+            // Update game state in the server
+            GAMES.rooms[0].players = data.players.players; // Update the room with the modified player turns
+            const updatedGame = GAMES.rooms[0];
+        
+            // Notify all players in the room about the updated game state
+            for (const player of updatedGame.players) {
+                const connection = connections[String(player.id)];
+                
+                if (connection && connection.socket) {
+                
+                    try {
+                        console.log("this is the connection " + connection.socket)
+                        connection.socket.send(JSON.stringify({
+                            message: "returningHandleTurn",
+                            data: updatedGame,
+                        }));
+                    } catch (error) {
+                        console.error(`Failed to send update to player ${player.id}:`, error);
+                    }
+                } else {
+                    console.warn(`No active connection for player ${player.id}`);
+                }
+            }
+        
+            // No need for additional `socket.send(returnData);`
+            console.log("Updated game state sent to all players:", updatedGame);
+        }
+        
+            
+            
+    
 
     })
 

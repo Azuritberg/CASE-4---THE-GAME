@@ -28,6 +28,7 @@ socket.addEventListener("message", (event) => {
 
     else if(data.message==="returningHandleTurn")
         {
+            
             startGame(data)
         }
     
