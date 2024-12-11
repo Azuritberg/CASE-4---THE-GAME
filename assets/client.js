@@ -3,6 +3,8 @@ const socket = new WebSocket("http://localhost:8000")
 let myID = null;
 
 
+
+
 socket.addEventListener("open", (event) =>{
     console.log("Connected!")
 })
@@ -17,12 +19,30 @@ socket.addEventListener("message", (event) => {
         renderLobby(data.data.players);
     }else if (data.message === "returningInitializeLobbyCreate"){
         console.log("recived this data from server: ", data, ":3");
-    }else if(data.message === "YOU HAVE BEEN NOTIFIED"){
+    }
+    else if (data.message === "returningInitializeStartGame"){
+        startGame(data)
+        console.log("recived this data from server: ", data);
+        
+    }
+
+    else if(data.message==="returningHandleTurn")
+        {
+            startGame(data)
+        }
+    
+    else if(data.message === "YOU HAVE BEEN NOTIFIED"){
         console.log(data.message);
     }
     else if (data.connection.myID) {
         myID = data.connection.myID; // Store the assigned connection ID
     }
+
+    else {
+        console.warn("Unhandled message type or missing data structure:", data);
+    }
+
+    
 });
 
 console.log(socket)
@@ -37,13 +57,19 @@ let main = document.querySelector("main");
 async function startApp() 
 {
    main.innerHTML= `<button id="btnCreateForm">Create Game</button>
-                    <button id="btnJoinForm">Join Game</button>`
+                    <button id="btnJoinForm">Join Game</button>
+                    <button id=btnGame>Start</button>`
 
    let btnCreateForm = document.querySelector("#btnCreateForm");
    let btnJoinForm = document.querySelector("#btnJoinForm");
+   let btnGame = document.querySelector("#btnGame") 
 
 btnCreateForm.addEventListener("click", createGame);
 btnJoinForm.addEventListener("click", joinGame);
+
+btnGame.addEventListener("click", ()=>{
+    tempGame("initalizeStartGame")
+})
 
 
 
@@ -277,7 +303,56 @@ async function fetchCard(index) {
     }
 }
 
+function tempGame(modifier) {
 
+    let data = {
+        message : modifier,
+        
+   
+    }
+
+    socket.send(JSON.stringify(data));
+}
+
+function startGame(data) {
+    main.innerHTML = `
+    
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+    <p id="p4"></p>
+    <button id="next">next</button>
+`;
+    let p1 = document.querySelector("#p1")
+    let p2 = document.querySelector("#p2")
+    let p3 = document.querySelector("#p3")
+    let p4 = document.querySelector("#p4")
+    let btnNext = document.querySelector("#next")
+    console.log(data.data)
+    p1.textContent=data.data.players[0].name + " " + data.data.players[0].turn 
+    p2.textContent=data.data.players[1].name + " " + data.data.players[1].turn 
+    p3.textContent=data.data.players[2].name + " " + data.data.players[2].turn 
+    p4.textContent=data.data.players[3].name + " " + data.data.players[3].turn 
+
+    console.log(data)
+    
+    btnNext.addEventListener("click",()=>{handleTurn("handleTurn", data.data)})
+}
+
+function handleTurn(modifier, players) {
+    let data = {
+        message : modifier,
+        players : players
+        
+   
+    }
+
+    socket.send(JSON.stringify(data));
+}
 startApp()
+
+
+
+
 
 

@@ -11,8 +11,33 @@ let GAMES = {rooms:[
         "name": "bibi",
         "hostID": 1,
         "isActive": false,
-        "players": [
-          
+        "players": 
+        [
+          {
+            id: 1,
+            name:"rere",
+            points:0,
+            turn:true
+          },
+          {
+            id: 2,
+            name:"sebbe",
+            points:0,
+            turn:false
+          },
+          {
+            id: 3,
+            name:"erik",
+            points:0,
+            turn:false
+          },
+          {
+            id: 4,
+            name:"thomas",
+            points:0,
+            turn:false
+          }
+
         ]
       }
 ]}
@@ -162,6 +187,43 @@ function handleWebSocketRequest(request)
             console.log(GAMES);
             socket.send(returnData);
         }
+        else if(data.message === "initalizeStartGame")
+        {
+            let returnData = JSON.stringify({
+                message: "returningInitializeStartGame",
+                data: GAMES.rooms[0],
+                connection: myID
+            });
+            console.log(returnData)
+            socket.send(returnData);
+        }
+
+        else if(data.message==="handleTurn")
+            
+            {
+                
+                for (let i = 0; i < data.players.length; i++) {
+                    if (data.players[i].turn === true) { // Check for the current player's turn
+                        data.players[i].turn = false; // End the current player's turn
+                        const nextPlayerIndex = (i + 1) % data.players.length; // Move to the next player, wrapping around
+                        data.players[nextPlayerIndex].turn = true; // Start the next player's turn
+                        break; // Exit the loop once the turn is updated
+                    }
+                }
+                
+                GAMES.rooms[0].players = data.players; // Update the room with the modified player turns
+
+
+                
+                let returnData = JSON.stringify({
+                    message: "returningHandleTurn",
+                    data: GAMES.rooms[0],
+                    
+                });
+                console.log(returnData)
+                socket.send(returnData);
+            }
+
     })
 
     socket.addEventListener("close", (event) =>{
