@@ -20,8 +20,17 @@ socket.addEventListener("message", (event) => {
     }else if(data.message === "YOU HAVE BEEN NOTIFIED"){
         console.log(data.message);
         
-    }
-    else if (data.connection.myID) {
+    }else if(data.message === "playerJoinedYourLobby"){
+        console.log("a new player joined our lobby!!!");
+        renderLobby(JSON.stringify(data.data));
+    }else if(data.message === "playerLeftRoom"){
+        console.log("a player left our room, let's render this lobby anew!!!")
+        console.log(data.newRoom);
+        renderLobby(JSON.stringify(data.newRoom));
+    }else if(data.message === "hostLeftRoom"){
+        startApp();
+        window.alert("host seems to have disconnected from our server u_u very sorry")
+    }else if (data.connection !== undefined) {
         myID = data.connection.myID; // Store the assigned connection ID
     }
     
@@ -147,7 +156,7 @@ async function initializeLobby(modifier, gameName, userName){
 async function renderLobby(lobbyData) {
     document.querySelector("main").innerHTML = "";
     //the lobby should be rendered here based on players in the room
-    document.body.append(lobbyData);
+    document.querySelector("main").append(lobbyData);
 }
 function makeField() {
     main.innerHTML = `

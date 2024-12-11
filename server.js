@@ -123,24 +123,26 @@ function handleWebSocketRequest(request)
                 if(GAMES.rooms[i].name === data.gameName){
                     GAMES.rooms[i].players.push({
                         id: data.userID,
-                        "name": "example",
+                        "name": data.userName,
                         "points": 0,
                         "turn": true
                     });
-                    let returnData = JSON.stringify({
+                    let returnDataSelf = JSON.stringify({
                         message: "returningInitializeLobbyJoin",
                         data: GAMES.rooms[i]
                     });
-                    socket.send(returnData);
+                    socket.send(returnDataSelf);
                     
                     //send to all other users connected to this game
                     let players = GAMES.rooms[i].players;
-                    
+                    let returnDataOther = {
+                        message: "playerJoinedYourLobby",
+                        data: GAMES.rooms[i]
+                    }
                     for(let j=0; j<players.length; j++){
-                        let notification = {
-                            message: "YOU HAVE BEEN NOTIFIED"
-                        }
-                        connections[String(players[j].id)].socket.send(JSON.stringify(returnData));
+                        console.log("heeeeeej", data.userID, players[j]);
+                        if(data.userID !== players[j].id)
+                            connections[String(players[j].id)].socket.send(JSON.stringify(returnDataOther));
                     }
                 }
             }
@@ -198,9 +200,11 @@ function handleWebSocketRequest(request)
         let leftRoom
         let hostLeave = false;
         for (const room of GAMES.rooms) {
-            for(const player of room.players){
-                if(myID = player.id){
+            for(const [index, player] of room.players.entries()){
+                if(myID === player.id){
                     leftRoom = room;
+                    room.players.splice(index,1);
+                    console.log(player, "left room:", leftRoom)
                     if(myID === room.hostID){
                         hostLeave = true;
                     }
@@ -214,7 +218,8 @@ function handleWebSocketRequest(request)
                     message: "playerLeftRoom",
                     newRoom: leftRoom 
                 }
-                connections[String(player.id)].send(JSON.stringify(data))
+                console.log("sending", data, "to", connections[String(player.id)]);
+                connections[String(player.id)].socket.send(JSON.stringify(data))
             }
         } else {
             for(const player of leftRoom.players){
@@ -222,12 +227,15 @@ function handleWebSocketRequest(request)
                     message: "hostLeftRoom",
                     newRoom: leftRoom 
                 }
-                for (const element of object) {
-                    //find room and splice it
-                }
+                connections[String(player.id)].socket.send(JSON.stringify(data));
             }
-
+            for(let i = 0; i < GAMES.rooms.length; i++){
+                console.log(GAMES.rooms[i]);
+                if(GAMES.rooms[i].id === data.newRoom.id)
+                GAMES.rooms.splice(i,1);
+            }
         }
+        console.log("hej",GAMES,"hej");
         //delete room if host leaves.
         delete connections[myID]
     })
