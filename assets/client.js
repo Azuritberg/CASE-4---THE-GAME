@@ -52,6 +52,19 @@ socket.addEventListener("message", (event) => {
     }else if (data.connection !== undefined) {
         myID = data.connection.myID; // Store the assigned connection ID
     }
+    else if(data.message==="returningHandleTurn")
+        {
+
+            console.log(data)
+            
+            if(data.data.hostID === myID){
+                renderLobbyHost(JSON.stringify(data.data));
+                console.log("jag är host")
+            } else {
+                console.log("jag är INTE host")
+                renderLobbyPlayer(JSON.stringify(data.data));
+            }
+        }
     
     //else if(data.messsage === "new turn"){
     //  if(data.data.yourTurn){it's my turn!! do my turn}
@@ -200,14 +213,17 @@ async function renderLobbyHost(lobbyData) {
     let nameDiv = document.createElement("div")
 
     
-    let btnStart = document.createElement("button")
-    btnStart.id="btnStart"
-    btnStart.textContent="Start Game"
+    let btnNext = document.createElement("button")
+    btnNext.id="btnNext"
+    btnNext.textContent="Next"
     
-
-
-   
+    
+    
+    
+    
     let parsedData=JSON.parse(lobbyData)
+    console.log(parsedData)
+    btnNext.addEventListener("click",()=>{handleTurn("handleTurn", parsedData.players, parsedData.id)})
 
 
     
@@ -221,9 +237,21 @@ async function renderLobbyHost(lobbyData) {
         nameDiv.appendChild(div);
         
     }
-    main.appendChild(btnStart)
+    main.appendChild(btnNext)
     main.appendChild(nameDiv)
     
+}
+
+function handleTurn(modifier, players, roomID) {
+    let data = {
+        message : modifier,
+        players : players,
+        roomID  : roomID
+        
+   
+    }
+
+    socket.send(JSON.stringify(data));
 }
 function makeField() {
     main.innerHTML = `
