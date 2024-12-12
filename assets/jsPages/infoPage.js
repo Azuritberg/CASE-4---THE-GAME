@@ -51,7 +51,9 @@ function renderInfoPage(){
     infoPageGraphic.appendChild(graphicSvg);
     goBackArrow.appendChild(infoPageGraphic);
 
-    // Skapa innehållssektionen
+
+
+    // Skapa innehållssektionen - Reglerna i spelet
     const howToInfoPage = document.createElement('div');
     howToInfoPage.id = 'how-to-info-page';
 
@@ -60,6 +62,151 @@ function renderInfoPage(){
     heading.textContent = 'Hur man spelar';
     howToInfoPage.appendChild(heading);
 
+    // Skapa text
+    const paragraph = document.createElement('div'); // Wrapper för textinnehållet
+
+    // Lägg till rubriken
+    const title = document.createElement('p');
+    title.innerHTML = '<strong>Den försvunna Rockbjörnen</strong> &ndash; Ett musikquizspel';
+    paragraph.appendChild(title);
+
+    // Antal spelare
+    const playersHeading = document.createElement('h4');
+    playersHeading.textContent = 'Antal spelare';
+    paragraph.appendChild(playersHeading);
+
+    const playersInfo = document.createElement('p');
+    playersInfo.textContent = 'Spelet är för 4–5 spelare.';
+    paragraph.appendChild(playersInfo);
+
+    // Mål med spelet
+    const goalHeading = document.createElement('h4');
+    goalHeading.textContent = 'Mål med spelet';
+    paragraph.appendChild(goalHeading);
+
+    const goalInfo = document.createElement('p');
+    goalInfo.textContent = 'Första spelaren att nå 100 poäng och samtidigt hitta Rockbjörnen vinner spelet.';
+    paragraph.appendChild(goalInfo);
+
+
+    // Spelupplägg
+    const rulesHeading = document.createElement('h4');
+    rulesHeading.textContent = 'Spelupplägg';
+    paragraph.appendChild(rulesHeading);
+
+    const rulesList = document.createElement('ul');
+    const rulesItems = [
+        { label: 'Spelplan:', text: 'Spelet spelas på en fysisk karta med olika spelbrickor utplacerade.' },
+        { label: 'Tärningskast:', text: 'Varje spelare kastar tärningen i turordning och flyttar sin spelpjäs det antal steg som tärningen visar.' },
+        {
+            label: 'Stanna på spelbrickor:',
+            text: 'Om du landar på en spelbricka:',
+            subItems: [
+                'Skriv in koden från brickan i appen.',
+                'Appen spelar upp en låt och du får en fråga om låten med fyra svarsalternativ.',
+                'Du har 10 sekunder på dig att svara.',
+            ],
+        },
+    ];
+
+    rulesItems.forEach(item => {
+        const listItem = document.createElement('li');
+        const label = document.createElement('b');
+        label.textContent = item.label;
+        listItem.appendChild(label);
+
+        const text = document.createTextNode(' ' + item.text);
+        listItem.appendChild(text);
+
+        if (item.subItems) {
+            const subList = document.createElement('ul');
+            item.subItems.forEach(subItem => {
+                const subListItem = document.createElement('li');
+                subListItem.textContent = subItem;
+                subList.appendChild(subListItem);
+            });
+            listItem.appendChild(subList);
+        }
+
+        rulesList.appendChild(listItem);
+    });
+    paragraph.appendChild(rulesList);
+
+    // Poängsystem
+    const pointsHeading = document.createElement('h4');
+    pointsHeading.textContent = 'Poängsystem';
+    paragraph.appendChild(pointsHeading);
+
+    const pointsList = document.createElement('ul');
+    const pointsItems = [
+        '10 poäng: Lätt fråga',
+        '20 poäng: Medelsvår fråga',
+        '30 poäng: Svår fråga',
+    ];
+
+    pointsItems.forEach(point => {
+        const listItem = document.createElement('li');
+        const strongText = document.createElement('strong');
+        strongText.textContent = point.split(':')[0];
+        listItem.appendChild(strongText);
+
+        const text = document.createTextNode(': ' + point.split(':')[1]);
+        listItem.appendChild(text);
+
+        pointsList.appendChild(listItem);
+    });
+    paragraph.appendChild(pointsList);
+
+    // Rockbjörnen - Vinst
+    const rockHeading = document.createElement('h3');
+    rockHeading.textContent = 'Rockbjörnen';
+    paragraph.appendChild(rockHeading);
+
+    const winHeading = document.createElement('h4');
+    winHeading.textContent = 'Vinst';
+    paragraph.appendChild(winHeading);
+
+    const winInfo = document.createElement('p');
+    winInfo.textContent = 'För att vinna spelet måste du:';
+    paragraph.appendChild(winInfo);
+
+    const winList = document.createElement('ul');
+    const winItems = [
+        'Samla minst 100 poäng.',
+        'Hitta Rockbjörnen och plocka upp den.',
+    ];
+
+    winItems.forEach(winItem => {
+        const listItem = document.createElement('li');
+        listItem.textContent = winItem;
+        winList.appendChild(listItem);
+    });
+    paragraph.appendChild(winList);
+
+    // Övriga regler
+    const otherRulesHeading = document.createElement('h4');
+    otherRulesHeading.textContent = 'Övriga regler';
+    paragraph.appendChild(otherRulesHeading);
+
+    const otherRulesList = document.createElement('ul');
+    const otherRulesItems = [
+        'Du kan bara spela om poäng när du landar på en spelbricka.',
+        'Endast en spelare åt gången får svara på frågor och samla poäng.',
+    ];
+
+    otherRulesItems.forEach(rule => {
+        const listItem = document.createElement('li');
+        listItem.textContent = rule;
+        otherRulesList.appendChild(listItem);
+    });
+    paragraph.appendChild(otherRulesList);
+
+    howToInfoPage.appendChild(paragraph);
+    goBackArrow.appendChild(howToInfoPage);
+
+
+
+    /*
     // Skapa text
     const paragraph = document.createElement('p');
     paragraph.innerHTML = `
@@ -91,7 +238,7 @@ function renderInfoPage(){
             <li><strong>20 poäng:</strong> Medelsvår fråga</li>
             <li><strong>30 poäng:</strong> Svår fråga</li>
         </ul>
-    
+
         <h3>Rockbjörnen</h3>
     
         <h4>Vinst</h4>
@@ -110,6 +257,7 @@ function renderInfoPage(){
 
     howToInfoPage.appendChild(paragraph);
     goBackArrow.appendChild(howToInfoPage);
+     */
 
     // Skapa SVG-sektionen längst ner
     const svgInfoPage = document.createElement('div');

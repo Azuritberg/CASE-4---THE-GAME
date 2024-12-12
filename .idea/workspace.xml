@@ -6,18 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e0048b4d-5069-4752-a166-dd1ad0b2428d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/cssPages/infoPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/cssPages/infoPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/cssPages/joinRoomPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/cssPages/joinRoomPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/cssPages/mainPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/cssPages/mainPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/cssPages/makeRoomPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/cssPages/makeRoomPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/cssPages/waitRoomAllPlayerPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/cssPages/waitRoomAllPlayerPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/cssPages/waitRoomGameLeaderPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/cssPages/waitRoomGameLeaderPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/jsPages/infoPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/infoPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/joinRoomPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/joinRoomPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/mainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/mainPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/makeRoomPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/makeRoomPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/waitRoomAllPlayerPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/waitRoomAllPlayerPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/waitRoomGameLeaderPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/waitRoomGameLeaderPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,20 +34,20 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="bojana" />
+                    <option name="lastUsedInstant" value="1734031145" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1734031130" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="lobbyLeaveAndRender" />
                     <option name="lastUsedInstant" value="1734013699" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="newTESTmain" />
                     <option name="lastUsedInstant" value="1734013489" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1734013414" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="bojana" />
-                    <option name="lastUsedInstant" value="1733945179" />
                   </RecentBranch>
                 </list>
               </option>
