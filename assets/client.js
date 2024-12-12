@@ -1,4 +1,6 @@
-
+import {renderMainPage} from "./jsPages/mainPage.js";
+import {renderMakeRoomPage} from "./jsPages/makeRoomPage.js";
+import {renderJoinRoomPage} from "./jsPages/joinRoomPage.js";
 
 
 const socket = new WebSocket("http://localhost:8000")
@@ -56,14 +58,17 @@ let main = document.querySelector("main");
 
 async function startApp() 
 {
+    //rendera första sidan
+    /*
    main.innerHTML= `<button id="btnCreateForm">Create Game</button>
                     <button id="btnJoinForm">Join Game</button>`
 
    let btnCreateForm = document.querySelector("#btnCreateForm");
    let btnJoinForm = document.querySelector("#btnJoinForm");
-
-btnCreateForm.addEventListener("click", createGame);
-btnJoinForm.addEventListener("click", joinGame);
+    */
+    let buttons = renderMainPage();
+    buttons.btnMakeRoom.addEventListener("click", createGame);
+    buttons.btnJoinRoom.addEventListener("click", joinGame);
 }
 function startGame(){
     //starting the game from client side
@@ -83,21 +88,24 @@ function startAppError()
 
 function createGame() 
 {
+    /*
      main.innerHTML= `<input type="text" id="hostName" name="hostName" placeholder=" Enter your name">
                         <input type="text" id="gameName" name="name" placeholder=" Enter game code">
                         <button id="btnCreateGame">Create Game</button> 
                         <button id="btnBack">back</button> 
-                      <p id="feedback"></p>`
+                      <p id="feedback"></p>`*/
 
-    let btnBack = document.querySelector("#btnBack");
-    btnBack.addEventListener("click", startApp);
-    let btnCreate = document.querySelector("#btnCreateGame");
-    btnCreate.addEventListener("click", () => {
-        let gameName = document.querySelector("#gameName").value;
+
+    let buttons = renderMakeRoomPage();
+    //let btnBack = document.querySelector("#btnBack");
+    buttons.goBackImg.addEventListener("click", startApp);
+    //let btnCreate = document.querySelector("#btnCreateGame");
+    buttons.button.addEventListener("click", () => {
+        let gameName = document.querySelector("#roomCode").value;
         let hostName = document.querySelector("#hostName").value;
         initializeLobby("initalizeLobbyCreate", gameName, hostName);
-        console.log("HEJ")
-    })
+        console.log("HEJ");
+    });
 
 
     /* const createGameForm = document.querySelector("#createGameForm")
@@ -131,17 +139,20 @@ function createGame()
 
 function joinGame() 
 {
-    main.innerHTML= `<input type="text" id="userName" placeholder=" Enter your name" />
+    /*main.innerHTML= `<input type="text" id="userName" placeholder=" Enter your name" />
         <input type="text" id="joinGameCode" placeholder=" Enter game code" />
         <button id="btnJoinGame">Join Game</button>
         <button id="btnBack">back</button>  
-        <p id="feedback"></p>`;
-    let btnBack = document.querySelector("#btnBack");
-    btnBack.addEventListener("click", startApp);
-    let btnJoinGame = document.querySelector("#btnJoinGame");
+        <p id="feedback"></p>`;*/
+    //let btnBack = document.querySelector("#btnBack");
 
-    btnJoinGame.addEventListener("click", ()=> {
-        let gameName = document.querySelector("#joinGameCode").value;
+
+    let buttons = renderJoinRoomPage();
+    buttons.goBackImg.addEventListener("click", startApp);
+    //let btnJoinGame = document.querySelector("#btnJoinGame");
+
+    buttons.button.addEventListener("click", ()=> {
+        let gameName = document.querySelector("#roomCode").value;
         let userName = document.querySelector("#userName").value;
         initializeLobby("initalizeLobbyJoin", gameName, userName);
     });
@@ -264,14 +275,7 @@ async function fetchCard(index) {
             }
         }
         
-        
 
- 
-
-      
-
-
-        
 
         if (!found) {
             startAppError();
