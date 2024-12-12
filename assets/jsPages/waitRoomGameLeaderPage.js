@@ -1,6 +1,8 @@
 "use strict";
 
-function renderWaitRoomGameLeaderPage() {
+export {renderWaitRoomGameLeaderPage}
+
+function renderWaitRoomGameLeaderPage(lobbyData) {
     // Hämta body
     const body = document.body;
 
@@ -26,7 +28,7 @@ function renderWaitRoomGameLeaderPage() {
     backArrow.className = 'info-icon';
 
     const backArrowImg = document.createElement('img');
-    backArrowImg.src = '../icons/whitebackarrow.svg';
+    backArrowImg.src = '/static/icons/whitebackarrow.svg';
     backArrowImg.alt = 'Back Arrow';
     backArrow.appendChild(backArrowImg);
 
@@ -55,7 +57,7 @@ function renderWaitRoomGameLeaderPage() {
 
     const gamePinNumber = document.createElement('p');
     gamePinNumber.className = 'pin-number';
-    gamePinNumber.textContent = '305 1742';
+    gamePinNumber.textContent = lobbyData.name;
     gamePinContainer.appendChild(gamePinNumber);
 
     contentContainer.appendChild(gamePinContainer);
@@ -67,13 +69,13 @@ function renderWaitRoomGameLeaderPage() {
     const personIcon = document.createElement('div');
     personIcon.className = 'icon-person';
     const personIconImg = document.createElement('img');
-    personIconImg.src = '../icons/person.svg';
+    personIconImg.src = '/static/icons/person.svg';
     personIconImg.alt = 'Person Icon';
     personIcon.appendChild(personIconImg);
 
     const personNumber = document.createElement('p');
     personNumber.className = 'person-number';
-    personNumber.textContent = '5';
+    personNumber.textContent = lobbyData.players.length;
 
     playerIconContainer.appendChild(personIcon);
     playerIconContainer.appendChild(personNumber);
@@ -85,14 +87,14 @@ function renderWaitRoomGameLeaderPage() {
     const playersContainer = document.createElement('div');
     playersContainer.id = 'new-players';
 
-    const players = ['Linnsan123', 'Vanessa74', 'Johannes80', 'Bojan9', 'Ronja20'];
+    const players = lobbyData.players;
     players.forEach(player => {
         const playerDiv = document.createElement('div');
         playerDiv.className = 'all-players';
 
         const playerName = document.createElement('p');
         playerName.className = 'player';
-        playerName.textContent = player;
+        playerName.textContent = player.name;
 
         playerDiv.appendChild(playerName);
         playersContainer.appendChild(playerDiv);
@@ -127,10 +129,19 @@ function renderWaitRoomGameLeaderPage() {
 
     // Lägg till huvudcontainern i body
     body.appendChild(main);
+    //return buttons
+    return({backArrowImg, button});
 }
 
 // Anropa funktionen för att rendera sidan
 renderWaitRoomGameLeaderPage();
+
+
+
+
+
+
+
 
 
 
