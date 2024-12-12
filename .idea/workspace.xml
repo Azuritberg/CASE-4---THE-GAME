@@ -8,15 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/client.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/jsPages/infoPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/infoPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/leaderboardPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/leaderboardPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/popUpPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/popUpPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/questionPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/questionPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/waitRoomAllPlayerPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/waitRoomAllPlayerPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/waitRoomGameLeaderPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/waitRoomGameLeaderPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/waitYourTurnPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/waitYourTurnPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/wonRockBearPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/wonRockBearPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/wonTheGamePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/wonTheGamePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/jsPages/mainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/mainPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,12 +36,20 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="bojana" />
-                    <option name="lastUsedInstant" value="1733945179" />
+                    <option name="branchName" value="lobbyLeaveAndRender" />
+                    <option name="lastUsedInstant" value="1734013699" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="newTESTmain" />
+                    <option name="lastUsedInstant" value="1734013489" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1733945151" />
+                    <option name="lastUsedInstant" value="1734013414" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="bojana" />
+                    <option name="lastUsedInstant" value="1733945179" />
                   </RecentBranch>
                 </list>
               </option>

@@ -98,6 +98,12 @@ async function startApp()
     let buttons = renderMainPage();
     buttons.btnMakeRoom.addEventListener("click", createGame);
     buttons.btnJoinRoom.addEventListener("click", joinGame);
+    buttons.infoIcon.addEventListener("click", () => {
+        let backArrowInfoPage = renderInfoPage();
+        backArrowInfoPage.addEventListener("click", () => {
+            startApp();
+        })
+    })
 }
 function startGame(){
     //starting the game from client side

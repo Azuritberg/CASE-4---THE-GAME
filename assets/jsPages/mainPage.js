@@ -32,6 +32,8 @@ function renderMainPage() {
     iconImage.alt = "info";
     infoIcon.appendChild(iconImage);
 
+
+
     // Add elements to the top bar
     topBar.appendChild(mainText);
     topBar.appendChild(infoIcon);
@@ -106,7 +108,7 @@ function renderMainPage() {
         alert("Gå med i ett rum");
     });
     */
-    return({btnMakeRoom, btnJoinRoom});
+    return({btnMakeRoom, btnJoinRoom, infoIcon});
 }
 
 renderMainPage();

@@ -41,12 +41,12 @@ function renderInfoPage(){
     graphicSvg.setAttribute('viewBox', '0 0 393 45');
     graphicSvg.setAttribute('fill', 'none');
     graphicSvg.innerHTML = `
-   <path d="M0 44L393 44" stroke="#BB3B4E" stroke-width="2"/>
-   <path d="M0 1L393 1" stroke="#BB3B4E" stroke-width="2"/>
-   <line x1="273" y1="44" x2="273" y2="1" stroke="#BB3B4E" stroke-width="2"/>
-   <line x1="284" y1="44" x2="284" y2="1" stroke="#BB3B4E" stroke-width="2"/>
-   <line x1="294" y1="44" x2="294" y2="1" stroke="#BB3B4E" stroke-width="2"/>
-    `;
+           <path d="M0 44L393 44" stroke="#BB3B4E" stroke-width="2"/>
+           <path d="M0 1L393 1" stroke="#BB3B4E" stroke-width="2"/>
+           <line x1="273" y1="44" x2="273" y2="1" stroke="#BB3B4E" stroke-width="2"/>
+           <line x1="284" y1="44" x2="284" y2="1" stroke="#BB3B4E" stroke-width="2"/>
+           <line x1="294" y1="44" x2="294" y2="1" stroke="#BB3B4E" stroke-width="2"/>
+      `;
 
     infoPageGraphic.appendChild(graphicSvg);
     goBackArrow.appendChild(infoPageGraphic);
@@ -66,13 +66,13 @@ function renderInfoPage(){
 
     <p>Den försvunna Rockbjörnen</strong> &ndash; Ett musikquizspel</p>
 
-    <h2>Antal spelare</h2>
+    <h4>Antal spelare</h4>
     <p>Spelet är för 4&ndash;5 spelare.</p>
 
-    <h2>Mål med spelet</h2>
+    <h4>Mål med spelet</h4>
     <p>Första spelaren att nå 100 poäng och samtidigt hitta Rockbjörnen vinner spelet.</p>
 
-    <h2>Spelupplägg</h2>
+    <h4>Spelupplägg</h4>
     <ul>
         <li><b>Spelplan:</b> Spelet spelas på en fysisk karta med olika spelbrickor utplacerade.</li>
         <li><b>Tärningskast:</b> Varje spelare kastar tärningen i turordning och flyttar sin spelpjäs det antal steg som tärningen visar.</li>
@@ -85,23 +85,23 @@ function renderInfoPage(){
         </li>
     </ul>
 
-    <h2>Poängsystem</h2>
+    <h4>Poängsystem</h4>
     <ul>
         <li><strong>10 poäng:</strong> Lätt fråga</li>
         <li><strong>20 poäng:</strong> Medelsvår fråga</li>
         <li><strong>30 poäng:</strong> Svår fråga</li>
     </ul>
 
-    <h2>Rockbjörnen</h2>
+    <h3>Rockbjörnen</h3>
 
-    <h2>Vinst</h2>
+    <h4>Vinst</h4>
     <p>För att vinna spelet måste du:</p>
     <ul>
         <li>Samla <strong>minst 100 poäng</strong>.</li>
         <li>Hitta <strong>Rockbjörnen</strong> och plocka upp den.</li>
     </ul>
 
-    <h2>Övriga regler</h2>
+    <h4>Övriga regler</h4>
     <ul>
         <li>Du kan bara spela om poäng när du landar på en spelbricka.</li>
         <li>Endast en spelare åt gången får svara på frågor och samla poäng.</li>
@@ -140,6 +140,7 @@ function renderInfoPage(){
     // Lägg till huvudcontainern i body
     body.appendChild(main);
 
+    return backArrow;
 }
 
 renderInfoPage();
