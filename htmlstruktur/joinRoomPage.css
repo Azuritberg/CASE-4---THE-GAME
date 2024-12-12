@@ -1,0 +1,127 @@
+
+/*
+@font-face {
+    font-family: '...';
+    src: url(....);
+}
+
+:root{
+    --black:#000000;
+    --white:#FFFFFF;
+
+    --blue:rgba(49, 0, 211, 0.7)
+    --orange:#f87122;
+    --border-radios: 10px;
+} */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+#joinRoomPage-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 393px;
+    height: 852px;
+    background: #F3F0E7;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+#go-back-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+}
+
+.top-bar {
+
+}
+
+.go-back img {
+    width: 24px; /* Justera storlek på ikonen */
+    height: 24px;
+    cursor: pointer;
+}
+
+.icon-info img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.header,
+.footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.svg-icon-loginPage {
+    width: 100%;
+    margin-top: 80px;
+}
+.svg-icon-footer {
+    width: 100%;
+    margin-bottom: 80px;
+    margin-bottom: 45px;
+    /* height: 100%; */
+}
+
+.svg-header {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centrerar SVG */
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    width: 96%;
+}
+
+.input-field {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 20px;
+    border: 1px solid rgba(187, 59, 78, 0.1);
+    border-radius: 5px;
+    font-size: 16px;
+    background: white;
+    color: #AFA89B;
+}
+
+#btnJoinRoom {
+    background-color: #4B815B;
+    width: 100%;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 20px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#btnJoinRoom:hover {
+    background-color: #3A644A;
+}

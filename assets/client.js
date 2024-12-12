@@ -17,18 +17,36 @@ socket.addEventListener("message", (event) => {
         renderLobby(data.data.players);
     }else if (data.message === "returningInitializeLobbyCreate"){
         console.log("recived this data from server: ", data, ":3");
+        renderLobby(JSON.stringify(data.data));
     }else if(data.message === "YOU HAVE BEEN NOTIFIED"){
         console.log(data.message);
-    }
-    else if (data.connection.myID) {
+        
+    }else if(data.message === "playerJoinedYourLobby"){
+        console.log("a new player joined our lobby!!!");
+        renderLobby(JSON.stringify(data.data));
+    }else if(data.message === "playerLeftRoom"){
+        console.log("a player left our room, let's render this lobby anew!!!")
+        console.log(data.newRoom);
+        renderLobby(JSON.stringify(data.newRoom));
+    }else if(data.message === "hostLeftRoom"){
+        startApp();
+        window.alert("host seems to have disconnected from our server u_u very sorry")
+    }else if (data.connection !== undefined) {
         myID = data.connection.myID; // Store the assigned connection ID
     }
+    
+    //else if(data.messsage === "new turn"){
+    //  if(data.data.yourTurn){it's my turn!! do my turn}
+    //  else {other players turn render waiting room}
+    //}
 });
 
 console.log(socket)
 
 
 socket.addEventListener("close", (event) =>{
+    //deal with closed tab
+    //remove users and such
     console.log("Disconnected!")
 })
 
@@ -44,11 +62,11 @@ async function startApp()
 
 btnCreateForm.addEventListener("click", createGame);
 btnJoinForm.addEventListener("click", joinGame);
-
-
-
 }
-
+function startGame(){
+    //starting the game from client side
+    //send by socket that game is started
+}
 function startAppError() 
 {
     main.innerHTML= `<button id="btnStart">Start</button>
@@ -137,23 +155,9 @@ async function initializeLobby(modifier, gameName, userName){
     socket.send(JSON.stringify(data));
 }
 async function renderLobby(lobbyData) {
-   let main = document.querySelector("main")
-   main.innerHTML = "";
-    console.log(lobbyData)
-
-    let nameCont = document.createElement("div")
-    nameCont.id="nameCont"
-
-
-    for (let i = 0; i < lobbyData.length; i++) {
-        let div = document.createElement("div")
-        div.id="nameDiv" + i
-        div.textContent=lobbyData[i].name
-        nameCont.appendChild(div)
-        
-        
-    }
-    main.appendChild(nameCont)
+    document.querySelector("main").innerHTML = "";
+    //the lobby should be rendered here based on players in the room
+    document.querySelector("main").append(lobbyData);
 }
 function makeField() {
     main.innerHTML = `
