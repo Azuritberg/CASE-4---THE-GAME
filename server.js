@@ -125,7 +125,7 @@ function handleWebSocketRequest(request)
                         id: data.userID,
                         "name": data.userName,
                         "points": 0,
-                        "turn": true
+                        "turn": false
                     });
                     let returnDataSelf = JSON.stringify({
                         message: "returningInitializeLobbyJoin",
@@ -173,7 +173,7 @@ function handleWebSocketRequest(request)
                         id: data.userID, 
                         name: data.userName, 
                         points: 0, 
-                        turn:false
+                        turn:true
                     }
                 ]
             }
