@@ -51,12 +51,32 @@
     cursor: pointer;
 }
 
+/*
 .icon-info img {
     width: 24px;
     height: 24px;
     cursor: pointer;
 }
+*/
+.main-text-container {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    padding: 3px 20px;
+    margin-left: 5px;
+}
+.main-text-join {
+    font-size: 24px;
+    font-weight: normal;
+    font-family: Playfair Display;
+    color: #BB3B4E;
+    text-align: left;
+    width: 100%;
+    padding-left: 12px;
+    margin-bottom: 10px;
+}
 
+/*
 .header,
 .footer {
     width: 100%;
@@ -64,7 +84,7 @@
     justify-content: center;
     align-items: center;
 }
-
+*/
 .svg-icon-loginPage {
     width: 100%;
     /*margin-top: 80px;*/

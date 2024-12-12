@@ -30,18 +30,18 @@
     height: 852px;
     background: #F3F0E7;
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 115px;
 }
 
 #graphic {
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .top-bar{
     display: flex;
     flex-direction: row;
 }
-.main-text {
+.main-text-main {
     font-size: 24px;
     font-weight: normal;
     font-family: Playfair Display;
@@ -52,12 +52,17 @@
     margin-bottom: 10px;
 }
 
-.info-icon {
+.info-icon-main {
     display: flex;
+    justify-content: end;
     align-items: center;
     color: #BB3B4E;
     padding-right: 15px;
     margin-bottom: 10px;
+}
+
+.info-icon-main img {
+
 }
 
 .svg-main-page {
@@ -75,7 +80,7 @@
     gap: 15px;
     padding: 20px;
     width: 96%;
-    margin-bottom: 20px ;
+    margin-bottom: 115px ;
 }
 
 button {

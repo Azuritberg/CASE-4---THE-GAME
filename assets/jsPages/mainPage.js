@@ -19,26 +19,32 @@ function renderMainPage() {
 
     // Top bar with text and icon
     const topBar = document.createElement("div");
-    topBar.classList.add("top-bar");
-
-    const mainText = document.createElement("h2");
-    mainText.classList.add("main-text");
-    mainText.textContent = "Den försvunna";
 
     const infoIcon = document.createElement("div");
-    infoIcon.classList.add("info-icon");
+    infoIcon.classList.add("info-icon-main");
     const iconImage = document.createElement("img");
     iconImage.src = "/static/icons/info.svg";
     iconImage.alt = "info";
     infoIcon.appendChild(iconImage);
 
-
-
-    // Add elements to the top bar
-    topBar.appendChild(mainText);
+    // Lägg till info-ikonen i top-baren
     topBar.appendChild(infoIcon);
 
+    // Main text container
+    const mainTextContainer = document.createElement("div");
+    mainTextContainer.classList.add("main-text-container");
+
+    const mainText = document.createElement("h2");
+    mainText.classList.add("main-text-main");
+    mainText.textContent = "Den försvunna";
+
+    // Lägg till texten i textcontainern
+    mainTextContainer.appendChild(mainText);
+
+    // Lägg till top-baren och textcontainern i graphic-diven
     graphic.appendChild(topBar);
+    graphic.appendChild(mainTextContainer);
+
 
     // SVG container
     const svgContainer = document.createElement("div");

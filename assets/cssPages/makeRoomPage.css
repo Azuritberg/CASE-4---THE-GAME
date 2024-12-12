@@ -38,24 +38,45 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 10px 20px;
+    padding: 20px 6px;
 }
 
-.top-bar {
+.top-bar {}
 
-}
 .go-back img {
     width: 24px; /* Justera storlek på ikonen */
     height: 24px;
     cursor: pointer;
 }
 
+/*
 .icon-info img {
     width: 24px;
     height: 24px;
     cursor: pointer;
 }
+*/
 
+.main-text-container {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    padding: 3px 20px;
+    margin-left: 5px;
+}
+
+.main-text-make {
+    font-size: 24px;
+    font-weight: normal;
+    font-family: Playfair Display;
+    color: #BB3B4E;
+    text-align: left;
+    width: 100%;
+    padding-left: 12px;
+    margin-bottom: 10px;
+}
+
+/*
 .header,
 .footer {
     width: 100%;
@@ -63,7 +84,7 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 45px;
-}
+}*/
 
 .svg-icon-loginPage {
     width: 100%;

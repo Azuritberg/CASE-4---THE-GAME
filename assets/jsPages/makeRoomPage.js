@@ -29,6 +29,7 @@ function renderMakeRoomPage() {
     goBackImg.alt = 'Back';
     goBack.appendChild(goBackImg);
 
+    /*
     const iconInfo = document.createElement('div');
     iconInfo.className = 'icon-info';
 
@@ -36,14 +37,27 @@ function renderMakeRoomPage() {
     iconInfoImg.src = '/static/icons/info.svg';
     iconInfoImg.alt = 'Info';
     iconInfo.appendChild(iconInfoImg);
+     */
 
     topBar.appendChild(goBack);
-    topBar.appendChild(iconInfo);
-
+    //topBar.appendChild(iconInfo);
     goBackInfo.appendChild(topBar);
 
     // Lägg till "go-back-info" som första element i "main"
     main.insertBefore(goBackInfo, main.firstChild);
+
+    // Skapa "main-text"-div och h2
+    const mainTextContainer = document.createElement('div');
+    mainTextContainer.className = 'main-text-container';
+
+    const mainText = document.createElement("h2");
+    mainText.classList.add("main-text-make");
+    mainText.textContent = "Den försvunna";
+
+    mainTextContainer.appendChild(mainText);
+
+    // Lägg till mainTextContainer under goBackInfo
+    main.appendChild(mainTextContainer);
 
 
     // Skapa header med SVG

@@ -24,7 +24,7 @@ function renderWaitRoomAllPlayersPage(lobbyData) {
     topBar.className = 'top-bar';
 
     const backArrow = document.createElement('div');
-    backArrow.className = 'info-icon';
+    backArrow.className = 'info-icon-back';
 
     const backArrowImg = document.createElement('img');
     backArrowImg.src = '/static/icons/whitebackarrow.svg';

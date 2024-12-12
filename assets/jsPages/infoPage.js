@@ -25,7 +25,7 @@ function renderInfoPage(){
     const backArrow = document.createElement('div');
     backArrow.className = 'info-icon';
     const backArrowImg = document.createElement('img');
-    backArrowImg.src = '../icons/redbackarrow.svg';
+    backArrowImg.src = '/static/icons/redbackarrow.svg';
     backArrowImg.alt = 'Back Arrow';
     backArrow.appendChild(backArrowImg);
     topBar.appendChild(backArrow);
@@ -64,48 +64,48 @@ function renderInfoPage(){
     const paragraph = document.createElement('p');
     paragraph.innerHTML = `
 
-    <p>Den försvunna Rockbjörnen</strong> &ndash; Ett musikquizspel</p>
-
-    <h4>Antal spelare</h4>
-    <p>Spelet är för 4&ndash;5 spelare.</p>
-
-    <h4>Mål med spelet</h4>
-    <p>Första spelaren att nå 100 poäng och samtidigt hitta Rockbjörnen vinner spelet.</p>
-
-    <h4>Spelupplägg</h4>
-    <ul>
-        <li><b>Spelplan:</b> Spelet spelas på en fysisk karta med olika spelbrickor utplacerade.</li>
-        <li><b>Tärningskast:</b> Varje spelare kastar tärningen i turordning och flyttar sin spelpjäs det antal steg som tärningen visar.</li>
-        <li><b>Stanna på spelbrickor:</b> Om du landar på en spelbricka:
-            <ul>
-                <li>Skriv in koden från brickan i appen.</li>
-                <li>Appen spelar upp en låt och du får en fråga om låten med <strong>fyra svarsalternativ</strong>.</li>
-                <li>Du har <strong>10 sekunder</strong> på dig att svara.</li>
-            </ul>
-        </li>
-    </ul>
-
-    <h4>Poängsystem</h4>
-    <ul>
-        <li><strong>10 poäng:</strong> Lätt fråga</li>
-        <li><strong>20 poäng:</strong> Medelsvår fråga</li>
-        <li><strong>30 poäng:</strong> Svår fråga</li>
-    </ul>
-
-    <h3>Rockbjörnen</h3>
-
-    <h4>Vinst</h4>
-    <p>För att vinna spelet måste du:</p>
-    <ul>
-        <li>Samla <strong>minst 100 poäng</strong>.</li>
-        <li>Hitta <strong>Rockbjörnen</strong> och plocka upp den.</li>
-    </ul>
-
-    <h4>Övriga regler</h4>
-    <ul>
-        <li>Du kan bara spela om poäng när du landar på en spelbricka.</li>
-        <li>Endast en spelare åt gången får svara på frågor och samla poäng.</li>
-    </ul>
+        <p>Den försvunna Rockbjörnen</strong> &ndash; Ett musikquizspel</p>
+    
+        <h4>Antal spelare</h4>
+        <p>Spelet är för 4&ndash;5 spelare.</p>
+    
+        <h4>Mål med spelet</h4>
+        <p>Första spelaren att nå 100 poäng och samtidigt hitta Rockbjörnen vinner spelet.</p>
+    
+        <h4>Spelupplägg</h4>
+        <ul>
+            <li><b>Spelplan:</b> Spelet spelas på en fysisk karta med olika spelbrickor utplacerade.</li>
+            <li><b>Tärningskast:</b> Varje spelare kastar tärningen i turordning och flyttar sin spelpjäs det antal steg som tärningen visar.</li>
+            <li><b>Stanna på spelbrickor:</b> Om du landar på en spelbricka:
+                <ul>
+                    <li>Skriv in koden från brickan i appen.</li>
+                    <li>Appen spelar upp en låt och du får en fråga om låten med <strong>fyra svarsalternativ</strong>.</li>
+                    <li>Du har <strong>10 sekunder</strong> på dig att svara.</li>
+                </ul>
+            </li>
+        </ul>
+    
+        <h4>Poängsystem</h4>
+        <ul>
+            <li><strong>10 poäng:</strong> Lätt fråga</li>
+            <li><strong>20 poäng:</strong> Medelsvår fråga</li>
+            <li><strong>30 poäng:</strong> Svår fråga</li>
+        </ul>
+    
+        <h3>Rockbjörnen</h3>
+    
+        <h4>Vinst</h4>
+        <p>För att vinna spelet måste du:</p>
+        <ul>
+            <li>Samla <strong>minst 100 poäng</strong>.</li>
+            <li>Hitta <strong>Rockbjörnen</strong> och plocka upp den.</li>
+        </ul>
+    
+        <h4>Övriga regler</h4>
+        <ul>
+            <li>Du kan bara spela om poäng när du landar på en spelbricka.</li>
+            <li>Endast en spelare åt gången får svara på frågor och samla poäng.</li>
+        </ul>
     `;
 
     howToInfoPage.appendChild(paragraph);
