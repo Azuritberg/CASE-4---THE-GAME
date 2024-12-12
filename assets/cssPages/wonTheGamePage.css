@@ -23,7 +23,8 @@
 
 /* jag positionerade footern med position: fixed - vet inte om vi kommer skala appen såfall får vi kolla på css:en då */
 #wonTheGamePage-main {
-    position: relative; /* Gör att alla absoluta positioner inom detta block blir relativa till det */
+    position: relative;
+    /* Gör att alla absoluta positioner inom detta block blir relativa till det */
     display: flex;
     flex-direction: column;
 
@@ -49,9 +50,12 @@
 */
 
 .progress-container-big {
-    position: relative; /* placera texten i förhållande till containern */
-    width: 309px; /* Justera till SVG:ns bredd */
-    height: 251px; /* Justera till SVG:ns höjd */
+    position: relative;
+    /* placera texten i förhållande till containern */
+    width: 309px;
+    /* Justera till SVG:ns bredd */
+    height: 251px;
+    /* Justera till SVG:ns höjd */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,10 +69,14 @@
 }
 
 .progress-text-big-win {
-    position: absolute; /* Placera texten relativt till .progress-container*/
-    top: 50%; /* Vertikal mitten*/
-    left: 50%; /* Horisontell mitten*/
-    transform: translate(-50%, -40%); /* Centrerar texten exakt*/
+    position: absolute;
+    /* Placera texten relativt till .progress-container*/
+    top: 50%;
+    /* Vertikal mitten*/
+    left: 50%;
+    /* Horisontell mitten*/
+    transform: translate(-50%, -40%);
+    /* Centrerar texten exakt*/
     font-family: "Work Sans";
     font-size: 2rem;
     color: #BB3B4E;
@@ -89,7 +97,7 @@
 }
 
 .wonTheGamePage-text h3 {
-    font-size: 18px;
+    font-size: 25px;
     color: #000000;
     margin-top: 5px;
     line-height: 1.5;
@@ -134,10 +142,13 @@
 }
 
 footer {
-    position: absolute; /* Footern placeras relativt #firstPage-main */
-    bottom: 0; /* Flytta till botten av #firstPage-main */
+    position: absolute;
+    /* Footern placeras relativt #firstPage-main */
+    bottom: 0;
+    /* Flytta till botten av #firstPage-main */
     left: 0;
-    width: 100%; /* Begränsa bredden till #firstPage-main */
+    width: 100%;
+    /* Begränsa bredden till #firstPage-main */
     height: 32px;
     background: #BB3B4E;
     display: flex;
@@ -151,7 +162,7 @@ footer {
     width: 100%;
 }
 
-.footer-p > p {
+.footer-p>p {
     color: #F3F0E7;
     font-family: "Playfair Display";
     font-size: 12px;

@@ -1,4 +1,4 @@
-function renderInfoPage(){
+function renderInfoPage() {
 
     // Hämta body
     const body = document.body;
@@ -60,12 +60,49 @@ function renderInfoPage(){
     // Skapa text
     const paragraph = document.createElement('p');
     paragraph.innerHTML = `
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-    <br>dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-    sunt in culpa qui officia deserunt mollit anim id est laborum.
-    <br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud
+
+    <p>Den försvunna Rockbjörnen</strong> &ndash; Ett musikquizspel</p>
+
+    <h2>Antal spelare</h2>
+    <p>Spelet är för 4&ndash;5 spelare.</p>
+
+    <h2>Mål med spelet</h2>
+    <p>Första spelaren att nå 100 poäng och samtidigt hitta Rockbjörnen vinner spelet.</p>
+
+    <h2>Spelupplägg</h2>
+    <ul>
+        <li><b>Spelplan:</b> Spelet spelas på en fysisk karta med olika spelbrickor utplacerade.</li>
+        <li><b>Tärningskast:</b> Varje spelare kastar tärningen i turordning och flyttar sin spelpjäs det antal steg som tärningen visar.</li>
+        <li><b>Stanna på spelbrickor:</b> Om du landar på en spelbricka:
+            <ul>
+                <li>Skriv in koden från brickan i appen.</li>
+                <li>Appen spelar upp en låt och du får en fråga om låten med <strong>fyra svarsalternativ</strong>.</li>
+                <li>Du har <strong>10 sekunder</strong> på dig att svara.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Poängsystem</h2>
+    <ul>
+        <li><strong>10 poäng:</strong> Lätt fråga</li>
+        <li><strong>20 poäng:</strong> Medelsvår fråga</li>
+        <li><strong>30 poäng:</strong> Svår fråga</li>
+    </ul>
+
+    <h2>Rockbjörnen</h2>
+
+    <h2>Vinst</h2>
+    <p>För att vinna spelet måste du:</p>
+    <ul>
+        <li>Samla <strong>minst 100 poäng</strong>.</li>
+        <li>Hitta <strong>Rockbjörnen</strong> och plocka upp den.</li>
+    </ul>
+
+    <h2>Övriga regler</h2>
+    <ul>
+        <li>Du kan bara spela om poäng när du landar på en spelbricka.</li>
+        <li>Endast en spelare åt gången får svara på frågor och samla poäng.</li>
+    </ul>
     `;
 
     howToInfoPage.appendChild(paragraph);
