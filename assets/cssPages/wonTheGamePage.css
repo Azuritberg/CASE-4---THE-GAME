@@ -68,7 +68,7 @@
     position: absolute; /* Placera texten relativt till .progress-container*/
     top: 50%; /* Vertikal mitten*/
     left: 50%; /* Horisontell mitten*/
-    transform: translate(-68%, -38%); /* Centrerar texten exakt*/
+    transform: translate(-50%, -40%); /* Centrerar texten exakt*/
     font-family: "Work Sans";
     font-size: 2rem;
     color: #BB3B4E;

@@ -1,5 +1,221 @@
 import {serveDir, serveFile} from "jsr:@std/http/file-server";
 
+// Alla spel QUESTION CARDS till spelet - det saknad svårighetsgran på frågorna som vi ska lägga till för att spelaren ska få poäng
+const questionCard = [ {
+    "question": "Gissa artist och låt?",
+    "answers": [
+        "ABBA - The Winner Takes It All",
+        "Bee Gees - How Deep Is Your Love",
+        "Fleetwood Mac - Go Your Own Way",
+        "Blondie - Heart of Glass"
+    ],
+    "cardCode": 1,
+    "correctAnswer": 1
+},{
+    "question": "Fyll i låttexten...",
+    "answers": [
+        "Wake me up when it's all over",
+        "Wake me in the morning sun",
+        "Wake me to see the sky so blue",
+        "Wake me and bring me home again"
+    ],
+    "cardCode": 2,
+    "correctAnswer": 1
+},{
+    "question": "Gissa artisten?",
+    "answers": [
+        "Danny Saucedo",
+        "Robin Bengtsson",
+        "Måns Zelmerlöw",
+        "Eric Saade"
+    ],
+    "cardCode": 3,
+    "correctAnswer": 3
+},{
+    "question": "Fyll i låttexten... \"Everyday people do...\"",
+    "answers": [
+        "... things that we can't see",
+        "... extraordinary things",
+        "... the same old things",
+        "... what they're told to do"
+    ],
+    "cardCode": 4,
+    "correctAnswer": 2
+},{
+    "question": "Gissa de korrekta låttexten?",
+    "answers": [
+        "Crashing into the dark in my black car",
+        "Running red lights in my black car",
+        "In my black car, where we collide",
+        "Driving fast in my black car tonight"
+    ],
+    "cardCode": 5,
+    "correctAnswer": 4
+},{
+    "question": "Gissa artisten?",
+    "answers": [
+        "Felix Sandman",
+        "Benjamin Ingrosso",
+        "Darin",
+        "Oscar Zia"
+    ],
+    "cardCode": 6,
+    "correctAnswer": 2
+},{
+    "question": "Fyll i låttexten... \"Oh, sometimes I get a...\"?",
+    "answers": [
+        "... little bit higher",
+        "... good feeling",
+        "... feeling I’m free",
+        "... rush of adrenaline"
+    ],
+    "cardCode": 7,
+    "correctAnswer": 2
+},{
+    "question": "Gissa låtiteln?",
+    "answers": [
+        "Lush Life",
+        "Never Forget You",
+        "Symphony",
+        "Ruin My Life"
+    ],
+    "cardCode": 8,
+    "correctAnswer": 1
+},{
+    "question": "Gissa artisten?",
+    "answers": [
+        "The Cardigans",
+        "Roxette",
+        "Ace of Base",
+        "ABBA"
+    ],
+    "cardCode": 9,
+    "correctAnswer": 1
+},{
+    "question": "Gissa låtiteln?",
+    "answers": [
+        "My Silver Lining",
+        "Fireworks",
+        "Stay Gold",
+        "Emmylou"
+    ],
+    "cardCode": 10,
+    "correctAnswer": 1
+},{
+    "question": "Gissa artisten?",
+    "answers": [
+        "Miss Li",
+        "Miriam Bryant",
+        "Veronica Maggio",
+        "Laleh"
+    ],
+    "cardCode": 11,
+    "correctAnswer": 3
+},{
+    "question": "Gissa låtiteln?",
+    "answers": [
+        "Without You",
+        "Wake Me Up",
+        "Levels",
+        "The Nights"
+    ],
+    "cardCode": 12,
+    "correctAnswer": 4
+},{
+    "question": "Gissa artist/band?",
+    "answers": [
+        "Roger Pontare",
+        "Hammerfall",
+        "Riddarna",
+        "The virtues"
+    ],
+    "cardCode": 13,
+    "correctAnswer": 2
+},{
+    "question": "Gissa låten?",
+    "answers": [
+        "Aiming for the sky",
+        "Walking through the sky",
+        "Keep on Walking",
+        "Keep aiming"
+    ],
+    "cardCode": 14,
+    "correctAnswer": 3
+},{
+    "question": "När kom låten ut?",
+    "answers": [
+        "2010",
+        "2012",
+        "2009",
+        "2011"
+    ],
+    "cardCode": 15,
+    "correctAnswer": 2
+},{
+    "question": "Gissa artist/band?",
+    "answers": [
+        "Sarah Klang",
+        "Sarah Dawn Finer",
+        "Sabina Ddumba",
+        "Zara Larsson"
+    ],
+    "cardCode": 16,
+    "correctAnswer": 3
+},{
+    "question": "När kom låten ut?",
+    "answers": [
+        "1989",
+        "1986",
+        "1984",
+        "1990"
+    ],
+    "cardCode": 17,
+    "correctAnswer": 3
+},{
+    "question": "Fyll i låttexten...",
+    "answers": [
+        "Lips as sweet as candy",
+        "Girl, you got me thirsty",
+        "Got a bug from you girl",
+        "All the good love"
+    ],
+    "cardCode": 18,
+    "correctAnswer": 1
+},{
+    "question": "Gissa låten?",
+    "answers": [
+        "Måndag morgon",
+        "I natt",
+        "Är det du, är det jag",
+        "Inget stoppar oss nu"
+    ],
+    "cardCode": 19,
+    "correctAnswer": 4
+},{
+    "question": "När kom låten ut?",
+    "answers": [
+        "2010",
+        "2012",
+        "2009",
+        "2011"
+    ],
+    "cardCode": 20,
+    "correctAnswer": 4
+},{
+    "question": "Fyll i låttexten...",
+    "answers": [
+        "Sunga na-na-na-na",
+        "Dricka hemkört och cola i en uppblåsbar pool",
+        "Ingen sommar utan ragga",
+        "Ja, Jag sa raggae"
+    ],
+    "cardCode": 21,
+    "correctAnswer": 2
+}]
+
+
+
+
 
 const jsonData = await Deno.readTextFile("./database.json")
 const DATA = JSON.parse(jsonData)
@@ -25,7 +241,6 @@ let GAMES = {rooms:[
         "hostID": 1,
         "isActive": false,
         "players": [
-          
         ]
       }
 ]}

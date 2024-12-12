@@ -1,3 +1,6 @@
+
+
+
 const socket = new WebSocket("http://localhost:8000")
 
 let myID = null;
@@ -217,7 +220,6 @@ async function fetchCard(index) {
                 
                 found = true;
 
-                
                 break; // Exit the loop after finding a match
             }
 
