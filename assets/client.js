@@ -15,21 +15,40 @@ socket.addEventListener("message", (event) => {
     const data = JSON.parse(event.data);
     if(data.message === "returningInitializeLobbyJoin"){
         console.log("we should now initialize", data);
+        
         //here we should render the game data
-        renderLobby(JSON.stringify(data.data));
+        renderLobbyPlayer(JSON.stringify(data.data));
     }else if (data.message === "returningInitializeLobbyCreate"){
         console.log("recived this data from server: ", data, ":3");
-        renderLobby(JSON.stringify(data.data));
+        renderLobbyHost(JSON.stringify(data.data));
     }else if(data.message === "YOU HAVE BEEN NOTIFIED"){
         console.log(data.message);
         
     }else if(data.message === "playerJoinedYourLobby"){
-        console.log("a new player joined our lobby!!!");
-        renderLobby(JSON.stringify(data.data));
+
+        if(data.data.hostID === myID){
+            renderLobbyHost(JSON.stringify(data.data));
+            console.log("jag är host")
+        } else {
+            console.log("jag är INTE host")
+            renderLobbyPlayer(JSON.stringify(data.data));
+        }
+    
+        
+        console.log("a new player joined our lobby!!!",myID);
+        
     }else if(data.message === "playerLeftRoom"){
         console.log("a player left our room, let's render this lobby anew!!!")
-        console.log(data.newRoom);
-        renderLobby(JSON.stringify(data.newRoom));
+        console.log(data.newRoom.players);
+        if(data.newRoom.hostID === myID){
+            renderLobbyHost(JSON.stringify(data.newRoom));
+            console.log("jag är host")
+        } else {
+            console.log("jag är INTE host")
+            renderLobbyPlayer(JSON.stringify(data.newRoom));
+        }
+    
+        // renderLobby(JSON.stringify(data.newRoom));
     }else if(data.message === "hostLeftRoom"){
         startApp();
         window.alert("host seems to have disconnected from our server u_u very sorry")
@@ -156,11 +175,61 @@ async function initializeLobby(modifier, gameName, userName){
     console.log(data);
     socket.send(JSON.stringify(data));
 }
-async function renderLobby(lobbyData) {
+async function renderLobbyPlayer(lobbyData) {
     document.querySelector("main").innerHTML = "";
     //the lobby should be rendered here based on players in the room
-    document.querySelector("main").append(lobbyData);
+
+    let nameDiv = document.createElement("div")
+
+   
+    let parsedData=JSON.parse(lobbyData)
+    
+
+    for (let i = 0; i < parsedData.players.length; i++) {
+
+        let div = document.createElement("div")
+        div.textContent=parsedData.players[i].name + " " + parsedData.players[i].turn
+        nameDiv.appendChild(div);
+        
+    }
+    main.appendChild(nameDiv)
+    
 }
+
+
+async function renderLobbyHost(lobbyData) {
+    document.querySelector("main").innerHTML = "";
+    //the lobby should be rendered here based on players in the room
+
+    let nameDiv = document.createElement("div")
+
+    
+    let btnStart = document.createElement("button")
+    btnStart.id="btnStart"
+    btnStart.textContent="Start Game"
+    
+
+
+   
+    let parsedData=JSON.parse(lobbyData)
+
+
+    
+
+    for (let i = 0; i < parsedData.players.length; i++) {
+
+        
+
+        let div = document.createElement("div")
+        div.textContent=parsedData.players[i].name + " " + parsedData.players[i].turn
+        nameDiv.appendChild(div);
+        
+    }
+    main.appendChild(btnStart)
+    main.appendChild(nameDiv)
+    
+}
+
 function makeField() {
     main.innerHTML = `
         <input type="text" id="input" placeholder="Enter ID" />
