@@ -1,5 +1,5 @@
 "use strict";
-
+export {renderWaitYourTurnPage}
 
 function renderWaitYourTurnPage() {
 

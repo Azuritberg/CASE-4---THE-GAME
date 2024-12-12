@@ -1,4 +1,6 @@
 "use strict";
+export {renderLeaderboardPage}
+
 
 function renderLeaderboardPage() {
 

@@ -1,4 +1,7 @@
-function renderInfoPage() {
+"use strict";
+export {renderInfoPage}
+
+function renderInfoPage(){
 
     // Hämta body
     const body = document.body;

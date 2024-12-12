@@ -1,4 +1,5 @@
 "use strict";
+export {renderWonRockBearPage}
 
 function renderWonRockBearPage() {
 

@@ -1,4 +1,5 @@
 "use strict";
+export {renderPopUpPage}
 
 function renderPopUpPage() {
     // Get the body element

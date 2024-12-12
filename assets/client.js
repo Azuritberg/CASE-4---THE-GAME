@@ -1,4 +1,16 @@
+import {renderMainPage} from "./jsPages/mainPage.js";
+import {renderMakeRoomPage} from "./jsPages/makeRoomPage.js";
+import {renderInfoPage} from "./jsPages/infoPage.js";
+import {renderPopUpPage} from "./jsPages/popUpPage.js";
+import {renderJoinRoomPage} from "./jsPages/joinRoomPage.js";
+import {renderWaitRoomAllPlayersPage} from "./jsPages/waitRoomAllPlayerPage.js";
+import {renderWaitRoomGameLeaderPage} from "./jsPages/waitRoomGameLeaderPage.js";
 
+import {renderQuestionPage} from "./jsPages/questionPage.js";
+import {renderWaitYourTurnPage} from "./jsPages/waitYourTurnPage.js";
+import {renderLeaderboardPage} from "./jsPages/leaderboardPage.js";
+import {renderWonRockBearPage} from "./jsPages/wonRockBearPage.js";
+import {renderWonTheGamePage} from "./jsPages/wonTheGamePage.js";
 
 
 const socket = new WebSocket("http://localhost:8000")
@@ -15,15 +27,44 @@ socket.addEventListener("message", (event) => {
     const data = JSON.parse(event.data);
     if(data.message === "returningInitializeLobbyJoin"){
         console.log("we should now initialize", data);
+        
         //here we should render the game data
-        renderLobby(JSON.stringify(data.data));
+        renderLobbyPlayer(JSON.stringify(data.data));
     }else if (data.message === "returningInitializeLobbyCreate"){
         console.log("recived this data from server: ", data, ":3");
-        renderLobby(JSON.stringify(data.data));
+        renderLobbyHost(JSON.stringify(data.data));
     }else if(data.message === "YOU HAVE BEEN NOTIFIED"){
         console.log(data.message);
-    }
-    else if (data.connection.myID) {
+        
+    }else if(data.message === "playerJoinedYourLobby"){
+
+        if(data.data.hostID === myID){
+            renderLobbyHost(JSON.stringify(data.data));
+            console.log("jag är host")
+        } else {
+            console.log("jag är INTE host")
+            renderLobbyPlayer(JSON.stringify(data.data));
+        }
+    
+        
+        console.log("a new player joined our lobby!!!",myID);
+        
+    }else if(data.message === "playerLeftRoom"){
+        console.log("a player left our room, let's render this lobby anew!!!")
+        console.log(data.newRoom.players);
+        if(data.newRoom.hostID === myID){
+            renderLobbyHost(JSON.stringify(data.newRoom));
+            console.log("jag är host")
+        } else {
+            console.log("jag är INTE host")
+            renderLobbyPlayer(JSON.stringify(data.newRoom));
+        }
+    
+        // renderLobby(JSON.stringify(data.newRoom));
+    }else if(data.message === "hostLeftRoom"){
+        startApp();
+        window.alert("host seems to have disconnected from our server u_u very sorry")
+    }else if (data.connection !== undefined) {
         myID = data.connection.myID; // Store the assigned connection ID
     }
     
@@ -46,14 +87,17 @@ let main = document.querySelector("main");
 
 async function startApp() 
 {
+    //rendera första sidan
+    /*
    main.innerHTML= `<button id="btnCreateForm">Create Game</button>
                     <button id="btnJoinForm">Join Game</button>`
 
    let btnCreateForm = document.querySelector("#btnCreateForm");
    let btnJoinForm = document.querySelector("#btnJoinForm");
-
-btnCreateForm.addEventListener("click", createGame);
-btnJoinForm.addEventListener("click", joinGame);
+    */
+    let buttons = renderMainPage();
+    buttons.btnMakeRoom.addEventListener("click", createGame);
+    buttons.btnJoinRoom.addEventListener("click", joinGame);
 }
 function startGame(){
     //starting the game from client side
@@ -73,21 +117,24 @@ function startAppError()
 
 function createGame() 
 {
+    /*
      main.innerHTML= `<input type="text" id="hostName" name="hostName" placeholder=" Enter your name">
                         <input type="text" id="gameName" name="name" placeholder=" Enter game code">
                         <button id="btnCreateGame">Create Game</button> 
                         <button id="btnBack">back</button> 
-                      <p id="feedback"></p>`
+                      <p id="feedback"></p>`*/
 
-    let btnBack = document.querySelector("#btnBack");
-    btnBack.addEventListener("click", startApp);
-    let btnCreate = document.querySelector("#btnCreateGame");
-    btnCreate.addEventListener("click", () => {
-        let gameName = document.querySelector("#gameName").value;
+
+    let buttons = renderMakeRoomPage();
+    //let btnBack = document.querySelector("#btnBack");
+    buttons.goBackImg.addEventListener("click", startApp);
+    //let btnCreate = document.querySelector("#btnCreateGame");
+    buttons.button.addEventListener("click", () => {
+        let gameName = document.querySelector("#roomCode").value;
         let hostName = document.querySelector("#hostName").value;
         initializeLobby("initalizeLobbyCreate", gameName, hostName);
-        console.log("HEJ")
-    })
+        console.log("HEJ");
+    });
 
 
     /* const createGameForm = document.querySelector("#createGameForm")
@@ -121,17 +168,20 @@ function createGame()
 
 function joinGame() 
 {
-    main.innerHTML= `<input type="text" id="userName" placeholder=" Enter your name" />
+    /*main.innerHTML= `<input type="text" id="userName" placeholder=" Enter your name" />
         <input type="text" id="joinGameCode" placeholder=" Enter game code" />
         <button id="btnJoinGame">Join Game</button>
         <button id="btnBack">back</button>  
-        <p id="feedback"></p>`;
-    let btnBack = document.querySelector("#btnBack");
-    btnBack.addEventListener("click", startApp);
-    let btnJoinGame = document.querySelector("#btnJoinGame");
+        <p id="feedback"></p>`;*/
+    //let btnBack = document.querySelector("#btnBack");
 
-    btnJoinGame.addEventListener("click", ()=> {
-        let gameName = document.querySelector("#joinGameCode").value;
+
+    let buttons = renderJoinRoomPage();
+    buttons.goBackImg.addEventListener("click", startApp);
+    //let btnJoinGame = document.querySelector("#btnJoinGame");
+
+    buttons.button.addEventListener("click", ()=> {
+        let gameName = document.querySelector("#roomCode").value;
         let userName = document.querySelector("#userName").value;
         initializeLobby("initalizeLobbyJoin", gameName, userName);
     });
@@ -146,11 +196,79 @@ async function initializeLobby(modifier, gameName, userName){
     console.log(data);
     socket.send(JSON.stringify(data));
 }
-async function renderLobby(lobbyData) {
+
+
+async function renderLobbyPlayer(lobbyData) {
+    //document.querySelector("main").innerHTML = "";
+    //the lobby should be rendered here based on players in the room
+
+    //let nameDiv = document.createElement("div")
+
+   
+    let parsedData=JSON.parse(lobbyData)
+    let backBtn = renderWaitRoomAllPlayersPage(parsedData);
+    backBtn.addEventListener("click", () =>{
+        socket.send(JSON.stringify({
+            message : "playerLeftRoom",
+            playerID : myID
+        }));
+        startApp();
+    });
+    /*
+    for (let i = 0; i < parsedData.players.length; i++) {
+
+        let div = document.createElement("div")
+        div.textContent=parsedData.players[i].name + " " + parsedData.players[i].turn
+        nameDiv.appendChild(div);
+        
+    }*/
+    //main.appendChild(nameDiv)
+    
+}
+
+
+async function renderLobbyHost(lobbyData) {
+    /*
     document.querySelector("main").innerHTML = "";
     //the lobby should be rendered here based on players in the room
-    document.body.append(lobbyData);
+
+    let nameDiv = document.createElement("div")
+
+    
+    let btnStart = document.createElement("button")
+    btnStart.id="btnStart"
+    btnStart.textContent="Start Game"
+    */
+    let parsedData=JSON.parse(lobbyData)
+    let buttons = renderWaitRoomGameLeaderPage(parsedData);
+    buttons.backArrowImg.addEventListener("click", () =>{
+        socket.send(JSON.stringify({
+            message : "playerLeftRoom",
+            playerID : myID
+        }))
+        startApp();
+
+    });
+    buttons.button.addEventListener("click", () =>{
+        //starta spelet???
+    });
+
+
+
+
+    /*
+    for (let i = 0; i < parsedData.players.length; i++) {
+
+        let div = document.createElement("div")
+        div.textContent=parsedData.players[i].name + " " + parsedData.players[i].turn
+        nameDiv.appendChild(div);
+        
+    }
+    main.appendChild(btnStart)
+    main.appendChild(nameDiv)
+    */
 }
+
 function makeField() {
     main.innerHTML = `
         <input type="text" id="input" placeholder="Enter ID" />
@@ -254,14 +372,7 @@ async function fetchCard(index) {
             }
         }
         
-        
 
- 
-
-      
-
-
-        
 
         if (!found) {
             startAppError();

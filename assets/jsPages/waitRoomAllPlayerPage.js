@@ -1,6 +1,7 @@
 "use strict";
+export {renderWaitRoomAllPlayersPage}
 
-function renderWaitRoomAllPlayersPage() {
+function renderWaitRoomAllPlayersPage(lobbyData) {
     // Hämta body
     const body = document.body;
 
@@ -26,7 +27,7 @@ function renderWaitRoomAllPlayersPage() {
     backArrow.className = 'info-icon';
 
     const backArrowImg = document.createElement('img');
-    backArrowImg.src = '../icons/whitebackarrow.svg';
+    backArrowImg.src = '/static/icons/whitebackarrow.svg';
     backArrowImg.alt = 'Back Arrow';
     backArrow.appendChild(backArrowImg);
 
@@ -51,11 +52,12 @@ function renderWaitRoomAllPlayersPage() {
 
     const gamePinText = document.createElement('p');
     gamePinText.textContent = 'Game PIN:';
+    //lobbyData.gameName gameCode etc..
     gamePinContainer.appendChild(gamePinText);
 
     const gamePinNumber = document.createElement('p');
     gamePinNumber.className = 'pin-number';
-    gamePinNumber.textContent = '305 1742';
+    gamePinNumber.textContent = lobbyData.name;
     gamePinContainer.appendChild(gamePinNumber);
 
     contentContainer.appendChild(gamePinContainer);
@@ -67,19 +69,39 @@ function renderWaitRoomAllPlayersPage() {
     const personIcon = document.createElement('div');
     personIcon.className = 'icon-person';
     const personIconImg = document.createElement('img');
-    personIconImg.src = '../icons/person.svg';
+    personIconImg.src = '/static/icons/person.svg';
     personIconImg.alt = 'Person Icon';
     personIcon.appendChild(personIconImg);
 
     const personNumber = document.createElement('p');
     personNumber.className = 'person-number';
-    personNumber.textContent = '0';
+    //lobbyData.players.length
+    personNumber.textContent = lobbyData.players.length;
 
     playerIconContainer.appendChild(personIcon);
     playerIconContainer.appendChild(personNumber);
     contentContainer.appendChild(playerIconContainer);
 
     main.appendChild(contentContainer);
+
+    // Skapa spelare-sektionen
+    const playersContainer = document.createElement('div');
+    playersContainer.id = 'new-players';
+
+    const players = lobbyData.players;
+    players.forEach(player => {
+        const playerDiv = document.createElement('div');
+        playerDiv.className = 'all-players';
+
+        const playerName = document.createElement('p');
+        playerName.className = 'player';
+        playerName.textContent = player.name;
+
+        playerDiv.appendChild(playerName);
+        playersContainer.appendChild(playerDiv);
+    });
+
+    main.appendChild(playersContainer);
 
     // Skapa "Waiting for players"-sektionen
     const waitingPlayersContainer = document.createElement('div');
@@ -90,6 +112,8 @@ function renderWaitRoomAllPlayersPage() {
     waitingPlayersContainer.appendChild(waitingText);
     main.appendChild(waitingPlayersContainer);
 
+
+/*
     // Skapa knappen "Starta spelet"
     const buttonContainer = document.createElement('div');
     buttonContainer.id = 'waitRoomAllPlayerPage-button';
@@ -105,7 +129,7 @@ function renderWaitRoomAllPlayersPage() {
 
     buttonContainer.appendChild(button);
     main.appendChild(buttonContainer);
-
+*/
 
     /*
 // Skapa footer
@@ -121,13 +145,26 @@ footer.appendChild(footerTextContainer);
 main.appendChild(footer);
 */
 
-
     // Lägg till huvudcontainern i body
     body.appendChild(main);
+    return backArrowImg;
 }
 
 // Anropa funktionen för att rendera sidan
-renderWaitRoomAllPlayersPage();
+//renderWaitRoomAllPlayersPage();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
