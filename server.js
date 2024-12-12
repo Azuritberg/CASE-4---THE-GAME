@@ -406,6 +406,63 @@ function handleWebSocketRequest(request)
             //game views
             //return "newTurn"? "turnStarted"? to clients
             //turn {nr: 1, question: {question info}, yourTurn: false/true}
+        } else if(data.message === "playerLeftRoom"){
+            console.log("playerLeftRoooooooom");
+            let leftID = data.playerID;
+            let leftPlayer = undefined;
+            let leftRoom = undefined;
+            let returnData;
+            let hostLeft = false;
+            let index;
+            for(let i = 0; i < GAMES.rooms.length; i++){
+                for(let j=0; j<GAMES.rooms[i].players.length; j++){
+                    console.log("targeted player:",GAMES.rooms[i].players[j].id,"needle:", leftID);
+                    if(GAMES.rooms[i].players[j].id === leftID){
+                        //this is the player who has left the room
+                        //remove player[j] from room[i]
+                        leftPlayer = GAMES.rooms[i].players[j];
+                        leftRoom = GAMES.rooms[i];
+                        if(leftID === GAMES.rooms[i].hostID){
+                            //the host has left the game sending appropriate message
+                            returnData = {
+                                message: "hostLeftRoom",
+                                newRoom: leftRoom
+                            }
+                            hostLeft = true;
+                            index = i;
+                        } else {
+                            //non host player has left sending appropriate message
+                            returnData = {
+                                message: "playerLeftRoom",
+                                newRoom: leftRoom
+                            }
+                        }
+                        console.log("player:",leftPlayer,"leftRoom:", leftRoom,"GAMES:", GAMES.rooms[i]);
+                        GAMES.rooms[i].players.splice(j,1);
+                        console.log(leftRoom);
+                    }
+                }
+            }
+            //inform sockets
+            console.log(leftRoom.players);
+            for (const player of leftRoom.players) {
+                connections[String(player.id)].socket.send(JSON.stringify(returnData));
+            }
+            GAMES.rooms.splice(index,1);
+            console.log(GAMES.rooms);
+
+
+            /*
+            for(let i = 0; i < connections.length; i++){
+                console.log("connection:",connections[i]);
+                for (const [index, player] of leftRoom.players) {
+                    console.log(player);
+                    if (connections[i].id === player.id) {
+                        console.log(connections[i].socket);
+                        connections[i].socket.send(JSON.stringify(returnData));
+                    }
+                }
+            }*/
         }
     })
 

@@ -7,21 +7,16 @@
     <list default="true" id="e0048b4d-5069-4752-a166-dd1ad0b2428d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/cssPages/joinRoomPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/cssPages/joinRoomPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/cssPages/makeRoomPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/cssPages/makeRoomPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/joinRoomPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/joinRoomPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/mainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/mainPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/makeRoomPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/makeRoomPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/jsPages/infoPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/infoPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/jsPages/leaderboardPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/leaderboardPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/jsPages/popUpPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/popUpPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/jsPages/questionPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/questionPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/jsPages/waitRoomAllPlayerPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/waitRoomAllPlayerPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/jsPages/waitRoomGameLeaderPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/waitRoomGameLeaderPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/heart.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/info.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/person.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/redbackarrow.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/whitebackarrow.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/yellowbackarrow.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/jsPages/waitYourTurnPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/waitYourTurnPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/jsPages/wonRockBearPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/wonRockBearPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/jsPages/wonTheGamePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/wonTheGamePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,3 +1,6 @@
+"use strict";
+export {renderInfoPage}
+
 function renderInfoPage(){
 
     // Hämta body

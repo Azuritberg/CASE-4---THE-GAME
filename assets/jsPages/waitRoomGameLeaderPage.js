@@ -1,5 +1,4 @@
 "use strict";
-
 export {renderWaitRoomGameLeaderPage}
 
 function renderWaitRoomGameLeaderPage(lobbyData) {
@@ -134,7 +133,7 @@ function renderWaitRoomGameLeaderPage(lobbyData) {
 }
 
 // Anropa funktionen för att rendera sidan
-renderWaitRoomGameLeaderPage();
+//renderWaitRoomGameLeaderPage();
 
 
 

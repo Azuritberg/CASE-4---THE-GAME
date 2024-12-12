@@ -1,4 +1,5 @@
 "use strict";
+export {renderQuestionPage}
 
 function renderQuestionPage(questionTexts) {
 

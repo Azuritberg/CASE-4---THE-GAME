@@ -1,5 +1,4 @@
 "use strict";
-
 export {renderWaitRoomAllPlayersPage}
 
 function renderWaitRoomAllPlayersPage(lobbyData) {
@@ -152,7 +151,7 @@ main.appendChild(footer);
 }
 
 // Anropa funktionen för att rendera sidan
-renderWaitRoomAllPlayersPage();
+//renderWaitRoomAllPlayersPage();
 
 
 

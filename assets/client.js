@@ -1,6 +1,16 @@
 import {renderMainPage} from "./jsPages/mainPage.js";
 import {renderMakeRoomPage} from "./jsPages/makeRoomPage.js";
+import {renderInfoPage} from "./jsPages/infoPage.js";
+import {renderPopUpPage} from "./jsPages/popUpPage.js";
 import {renderJoinRoomPage} from "./jsPages/joinRoomPage.js";
+import {renderWaitRoomAllPlayersPage} from "./jsPages/waitRoomAllPlayerPage.js";
+import {renderWaitRoomGameLeaderPage} from "./jsPages/waitRoomGameLeaderPage.js";
+
+import {renderQuestionPage} from "./jsPages/questionPage.js";
+import {renderWaitYourTurnPage} from "./jsPages/waitYourTurnPage.js";
+import {renderLeaderboardPage} from "./jsPages/leaderboardPage.js";
+import {renderWonRockBearPage} from "./jsPages/wonRockBearPage.js";
+import {renderWonTheGamePage} from "./jsPages/wonTheGamePage.js";
 
 
 const socket = new WebSocket("http://localhost:8000")
@@ -186,29 +196,39 @@ async function initializeLobby(modifier, gameName, userName){
     console.log(data);
     socket.send(JSON.stringify(data));
 }
+
+
 async function renderLobbyPlayer(lobbyData) {
-    document.querySelector("main").innerHTML = "";
+    //document.querySelector("main").innerHTML = "";
     //the lobby should be rendered here based on players in the room
 
-    let nameDiv = document.createElement("div")
+    //let nameDiv = document.createElement("div")
 
    
     let parsedData=JSON.parse(lobbyData)
-    
-
+    let backBtn = renderWaitRoomAllPlayersPage(parsedData);
+    backBtn.addEventListener("click", () =>{
+        socket.send(JSON.stringify({
+            message : "playerLeftRoom",
+            playerID : myID
+        }));
+        startApp();
+    });
+    /*
     for (let i = 0; i < parsedData.players.length; i++) {
 
         let div = document.createElement("div")
         div.textContent=parsedData.players[i].name + " " + parsedData.players[i].turn
         nameDiv.appendChild(div);
         
-    }
-    main.appendChild(nameDiv)
+    }*/
+    //main.appendChild(nameDiv)
     
 }
 
 
 async function renderLobbyHost(lobbyData) {
+    /*
     document.querySelector("main").innerHTML = "";
     //the lobby should be rendered here based on players in the room
 
@@ -218,18 +238,26 @@ async function renderLobbyHost(lobbyData) {
     let btnStart = document.createElement("button")
     btnStart.id="btnStart"
     btnStart.textContent="Start Game"
-    
-
-
-   
+    */
     let parsedData=JSON.parse(lobbyData)
+    let buttons = renderWaitRoomGameLeaderPage(parsedData);
+    buttons.backArrowImg.addEventListener("click", () =>{
+        socket.send(JSON.stringify({
+            message : "playerLeftRoom",
+            playerID : myID
+        }))
+        startApp();
+
+    });
+    buttons.button.addEventListener("click", () =>{
+        //starta spelet???
+    });
 
 
-    
 
+
+    /*
     for (let i = 0; i < parsedData.players.length; i++) {
-
-        
 
         let div = document.createElement("div")
         div.textContent=parsedData.players[i].name + " " + parsedData.players[i].turn
@@ -238,7 +266,7 @@ async function renderLobbyHost(lobbyData) {
     }
     main.appendChild(btnStart)
     main.appendChild(nameDiv)
-    
+    */
 }
 
 function makeField() {

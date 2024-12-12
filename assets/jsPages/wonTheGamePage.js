@@ -1,5 +1,5 @@
 "use strict";
-
+export {renderWonTheGamePage}
 
 function renderWonTheGamePage() {
 
