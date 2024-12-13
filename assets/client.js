@@ -56,14 +56,21 @@ socket.addEventListener("message", (event) => {
         {
 
             console.log(data)
-            
-            if(data.data.hostID === myID){
-                renderLobbyHost(JSON.stringify(data.data));
-                console.log("jag är host")
-            } else {
-                console.log("jag är INTE host")
-                renderLobbyPlayer(JSON.stringify(data.data));
+
+            for (let i = 0; i < data.data.players.length; i++) {
+                if (data.data.players[i].id===myID) {
+                    if (data.data.players[i].turn===true) {
+                        renderLobbyHost(JSON.stringify(data.data));
+                    } else 
+                    {
+                        
+                        renderLobbyPlayer(JSON.stringify(data.data));
+                    }
+                }
+                
             }
+            
+          
         }
     
     //else if(data.messsage === "new turn"){
@@ -94,10 +101,7 @@ async function startApp()
 btnCreateForm.addEventListener("click", createGame);
 btnJoinForm.addEventListener("click", joinGame);
 }
-function startGame(){
-    //starting the game from client side
-    //send by socket that game is started
-}
+
 function startAppError() 
 {
     main.innerHTML= `<button id="btnStart">Start</button>
@@ -240,6 +244,11 @@ async function renderLobbyHost(lobbyData) {
     main.appendChild(btnNext)
     main.appendChild(nameDiv)
     
+}
+
+function startGame(){
+    //starting the game from client side
+    //send by socket that game is started
 }
 
 function handleTurn(modifier, players, roomID) {
