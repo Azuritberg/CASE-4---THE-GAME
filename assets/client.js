@@ -3,6 +3,10 @@ const socket = new WebSocket("http://localhost:8000")
 let myID = null;
 
 
+
+
+
+
 socket.addEventListener("open", (event) =>{
     console.log("Connected!")
 })
@@ -52,19 +56,35 @@ socket.addEventListener("message", (event) => {
     }else if (data.connection !== undefined) {
         myID = data.connection.myID; // Store the assigned connection ID
     }
+    else if(data.message==="returningStartGame")
+        {
+            console.log(data.data.players)
+            for (let i = 0; i < data.data.players.length; i++) {
+                if (data.data.players[i].id===myID) {
+                    if (data.data.players[i].turn===true) {
+                        makeField(JSON.stringify(data.data));
+                    } else 
+                    {
+                        
+                        makeP()
+                    }
+                }
+                
+            }
+        }
     else if(data.message==="returningHandleTurn")
         {
 
-            console.log(data)
+            console.log("handleTurn")
 
             for (let i = 0; i < data.data.players.length; i++) {
                 if (data.data.players[i].id===myID) {
                     if (data.data.players[i].turn===true) {
-                        renderLobbyHost(JSON.stringify(data.data));
+                        makeField(JSON.stringify(data.data));
                     } else 
                     {
                         
-                        renderLobbyPlayer(JSON.stringify(data.data));
+                        makeP()
                     }
                 }
                 
@@ -72,6 +92,11 @@ socket.addEventListener("message", (event) => {
             
           
         }
+        else if(data.message==="returningGetCards")
+            {
+                console.log(data)
+              fetchCard(data.data, data.input, data.lobbyData)
+            }
     
     //else if(data.messsage === "new turn"){
     //  if(data.data.yourTurn){it's my turn!! do my turn}
@@ -90,6 +115,10 @@ socket.addEventListener("close", (event) =>{
 
 let main = document.querySelector("main");
 
+function makeP(){
+     main.innerHTML=`<p>Hej</p>`
+}
+
 async function startApp() 
 {
    main.innerHTML= `<button id="btnCreateForm">Create Game</button>
@@ -100,17 +129,24 @@ async function startApp()
 
 btnCreateForm.addEventListener("click", createGame);
 btnJoinForm.addEventListener("click", joinGame);
+
+
+
+
 }
 
-function startAppError() 
-{
-    main.innerHTML= `<button id="btnStart">Start</button>
-                    <p id = errorMsg> No card found with this ID. </p>`
- 
-    let btn = document.querySelector("#btnStart");
- 
- btn.addEventListener("click", makeField);
- }
+ function getCards(modifier, inputValue, lobbyData){
+    let data = {
+        message : modifier,
+        input : inputValue,
+        lobbyData : lobbyData
+       
+    }
+    console.log(data);
+    socket.send(JSON.stringify(data));
+}
+
+
 
  
 
@@ -188,6 +224,7 @@ async function initializeLobby(modifier, gameName, userName){
     }
     console.log(data);
     socket.send(JSON.stringify(data));
+   
 }
 async function renderLobbyPlayer(lobbyData) {
     document.querySelector("main").innerHTML = "";
@@ -217,9 +254,9 @@ async function renderLobbyHost(lobbyData) {
     let nameDiv = document.createElement("div")
 
     
-    let btnNext = document.createElement("button")
-    btnNext.id="btnNext"
-    btnNext.textContent="Next"
+    let btnStart = document.createElement("button")
+    btnStart.id="btnStart"
+    btnStart.textContent="Start"
     
     
     
@@ -227,7 +264,8 @@ async function renderLobbyHost(lobbyData) {
     
     let parsedData=JSON.parse(lobbyData)
     console.log(parsedData)
-    btnNext.addEventListener("click",()=>{handleTurn("handleTurn", parsedData.players, parsedData.id)})
+    // btnStart.addEventListener("click",()=>{handleTurn("handleTurn", parsedData.players, parsedData.id)})
+    btnStart.addEventListener("click",()=>{startGame("startGame",parsedData)})
 
 
     
@@ -241,14 +279,20 @@ async function renderLobbyHost(lobbyData) {
         nameDiv.appendChild(div);
         
     }
-    main.appendChild(btnNext)
+    main.appendChild(btnStart)
     main.appendChild(nameDiv)
     
 }
 
-function startGame(){
-    //starting the game from client side
-    //send by socket that game is started
+function startGame(modifier,room){
+    let data = {
+        message : modifier,
+        room : room
+        
+   
+    }
+
+    socket.send(JSON.stringify(data));
 }
 
 function handleTurn(modifier, players, roomID) {
@@ -262,12 +306,17 @@ function handleTurn(modifier, players, roomID) {
 
     socket.send(JSON.stringify(data));
 }
-function makeField() {
+function makeField(lobbyData) {
     main.innerHTML = `
         <input type="text" id="input" placeholder="Enter ID" />
         <p id="feedback"></p>
     `;
-
+    let btnNext = document.createElement("button")
+    btnNext.id="btnNext"
+    btnNext.textContent="Next"
+    let parsedData=JSON.parse(lobbyData)
+    btnNext.addEventListener("click",()=>{handleTurn("handleTurn", parsedData.players, parsedData.id)})
+    main.appendChild(btnNext)
     let inputField = document.querySelector("#input");
 
     inputField.addEventListener("keydown", function (event) {
@@ -277,17 +326,14 @@ function makeField() {
                 displayFeedback("Please enter a valid ID.");
                 return;
             }
-            fetchCard(inputValue);
+            getCards("getCards", inputValue, lobbyData)
         }
     });
 }
 
-async function fetchCard(index) {
-    try {
-        const response = await fetch("api/cards");
-        const data = await response.json();
-
-        let cards = data.cards
+async function fetchCard(CARDS,index, lobbyData) {
+    
+        
         let found = false;
 
         main.innerHTML = `
@@ -309,15 +355,15 @@ async function fetchCard(index) {
         let child3 = document.querySelector("#alternative3");
         let correct;
 
-        for (let i = 0; i < cards.length; i++) {
-            if (cards[i].id === parseInt(index)) {
-                type.textContent = `Type: ${cards[i].type}`;
-                questions.textContent = `Question: ${cards[i].question}`;
-                child0.textContent = cards[i].alternatives[0];
-                child1.textContent = cards[i].alternatives[1];
-                child2.textContent = cards[i].alternatives[2];
-                child3.textContent = cards[i].alternatives[3];
-                correct = cards[i].correct
+        for (let i = 0; i < CARDS.length; i++) {
+            if (CARDS[i].id === parseInt(index)) {
+                type.textContent = `Type: ${CARDS[i].type}`;
+                questions.textContent = `Question: ${CARDS[i].question}`;
+                child0.textContent = CARDS[i].alternatives[0];
+                child1.textContent = CARDS[i].alternatives[1];
+                child2.textContent = CARDS[i].alternatives[2];
+                child3.textContent = CARDS[i].alternatives[3];
+                correct = CARDS[i].correct
                 
                 found = true;
 
@@ -328,45 +374,11 @@ async function fetchCard(index) {
             
         }
 
-        child0.addEventListener("click", correctChoise)
-        child1.addEventListener("click", correctChoise)
-        child2.addEventListener("click", correctChoise)
-        child3.addEventListener("click", correctChoise)
-
-        
-        const alternatives = document.querySelectorAll("#alternatives > button");
-        
-
-        function correctChoise(event) {
-            const selectedId = event.target.id; // Get the ID of the clicked button
-            const selectedNumber = selectedId.replace("alternative", ""); // Remove the "alternative" part
-            if (selectedNumber === correct.toString()) { // Compare only the numeric part
-                let p = document.createElement("p");
-                p.textContent = "YOU GOT IT!!!";
-                let cont = document.createElement("button")
-                cont.textContent="Continue"
-                cont.addEventListener("click", makeField)
-                main.appendChild(p);
-                main.appendChild(cont)
-                alternatives.forEach(button => {
-                    button.disabled = true
-                });
-                
-            } else {
-                let p = document.createElement("p");
-                p.textContent = "Sorry, that's wrong";
-                let cont = document.createElement("button")
-                cont.textContent="Continue"
-                cont.addEventListener("click", makeField)
-                main.appendChild(p);
-                main.appendChild(cont)
-                alternatives.forEach(button => {
-                    button.disabled = true
-                });
-            }
-        }
-        
-        
+        child0.addEventListener("click", ()=>{correctChoise(child0.id, correct, lobbyData)})
+        child1.addEventListener("click", ()=>{correctChoise(child1.id, correct, lobbyData)})
+        child2.addEventListener("click", ()=>{correctChoise(child2.id, correct, lobbyData)})
+        child3.addEventListener("click", ()=>{correctChoise(child3.id, correct, lobbyData)})
+      
 
  
 
@@ -376,15 +388,50 @@ async function fetchCard(index) {
         
 
         if (!found) {
-            startAppError();
+            console.log("No card found with this id", CARDS)
         }
-    } catch (error) {
-        console.error("Error fetching data:", error);
+    } 
        
+    
+    function correctChoise(id, correct, lobbyData ) {
+        let parsedData=JSON.parse(lobbyData)
+        
+        const alternatives = document.querySelectorAll("#alternatives > button");
+        
+        const selectedNumber = id.replace("alternative", ""); // Remove the "alternative" part
+        if (selectedNumber === correct.toString()) { // Compare only the numeric part
+            console.log(selectedNumber, correct)
+            let p = document.createElement("p");
+            p.textContent = "YOU GOT IT!!!";
+            let cont = document.createElement("button")
+            cont.textContent="Continue"
+            cont.addEventListener("click",()=>{handleTurn("handleTurn", parsedData.players, parsedData.id)})
+            main.appendChild(p);
+            main.appendChild(cont)
+            alternatives.forEach(button => {
+                button.disabled = true
+            });
+            
+        } else {
+            let p = document.createElement("p");
+            p.textContent = "Sorry, that's wrong";
+            let cont = document.createElement("button")
+            cont.textContent="Continue"
+            cont.addEventListener("click",()=>{handleTurn("handleTurn", parsedData.players, parsedData.id)})
+            main.appendChild(p);
+            main.appendChild(cont)
+            alternatives.forEach(button => {
+                button.disabled = true
+            });
+        }
     }
-}
+    
+
 
 
 startApp()
+
+
+
 
 

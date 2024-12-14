@@ -1,22 +1,43 @@
 import {serveDir, serveFile} from "jsr:@std/http/file-server";
 
 
-const jsonData = await Deno.readTextFile("./database.json")
-const DATA = JSON.parse(jsonData)
-let CARDS = DATA.cards
-let Cardsssss = [{
-    question: "blablabla",
-    answers: [
-        "blablaasdwa",
-        "oaijsdlkwa",
-        "aölksdwa",
-        "aöldwaldas äasöld"
-    ],
-    cardCode: "BHDJA ASKDJ",
-    correctAnswer: 2
-},{
+// const jsonData = await Deno.readTextFile("./database.json")
+// const DATA = JSON.parse(jsonData)
+let CARDS = 
+[
+    {
+        "id": 1,
+        "type": "Finish the lyric",
+        "question": "Hit me baby...",
+        "alternatives": [
+          "\"...one more time\"",
+          "\"...one last time\"",
+          "\"...one time\"",
+          "\"...one one time\""
+        ],
+        "correct": 0,
+        "difficulty": "EASY",
+        "points": 10
+      },
+      {
+        "id": 2,
+        "type": "Guess the artist",
+        "question": "Who made this song?",
+        "alternatives": [
+          "Metallica",
+          "ACDC",
+          "Red Hot Chilli Peppers",
+          "Nirvana"
+        ],
+        "correct": 3,
+        "difficulty": "MEDIUM",
+        "points": 20
+      }
 
-}]
+    
+]
+
+
 let GAMES = {rooms:[
     {
         "id": 1,
@@ -194,9 +215,22 @@ function handleWebSocketRequest(request)
             //turn {nr: 1, question: {question info}, yourTurn: false/true}
         }
 
+        else if(data.message==="startGame")
+            {
+                console.log(data)
+                
+                let returnData = JSON.stringify({
+                    message: "returningStartGame",
+                    data: data.room
+                    
+                });
+                
+                socket.send(returnData);
+            }
+
         else if (data.message === "handleTurn") {
 
-            console.log("Before updating turns:", JSON.stringify(data.players));
+            
 
             // Update player turns
             for (let i = 0; i < data.players.length; i++) {
@@ -208,7 +242,7 @@ function handleWebSocketRequest(request)
                 }
             }
 
-            console.log("After updating turns:", JSON.stringify(data.players));
+           
 
         
             // Update game state in the server
@@ -238,6 +272,21 @@ function handleWebSocketRequest(request)
             // No need for additional `socket.send(returnData);`
             console.log("Updated game state sent to all players:", updatedGame);
         }
+
+        else if (data.message ==="getCards")
+            {
+                console.log(data.message)
+                
+                let returnData = JSON.stringify({
+                    message: "returningGetCards",
+                    data : CARDS,
+                    input : data.input,
+                    lobbyData : data.lobbyData
+                    
+                });
+                
+                socket.send(returnData);
+            }
 
     })
 
