@@ -245,6 +245,7 @@ async function renderLobbyHost(lobbyData) {
     btnStart.id="btnStart"
     btnStart.textContent="Start Game"
     */
+
     let parsedData=JSON.parse(lobbyData)
     let buttons = renderWaitRoomGameLeaderPage(parsedData);
     buttons.backArrowImg.addEventListener("click", () =>{

@@ -38,7 +38,7 @@ function renderPopUpPage() {
 
     const backButton = document.createElement("button");
     backButton.className = "popUp-go-back";
-    backButton.innerHTML = `<img src="../icons/yellowbackarrow.svg" alt="Arrow">`;
+    backButton.innerHTML = `<img src="/static/icons/yellowbackarrow.svg" alt="Arrow">`;
 
     popUpButton.appendChild(backButton);
     popUpInputField.appendChild(inputField);
