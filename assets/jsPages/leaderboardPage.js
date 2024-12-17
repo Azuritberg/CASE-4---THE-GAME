@@ -1,7 +1,7 @@
 "use strict";
 export {renderLeaderboardPage}
 
-
+//add parameter that is an array of the players in the game :)
 function renderLeaderboardPage() {
 
     // Hämta body
@@ -87,6 +87,10 @@ function renderLeaderboardPage() {
     const leaderboardCard = document.createElement("div");
     leaderboardCard.id = "leaderboardPage-card";
 
+
+    //CHANGE
+    //this should not be placeholder, instead loop through the parameter players[]
+    //and create elements for each player based on their points
     const players = [
         { icon: "1", name: "Ronja77", place: "1st place", points: "24p" },
         { icon: "2", name: "BBell", place: "2nd place", points: "19p" },
@@ -95,6 +99,10 @@ function renderLeaderboardPage() {
         { icon: "5", name: "Venni", place: "5th place", points: "3p" },
     ];
 
+
+    //players should also be assigned a color here
+    //color is not attached to specific players but rather their position so
+    //this is quite trivial to implement.
     players.forEach(player => {
         const card = document.createElement("div");
         card.className = "cards-score";
@@ -140,6 +148,7 @@ function renderLeaderboardPage() {
 
     // Append main to the body
     body.appendChild(main);
+    //this view has no interactive elements and needs no return statement.
 }
 
 renderLeaderboardPage();

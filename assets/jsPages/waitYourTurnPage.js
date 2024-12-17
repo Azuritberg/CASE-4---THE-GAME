@@ -1,6 +1,7 @@
 "use strict";
 export {renderWaitYourTurnPage}
-
+//this funcition must take the current guessing players points and name as parameters
+//returns nothing
 function renderWaitYourTurnPage() {
 
     // Hämta body

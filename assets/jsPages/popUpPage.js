@@ -1,6 +1,8 @@
 "use strict";
 export {renderPopUpPage}
-
+//this pop up appears over the leaderboard for the player who
+//is currently answering a question, or who's turn it is(player.turn === true)
+//this function needs no paramenters but must return it's inputfield and buttons!
 function renderPopUpPage() {
     // Get the body element
     const body = document.body;
@@ -56,6 +58,8 @@ function renderPopUpPage() {
 
     // Append the main container to the body
     body.appendChild(main);
+    //returns the interactive html tags to be used in the game logic loop
+    return ({inputField, popUpButton, backButton, button});
 }
 
 // Call the function to render the pop-up page

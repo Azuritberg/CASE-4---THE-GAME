@@ -1,6 +1,10 @@
 "use strict";
 export {renderQuestionPage}
-
+//this fucntion should take a question object as it's parameter
+//the object is contructed as such:
+//{question[array of questions], song_tied_toquestion, correct answer, questionID}
+//most imoportant in this function is the questions other stuff is handled in game logic in
+//client.js
 function renderQuestionPage(questionTexts) {
 
     // Hämta body
@@ -125,6 +129,7 @@ function renderQuestionPage(questionTexts) {
 
     // Lägg till sektionen i body
     body.appendChild(main);
+    //return the answer button elemnts with assigned IDs for what answer they represent
 }
 
     // Card Questions Array

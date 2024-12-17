@@ -26,7 +26,7 @@
     justify-content: space-between;
     align-items: center;
     width: 393px;
-    height: 1300px;
+    height: 852px;
     background: #F3F0E7;
     margin: 0 auto;
     margin-top: 40px;
@@ -65,38 +65,111 @@
     /*margin-bottom: 24px;  Ökat avstånd till innehållet */
 }
 
+
 /* Graphic Line */
 #info-page-graphic svg {
     width: 100%;
     height: auto;
 }
 
-/* Content */
+
+/* Huvudsektion - Content */
 #how-to-info-page {
     width: 90%;
     max-width: 360px;
-    margin: 34px auto;
+    margin: 25px auto;
     text-align: left;
+    overflow-y: scroll;
+    height: 500px;
+    padding: 10px 15px;
+
 }
 
-#how-to-info-page h1 {
+/* H1 - Titel */
+.infoPage-text h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 24px;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
     color: #000;
-    margin-bottom: 16px;
 }
 
-#how-to-info-page p {
+/* H3 - Rockbjörnen */
+.infoPage-text h3 {
     font-family: 'Work Sans', sans-serif;
-    font-size: 14px;
-    line-height: 1.8;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 25px;
+    color: #000;
+}
+
+/* H4 - Underrubriker */
+.infoPage-text h4 {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 5px;
     color: #333;
 }
+
+/* P - Vanlig text */
+.infoPage-text p {
+    font-family: 'Work Sans', sans-serif;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* Listor */
+.infoPage-text ul {
+    font-family: 'Work Sans', sans-serif;
+    margin: 10px 0 15px 20px;
+}
+
+.infoPage-text li {
+    font-family: 'Work Sans', sans-serif;
+    margin-bottom: 8px;
+}
+
+.infoPage-text ul ul {
+    margin-left: 20px;
+}
+
+.infoPage-text ul ul li {
+    list-style-type: disc;
+}
+
+.infoPage-text ol {
+    margin-left: 20px;
+    list-style-type: decimal;
+}
+
+/* Specifika sektioner */
+.antal-spelare,
+.mal-med-spelet,
+.spelupplagg,
+.poangsystem,
+.rockbjornen,
+.vinst,
+.ovrigt {
+    font-family: 'Work Sans', sans-serif;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* Fetstil för markerad text */
+.infoPage-text strong,
+.infoPage-text b {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: bold;
+}
+
 
 /* SVG Footer */
 .svg-info-page {
     width: 100%;
-    margin-top: 16px;
+   /* margin-top: 16px; */
     margin-bottom: 30px;
 }
 
@@ -105,6 +178,8 @@
     height: auto;
 }
 
+
+/*
 p {
     margin-bottom: 10px;
-}
+}*/

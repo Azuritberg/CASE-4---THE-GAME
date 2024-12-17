@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="e0048b4d-5069-4752-a166-dd1ad0b2428d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/cssPages/infoPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/cssPages/infoPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/jsPages/infoPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/infoPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/jsPages/leaderboardPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/leaderboardPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/jsPages/popUpPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/popUpPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/jsPages/questionPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/questionPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/jsPages/waitYourTurnPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/waitYourTurnPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,8 +114,18 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="1f70d141-12d0-4d5c-8fe5-899192084770" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="1f70d141-12d0-4d5c-8fe5-899192084770">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State />
