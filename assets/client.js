@@ -66,7 +66,7 @@ socket.addEventListener("message", (event) => {
                     } else 
                     {
                         
-                        makeP()
+                        renderLeaderboard(JSON.stringify(data.data))
                     }
                 }
                 
@@ -84,7 +84,7 @@ socket.addEventListener("message", (event) => {
                     } else 
                     {
                         
-                        makeP()
+                        renderLeaderboard(JSON.stringify(data.data))
                     }
                 }
                 
@@ -115,9 +115,7 @@ socket.addEventListener("close", (event) =>{
 
 let main = document.querySelector("main");
 
-function makeP(){
-     main.innerHTML=`<p>Hej</p>`
-}
+
 
 async function startApp() 
 {
@@ -147,7 +145,10 @@ btnJoinForm.addEventListener("click", joinGame);
 }
 
 
-
+function makeP(params) {
+    main.innerHTML= `
+  <p id="feedback">Hej</p>`
+}
  
 
 function createGame() 
@@ -354,6 +355,7 @@ async function fetchCard(CARDS,index, lobbyData) {
         let child2 = document.querySelector("#alternative2");
         let child3 = document.querySelector("#alternative3");
         let correct;
+        let points;
 
         for (let i = 0; i < CARDS.length; i++) {
             if (CARDS[i].id === parseInt(index)) {
@@ -364,6 +366,7 @@ async function fetchCard(CARDS,index, lobbyData) {
                 child2.textContent = CARDS[i].alternatives[2];
                 child3.textContent = CARDS[i].alternatives[3];
                 correct = CARDS[i].correct
+                points= CARDS[i].points
                 
                 found = true;
 
@@ -374,10 +377,10 @@ async function fetchCard(CARDS,index, lobbyData) {
             
         }
 
-        child0.addEventListener("click", ()=>{correctChoise(child0.id, correct, lobbyData)})
-        child1.addEventListener("click", ()=>{correctChoise(child1.id, correct, lobbyData)})
-        child2.addEventListener("click", ()=>{correctChoise(child2.id, correct, lobbyData)})
-        child3.addEventListener("click", ()=>{correctChoise(child3.id, correct, lobbyData)})
+        child0.addEventListener("click", ()=>{correctChoise(child0.id, correct, lobbyData, points)})
+        child1.addEventListener("click", ()=>{correctChoise(child1.id, correct, lobbyData, points)})
+        child2.addEventListener("click", ()=>{correctChoise(child2.id, correct, lobbyData, points)})
+        child3.addEventListener("click", ()=>{correctChoise(child3.id, correct, lobbyData, points)})
       
 
  
@@ -393,7 +396,7 @@ async function fetchCard(CARDS,index, lobbyData) {
     } 
        
     
-    function correctChoise(id, correct, lobbyData ) {
+    function correctChoise(id, correct, lobbyData, points ) {
         let parsedData=JSON.parse(lobbyData)
         
         const alternatives = document.querySelectorAll("#alternatives > button");
@@ -401,11 +404,21 @@ async function fetchCard(CARDS,index, lobbyData) {
         const selectedNumber = id.replace("alternative", ""); // Remove the "alternative" part
         if (selectedNumber === correct.toString()) { // Compare only the numeric part
             console.log(selectedNumber, correct)
+            socket.send(JSON.stringify( {
+                message: "pointUpdate",
+                points: points,
+                playerId: myID,
+                lobbyData: lobbyData
+            }));
             let p = document.createElement("p");
             p.textContent = "YOU GOT IT!!!";
             let cont = document.createElement("button")
             cont.textContent="Continue"
-            cont.addEventListener("click",()=>{handleTurn("handleTurn", parsedData.players, parsedData.id)})
+            cont.addEventListener("click",()=>
+                {
+                    handleTurn("handleTurn", parsedData.players, parsedData.id
+                       
+                    )})
             main.appendChild(p);
             main.appendChild(cont)
             alternatives.forEach(button => {
@@ -417,7 +430,12 @@ async function fetchCard(CARDS,index, lobbyData) {
             p.textContent = "Sorry, that's wrong";
             let cont = document.createElement("button")
             cont.textContent="Continue"
-            cont.addEventListener("click",()=>{handleTurn("handleTurn", parsedData.players, parsedData.id)})
+            cont.addEventListener("click",()=>
+                {
+                handleTurn("handleTurn", parsedData.players, parsedData.id
+                
+
+            )})
             main.appendChild(p);
             main.appendChild(cont)
             alternatives.forEach(button => {
@@ -426,6 +444,30 @@ async function fetchCard(CARDS,index, lobbyData) {
         }
     }
     
+    function renderLeaderboard(lobbyData)
+    {
+        document.querySelector("main").innerHTML = "";
+
+        let playerDiv=document.createElement("div")
+        let parsedData=JSON.parse(lobbyData)
+
+        for (let i = 0; i < parsedData.players.length; i++) {
+            let div = document.createElement("div")
+            div.id="player" + i
+            div.textContent=parsedData.players[i].name + " " + "points: " + parsedData.players[i].points
+            playerDiv.appendChild(div)
+            // let lol = [];
+            
+            // lol.sort((a,b)=>{
+            //     return a - b
+            // });
+            
+        }
+
+        main.appendChild(playerDiv)
+    }
+
+ 
 
 
 

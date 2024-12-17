@@ -217,16 +217,20 @@ function handleWebSocketRequest(request)
 
         else if(data.message==="startGame")
             {
-                console.log(data)
+                console.log("startGame")
                 
                 let returnData = JSON.stringify({
                     message: "returningStartGame",
                     data: data.room
                     
                 });
+                for (let i = 0; i < data.room.players.length; i++) {
+                    connections[data.room.players[i].id].socket.send(returnData);
+                }
                 
-                socket.send(returnData);
             }
+
+           
 
         else if (data.message === "handleTurn") {
 
@@ -246,7 +250,14 @@ function handleWebSocketRequest(request)
 
         
             // Update game state in the server
-            GAMES.rooms[data.roomID - 1].players = data.players; // Update the room with the modified player turns
+            for (let i = 0; i < GAMES.rooms[data.roomID - 1].players.length; i++) {
+                let player = GAMES.rooms[data.roomID - 1].players[i];
+                console.log("console log player",player)
+                GAMES.rooms[data.roomID - 1].players[i].turn = data.players[i].turn
+                player = GAMES.rooms[data.roomID - 1].players[i]
+                console.log("console log player2:",player)
+            }
+            //GAMES.rooms[data.roomID - 1].players = data.players; // Update the room with the modified player turns
             const updatedGame = GAMES.rooms[data.roomID - 1];
         
             // Notify all players in the room about the updated game state
@@ -287,6 +298,18 @@ function handleWebSocketRequest(request)
                 
                 socket.send(returnData);
             }
+        else if(data.message === "pointUpdate"){
+            //select GAMES.rooms from parsed lobby data
+            let parsedLobby = JSON.parse(data.lobbyData);
+            console.log(GAMES.rooms[parsedLobby.id - 1].players, data.playerId, data);
+            for(let i = 0; i < GAMES.rooms[parsedLobby.id - 1].players.length; i++){
+                console.log(GAMES.rooms[parsedLobby.id - 1].players[i].name);
+                if(GAMES.rooms[parsedLobby.id - 1].players[i].id === data.playerId){
+                    GAMES.rooms[parsedLobby.id - 1].players[i].points += data.points;
+                }
+            }
+            console.log(GAMES.rooms[parsedLobby.id - 1], data.points);
+        }
 
     })
 
