@@ -390,6 +390,8 @@ async function fetchCard(CARDS,index, lobbyData) {
         let playerDiv=document.createElement("div")
         let parsedData=JSON.parse(lobbyData)
 
+        parsedData.players.sort((a, b) => b.points - a.points);
+
         for (let i = 0; i < parsedData.players.length; i++) {
             let div = document.createElement("div")
             div.id="player" + i
@@ -402,6 +404,8 @@ async function fetchCard(CARDS,index, lobbyData) {
             // });
             
         }
+
+       
 
         main.appendChild(playerDiv)
     }
