@@ -1,8 +1,5 @@
 import {serveDir, serveFile} from "jsr:@std/http/file-server";
 
-
-// const jsonData = await Deno.readTextFile("./database.json")
-// const DATA = JSON.parse(jsonData)
 let CARDS = 
 [
     {
@@ -94,9 +91,6 @@ async function handleHTTPRequest(request)
             GAMES.rooms.push(game);
             console.log(GAMES)
         
-            // Write the updated data back to the JSON file
-            // DATA.games = GAMES; 
-            // await Deno.writeTextFile("./database.json", JSON.stringify(DATA, null, 2));
         
             return new Response(JSON.stringify(game), options);
         }
@@ -205,15 +199,7 @@ function handleWebSocketRequest(request)
             });
             console.log(GAMES);
             socket.send(returnData);
-        } else if(data.message === "gameStartRequestByHost"){
-            //get the game info from hostID
-            //set the game to active
-            //select starting player
-            //send info back to clients to render the needed
-            //game views
-            //return "newTurn"? "turnStarted"? to clients
-            //turn {nr: 1, question: {question info}, yourTurn: false/true}
-        }
+        } 
 
         else if(data.message==="startGame")
             {

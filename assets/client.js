@@ -2,40 +2,28 @@ const socket = new WebSocket("http://localhost:8000")
 
 let myID = null;
 
-
-
-
-
-
 socket.addEventListener("open", (event) =>{
     console.log("Connected!")
 })
 
-// Listen for messages from the server to retrieve myID
 socket.addEventListener("message", (event) => {
     const data = JSON.parse(event.data);
     if(data.message === "returningInitializeLobbyJoin"){
-        console.log("we should now initialize", data);
-        
-        //here we should render the game data
+        console.log("we should now initialize", data);     
         renderLobbyPlayer(JSON.stringify(data.data));
     }else if (data.message === "returningInitializeLobbyCreate"){
         console.log("recived this data from server: ", data, ":3");
         renderLobbyHost(JSON.stringify(data.data));
     }else if(data.message === "YOU HAVE BEEN NOTIFIED"){
-        console.log(data.message);
-        
+        console.log(data.message);      
     }else if(data.message === "playerJoinedYourLobby"){
-
         if(data.data.hostID === myID){
             renderLobbyHost(JSON.stringify(data.data));
             console.log("jag är host")
         } else {
             console.log("jag är INTE host")
             renderLobbyPlayer(JSON.stringify(data.data));
-        }
-    
-        
+        }     
         console.log("a new player joined our lobby!!!",myID);
         
     }else if(data.message === "playerLeftRoom"){
@@ -48,8 +36,6 @@ socket.addEventListener("message", (event) => {
             console.log("jag är INTE host")
             renderLobbyPlayer(JSON.stringify(data.newRoom));
         }
-    
-        // renderLobby(JSON.stringify(data.newRoom));
     }else if(data.message === "hostLeftRoom"){
         startApp();
         window.alert("host seems to have disconnected from our server u_u very sorry")
@@ -64,12 +50,10 @@ socket.addEventListener("message", (event) => {
                     if (data.data.players[i].turn===true) {
                         makeField(JSON.stringify(data.data));
                     } else 
-                    {
-                        
+                    {                  
                         renderLeaderboard(JSON.stringify(data.data))
                     }
-                }
-                
+                }          
             }
         }
     else if(data.message==="returningHandleTurn")
@@ -97,11 +81,7 @@ socket.addEventListener("message", (event) => {
                 console.log(data)
               fetchCard(data.data, data.input, data.lobbyData)
             }
-    
-    //else if(data.messsage === "new turn"){
-    //  if(data.data.yourTurn){it's my turn!! do my turn}
-    //  else {other players turn render waiting room}
-    //}
+ 
 });
 
 console.log(socket)
@@ -145,12 +125,6 @@ btnJoinForm.addEventListener("click", joinGame);
 }
 
 
-function makeP(params) {
-    main.innerHTML= `
-  <p id="feedback">Hej</p>`
-}
- 
-
 function createGame() 
 {
      main.innerHTML= `<input type="text" id="hostName" name="hostName" placeholder=" Enter your name">
@@ -169,34 +143,6 @@ function createGame()
         console.log("HEJ")
     })
 
-
-    /* const createGameForm = document.querySelector("#createGameForm")
-    createGameForm.addEventListener("submit", async (event) => {
-        event.preventDefault()
-        const formData= new FormData(createGameForm)
-        const game = {}
-        formData.forEach((value, key)=>{game[key]=value}) 
-        // game.hostID
-
-        game.hostID = myID;
-        game.players = [{id: myID, name:game.hostName, points: 0, turn:true}]
-
-        const request = new Request("/api/cards",{
-            method: "POST",
-            headers: {"Content-Type" : "application/json"},
-            body: JSON.stringify(game)
-        })
-        const response = await fetch(request)
-
-        if(response.ok)
-            {
-                const data = await response.json()
-                console.log(data)
-            }
-            createGameForm.reset()
-    }) */
-    
-    
 }
 
 function joinGame() 
@@ -265,7 +211,7 @@ async function renderLobbyHost(lobbyData) {
     
     let parsedData=JSON.parse(lobbyData)
     console.log(parsedData)
-    // btnStart.addEventListener("click",()=>{handleTurn("handleTurn", parsedData.players, parsedData.id)})
+    
     btnStart.addEventListener("click",()=>{startGame("startGame",parsedData)})
 
 
@@ -381,14 +327,7 @@ async function fetchCard(CARDS,index, lobbyData) {
         child1.addEventListener("click", ()=>{correctChoise(child1.id, correct, lobbyData, points)})
         child2.addEventListener("click", ()=>{correctChoise(child2.id, correct, lobbyData, points)})
         child3.addEventListener("click", ()=>{correctChoise(child3.id, correct, lobbyData, points)})
-      
-
- 
-
-      
-
-
-        
+       
 
         if (!found) {
             console.log("No card found with this id", CARDS)
