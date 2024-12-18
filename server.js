@@ -1,7 +1,7 @@
 import { serveDir, serveFile } from "jsr:@std/http/file-server";
 
 // Alla spel QUESTION CARDS till spelet - det saknad svårighetsgran på frågorna som vi ska lägga till för att spelaren ska få poäng
-const questionCard = [{
+const CARDS = [ {
     "question": "Gissa artist och låt?",
     "answers": [
         "ABBA - The Winner Takes It All",
@@ -9,10 +9,10 @@ const questionCard = [{
         "Fleetwood Mac - Go Your Own Way",
         "Blondie - Heart of Glass"
     ],
-    "cardCode": 1,
-    "correctAnswer": 1,
+    "id": 1,
+    "correct": 1,
     "points": 10
-}, {
+},{
     "question": "Fyll i låttexten...",
     "answers": [
         "Wake me up when it's all over",
@@ -20,21 +20,21 @@ const questionCard = [{
         "Wake me to see the sky so blue",
         "Wake me and bring me home again"
     ],
-    "cardCode": 2,
-    "correctAnswer": 1,
-    "points": 10
-}, {
-    "question": "Gissa artisten",
+    "id": 2,
+    "correct": 1,
+    "points": 30
+},{
+    "question": "Gissa artisten?",
     "answers": [
         "Danny Saucedo",
         "Robin Bengtsson",
         "Måns Zelmerlöw",
         "Eric Saade"
     ],
-    "cardCode": 3,
-    "correctAnswer": 3,
-    "points": 10
-}, {
+    "id": 3,
+    "correct": 3,
+    "points": 20,
+},{
     "question": "Fyll i låttexten... \"Everyday people do...\"",
     "answers": [
         "... things that we can't see",
@@ -42,32 +42,32 @@ const questionCard = [{
         "... the same old things",
         "... what they're told to do"
     ],
-    "cardCode": 4,
-    "correctAnswer": 2,
-    "points": 20
-}, {
-    "question": "Gissa den korrekta låttexten",
+    "id": 4,
+    "correct": 2,
+    "points": 30
+},{
+    "question": "Gissa de korrekta låttexten?",
     "answers": [
         "Crashing into the dark in my black car",
         "Running red lights in my black car",
         "In my black car, where we collide",
         "Driving fast in my black car tonight"
     ],
-    "cardCode": 5,
-    "correctAnswer": 4,
+    "id": 5,
+    "correct": 4,
     "points": 30
-}, {
-    "question": "Gissa artisten",
+},{
+    "question": "Gissa artisten?",
     "answers": [
         "Felix Sandman",
         "Benjamin Ingrosso",
         "Darin",
         "Oscar Zia"
     ],
-    "cardCode": 6,
-    "correctAnswer": 2,
-    "points": 10
-}, {
+    "id": 6,
+    "correct": 2,
+    "points": 20
+},{
     "question": "Fyll i låttexten... \"Oh, sometimes I get a...\"?",
     "answers": [
         "... little bit higher",
@@ -75,109 +75,109 @@ const questionCard = [{
         "... feeling I’m free",
         "... rush of adrenaline"
     ],
-    "cardCode": 7,
-    "correctAnswer": 2,
-    "points": 10
-}, {
-    "question": "Gissa låtiteln",
+    "id": 7,
+    "correct": 2,
+    "points": 30
+},{
+    "question": "Gissa låtiteln?",
     "answers": [
         "Lush Life",
         "Never Forget You",
         "Symphony",
         "Ruin My Life"
     ],
-    "cardCode": 8,
-    "correctAnswer": 1,
-    "points": 10
-}, {
-    "question": "Gissa artisten",
+    "id": 8,
+    "correct": 1,
+    "points": 30
+},{
+    "question": "Gissa artisten?",
     "answers": [
         "The Cardigans",
         "Roxette",
         "Ace of Base",
         "ABBA"
     ],
-    "cardCode": 9,
-    "correctAnswer": 1,
-    "points": 20
-}, {
-    "question": "Gissa låtiteln",
+    "id": 9,
+    "correct": 1,
+    "points": 10
+},{
+    "question": "Gissa låtiteln?",
     "answers": [
         "My Silver Lining",
         "Fireworks",
         "Stay Gold",
         "Emmylou"
     ],
-    "cardCode": 10,
-    "correctAnswer": 1,
-    "points": 10
-}, {
-    "question": "Gissa artisten",
+    "id": 10,
+    "correct": 1,
+    "points": 20
+},{
+    "question": "Gissa artisten?",
     "answers": [
         "Miss Li",
         "Miriam Bryant",
         "Veronica Maggio",
         "Laleh"
     ],
-    "cardCode": 11,
-    "correctAnswer": 3,
-    "points": 10
-}, {
-    "question": "Gissa låtiteln",
+    "id": 11,
+    "correct": 3,
+    "points": 30
+},{
+    "question": "Gissa låtiteln?",
     "answers": [
         "Without You",
         "Wake Me Up",
         "Levels",
         "The Nights"
     ],
-    "cardCode": 12,
-    "correctAnswer": 4,
+    "id": 12,
+    "correct": 4,
     "points": 10
-}, {
-    "question": "Gissa artist/band",
+},{
+    "question": "Gissa artist/band?",
     "answers": [
         "Roger Pontare",
         "Hammerfall",
         "Riddarna",
         "The virtues"
     ],
-    "cardCode": 13,
-    "correctAnswer": 2,
-    "points": 30
-}, {
-    "question": "Gissa låten",
+    "id": 13,
+    "correct": 2,
+    "points": 20
+},{
+    "question": "Gissa låten?",
     "answers": [
         "Aiming for the sky",
         "Walking through the sky",
         "Keep on Walking",
         "Keep aiming"
     ],
-    "cardCode": 14,
-    "correctAnswer": 3,
-    "points": 20
-}, {
-    "question": "När kom låten ut",
+    "id": 14,
+    "correct": 3,
+    "points": 10
+},{
+    "question": "När kom låten ut?",
     "answers": [
         "2010",
         "2012",
         "2009",
         "2011"
     ],
-    "cardCode": 15,
-    "correctAnswer": 2,
-    "points": 10
-}, {
-    "question": "Gissa artist/band",
+    "id": 15,
+    "correct": 2,
+    "points": 30
+},{
+    "question": "Gissa artist/band?",
     "answers": [
         "Sarah Klang",
         "Sarah Dawn Finer",
         "Sabina Ddumba",
         "Zara Larsson"
     ],
-    "cardCode": 16,
-    "correctAnswer": 3,
+    "id": 16,
+    "correct": 3,
     "points": 20
-}, {
+},{
     "question": "När kom låten ut?",
     "answers": [
         "1989",
@@ -185,10 +185,10 @@ const questionCard = [{
         "1984",
         "1990"
     ],
-    "cardCode": 17,
-    "correctAnswer": 3,
+    "id": 17,
+    "correct": 3,
     "points": 30
-}, {
+},{
     "question": "Fyll i låttexten...",
     "answers": [
         "Lips as sweet as candy",
@@ -196,32 +196,32 @@ const questionCard = [{
         "Got a bug from you girl",
         "All the good love"
     ],
-    "cardCode": 18,
-    "correctAnswer": 1,
-    "points": 30
-}, {
-    "question": "Gissa låten",
+    "id": 18,
+    "correct": 1,
+    "points": 20
+},{
+    "question": "Gissa låten?",
     "answers": [
         "Måndag morgon",
         "I natt",
         "Är det du, är det jag",
         "Inget stoppar oss nu"
     ],
-    "cardCode": 19,
-    "correctAnswer": 4,
-    "points": 30
-}, {
-    "question": "När kom låten ut",
+    "id": 19,
+    "correct": 4,
+    "points": 10
+},{
+    "question": "När kom låten ut?",
     "answers": [
         "2010",
         "2012",
         "2009",
         "2011"
     ],
-    "cardCode": 20,
-    "correctAnswer": 4,
-    "points": 20
-}, {
+    "id": 20,
+    "correct": 4,
+    "points": 30
+},{
     "question": "Fyll i låttexten...",
     "answers": [
         "Sunga na-na-na-na",
@@ -229,44 +229,29 @@ const questionCard = [{
         "Ingen sommar utan ragga",
         "Ja, Jag sa raggae"
     ],
-    "cardCode": 21,
-    "correctAnswer": 2,
-    "points": 30
+    "id": 21,
+    "correct": 2,
+    "points": 20
 }]
 
 
 
 
 
-const jsonData = await Deno.readTextFile("./database.json")
-const DATA = JSON.parse(jsonData)
-let CARDS = DATA.cards
-let Cardsssss = [{
-    question: "blablabla",
-    answers: [
-        "blablaasdwa",
-        "oaijsdlkwa",
-        "aölksdwa",
-        "aöldwaldas äasöld"
-    ],
-    cardCode: "BHDJA ASKDJ",
-    correctAnswer: 2
-}, {
 
-}]
-let GAMES = {
-    rooms: [
-        {
-            "id": 1,
-            "hostName": "rere",
-            "name": "bibi",
-            "hostID": 1,
-            "isActive": false,
-            "players": [
-            ]
-        }
-    ]
-}
+
+
+let GAMES = {rooms:[
+    {
+        "id": 1,
+        "hostName": "rere",
+        "name": "bibi",
+        "hostID": 1,
+        "isActive": false,
+        "players": [
+        ]
+      }
+]}
 
 
 async function handleHTTPRequest(request) {
@@ -309,11 +294,8 @@ async function handleHTTPRequest(request) {
 
             GAMES.rooms.push(game);
             console.log(GAMES)
-
-            // Write the updated data back to the JSON file
-            // DATA.games = GAMES; 
-            // await Deno.writeTextFile("./database.json", JSON.stringify(DATA, null, 2));
-
+        
+        
             return new Response(JSON.stringify(game), options);
         }
 
@@ -361,7 +343,7 @@ function handleWebSocketRequest(request) {
                         id: data.userID,
                         "name": data.userName,
                         "points": 0,
-                        "turn": true
+                        "turn": false
                     });
                     let returnDataSelf = JSON.stringify({
                         message: "returningInitializeLobbyJoin",
@@ -380,6 +362,7 @@ function handleWebSocketRequest(request) {
                         if (data.userID !== players[j].id)
                             connections[String(players[j].id)].socket.send(JSON.stringify(returnDataOther));
                     }
+                    console.log(GAMES.rooms[i])
                 }
             }
 
@@ -403,14 +386,14 @@ function handleWebSocketRequest(request) {
                 hostID: data.userID,
                 isActive: false,
                 players
-                    : [
-                        {
-                            id: data.userID,
-                            name: data.userName,
-                            points: 0,
-                            turn: false
-                        }
-                    ]
+                : [
+                    {
+                        id: data.userID, 
+                        name: data.userName, 
+                        points: 0, 
+                        turn:true
+                    }
+                ]
             }
             GAMES.rooms.push(newGame);
             let returnData = JSON.stringify({
@@ -419,15 +402,105 @@ function handleWebSocketRequest(request) {
             });
             console.log(GAMES);
             socket.send(returnData);
-        } else if (data.message === "gameStartRequestByHost") {
-            //get the game info from hostID
-            //set the game to active
-            //select starting player
-            //send info back to clients to render the needed
-            //game views
-            //return "newTurn"? "turnStarted"? to clients
-            //turn {nr: 1, question: {question info}, yourTurn: false/true}
-        } else if (data.message === "playerLeftRoom") {
+
+        }  
+        
+        else if(data.message==="startGame")
+            {
+                console.log("startGame")
+                
+                let returnData = JSON.stringify({
+                    message: "returningStartGame",
+                    data: data.room
+                    
+                });
+                for (let i = 0; i < data.room.players.length; i++) {
+                    connections[data.room.players[i].id].socket.send(returnData);
+                }
+                
+            }
+
+            else if (data.message === "handleTurn") {
+
+            
+
+                // Update player turns
+                for (let i = 0; i < data.players.length; i++) {
+                    if (data.players[i].turn === true) { // Check for the current player's turn
+                        data.players[i].turn = false; // End the current player's turn
+                        const nextPlayerIndex = (i + 1) % data.players.length; // Move to the next player, wrapping around
+                        data.players[nextPlayerIndex].turn = true; // Start the next player's turn
+                        break; // Exit the loop once the turn is updated
+                    }
+                }
+    
+               
+    
+            
+                // Update game state in the server
+                for (let i = 0; i < GAMES.rooms[data.roomID - 1].players.length; i++) {
+                    let player = GAMES.rooms[data.roomID - 1].players[i];
+                    console.log("console log player",player)
+                    GAMES.rooms[data.roomID - 1].players[i].turn = data.players[i].turn
+                    player = GAMES.rooms[data.roomID - 1].players[i]
+                    console.log("console log player2:",player)
+                }
+                //GAMES.rooms[data.roomID - 1].players = data.players; // Update the room with the modified player turns
+                const updatedGame = GAMES.rooms[data.roomID - 1];
+            
+                // Notify all players in the room about the updated game state
+                for (const player of updatedGame.players) {
+                    const connection = connections[String(player.id)];
+                    
+                    if (connection && connection.socket) {
+                    
+                        try {
+                            console.log("this is the connection " + connection.socket)
+                            connection.socket.send(JSON.stringify({
+                                message: "returningHandleTurn",
+                                data: updatedGame,
+                            }));
+                        } catch (error) {
+                            console.error(`Failed to send update to player ${player.id}:`, error);
+                        }
+                    } else {
+                        console.warn(`No active connection for player ${player.id}`);
+                    }
+                }
+            
+                // No need for additional `socket.send(returnData);`
+                console.log("Updated game state sent to all players:", updatedGame);
+            }
+
+            else if (data.message ==="getCards")
+                {
+                    console.log(data.message)
+                    
+                    let returnData = JSON.stringify({
+                        message: "returningGetCards",
+                        data : CARDS,
+                        input : data.input,
+                        lobbyData : data.lobbyData
+                        
+                    });
+                    
+                    socket.send(returnData);
+                }
+
+                else if(data.message === "pointUpdate"){
+                    //select GAMES.rooms from parsed lobby data
+                    let parsedLobby = JSON.parse(data.lobbyData);
+                    console.log(GAMES.rooms[parsedLobby.id - 1].players, data.playerId, data);
+                    for(let i = 0; i < GAMES.rooms[parsedLobby.id - 1].players.length; i++){
+                        console.log(GAMES.rooms[parsedLobby.id - 1].players[i].name);
+                        if(GAMES.rooms[parsedLobby.id - 1].players[i].id === data.playerId){
+                            GAMES.rooms[parsedLobby.id - 1].players[i].points += data.points;
+                        }
+                    }
+                    console.log(GAMES.rooms[parsedLobby.id - 1], data.points);
+                }
+        
+        else if(data.message === "playerLeftRoom"){
             console.log("playerLeftRoooooooom");
             let leftID = data.playerID;
             let leftPlayer = undefined;
