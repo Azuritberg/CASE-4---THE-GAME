@@ -337,34 +337,36 @@ function handleTurn(modifier, players, roomID) {
 
 function makeField(lobbyData) {
 
-    console.log("hej")
-    document.querySelectorAll('main > div').forEach(div => div.remove());
-    // let input = document.createElement("input")
-    // input.type="text"
-    // input.id="input"
-    // input.placeholder="Enter ID"
-    let input = document.createElement("div")
     
-    main.appendChild(input)
+    document.querySelectorAll('main > div').forEach(div => div.remove());
+    document.querySelectorAll('main > button').forEach(button => button.remove());
+    let input = document.createElement("input")
+    input.type="text"
+    input.id="input"
+    input.placeholder="Enter ID"
+    
+    
+   
   
-//     let btnNext = document.createElement("button")
-//     btnNext.id="btnNext"
-//     btnNext.textContent="Next"
-//     let parsedData=JSON.parse(lobbyData)
-//     btnNext.addEventListener("click",()=>{handleTurn("handleTurn", parsedData.players, parsedData.id)})
-//     main.appendChild(btnNext)
-//     let inputField = document.querySelector("#input");
+    let btnNext = document.createElement("button")
+    btnNext.id="btnNext"
+    btnNext.textContent="Next"
+    let parsedData=JSON.parse(lobbyData)
+    btnNext.addEventListener("click",()=>{handleTurn("handleTurn", parsedData.players, parsedData.id)})
+    document.querySelector("main").appendChild(btnNext)
+    document.querySelector("main").appendChild(input)
+    let inputField = document.querySelector("#input");
 
-//     inputField.addEventListener("keydown", function (event) {
-//         if (event.key === "Enter") {
-//             const inputValue = inputField.value.trim();
-//             if (!inputValue) {
-//                 displayFeedback("Please enter a valid ID.");
-//                 return;
-//             }
-//             getCards("getCards", inputValue, lobbyData)
-//         }
-//     });
+    inputField.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            const inputValue = inputField.value.trim();
+            if (!inputValue) {
+                displayFeedback("Please enter a valid ID.");
+                return;
+            }
+            getCards("getCards", inputValue, lobbyData)
+        }
+    });
 
 }
 
@@ -373,7 +375,7 @@ async function fetchCard(CARDS,index, lobbyData) {
         
     let found = false;
 
-    main.innerHTML = `
+    document.querySelector("main").innerHTML = `
         <div id="type"></div>
         <div id="questions"></div>
         <div id="alternatives">
@@ -384,7 +386,10 @@ async function fetchCard(CARDS,index, lobbyData) {
         </div>
     `;
 
-    let type = document.querySelector("#type");
+    
+
+
+    
     let questions = document.querySelector("#questions");
     let child0 = document.querySelector("#alternative0");
     let child1 = document.querySelector("#alternative1");
@@ -395,12 +400,12 @@ async function fetchCard(CARDS,index, lobbyData) {
 
     for (let i = 0; i < CARDS.length; i++) {
         if (CARDS[i].id === parseInt(index)) {
-            type.textContent = `Type: ${CARDS[i].type}`;
+            
             questions.textContent = `Question: ${CARDS[i].question}`;
-            child0.textContent = CARDS[i].alternatives[0];
-            child1.textContent = CARDS[i].alternatives[1];
-            child2.textContent = CARDS[i].alternatives[2];
-            child3.textContent = CARDS[i].alternatives[3];
+            child0.textContent = CARDS[i].answers[0];
+            child1.textContent = CARDS[i].answers[1];
+            child2.textContent = CARDS[i].answers[2];
+            child3.textContent = CARDS[i].answers[3];
             correct = CARDS[i].correct
             points= CARDS[i].points
             
@@ -412,6 +417,11 @@ async function fetchCard(CARDS,index, lobbyData) {
 
         
     }
+
+    child0.enabled=true
+    child1.enabled=true
+    child2.enabled=true
+    child3.enabled=true
 
     child0.addEventListener("click", ()=>{correctChoise(child0.id, correct, lobbyData, points)})
     child1.addEventListener("click", ()=>{correctChoise(child1.id, correct, lobbyData, points)})
@@ -447,8 +457,8 @@ function correctChoise(id, correct, lobbyData, points ) {
                 handleTurn("handleTurn", parsedData.players, parsedData.id
                    
                 )})
-        main.appendChild(p);
-        main.appendChild(cont)
+        document.querySelector("main").appendChild(p);
+        document.querySelector("main").appendChild(cont)
         alternatives.forEach(button => {
             button.disabled = true
         });
@@ -464,8 +474,8 @@ function correctChoise(id, correct, lobbyData, points ) {
             
 
         )})
-        main.appendChild(p);
-        main.appendChild(cont)
+        document.querySelector("main").appendChild(p);
+        document.querySelector("main").appendChild(cont)
         alternatives.forEach(button => {
             button.disabled = true
         });
@@ -475,25 +485,25 @@ function correctChoise(id, correct, lobbyData, points ) {
     
 function renderLeaderboard(lobbyData)
 {
-    document.querySelector("main").innerHTML = "";
+    document.querySelectorAll('main > div').forEach(div => div.remove());
+    document.querySelectorAll('main > p').forEach(p => p.remove());
+    document.querySelectorAll('main > button').forEach(button => button.remove());
 
     let playerDiv=document.createElement("div")
     let parsedData=JSON.parse(lobbyData)
+
+    parsedData.players.sort((a, b) => b.points - a.points);
 
     for (let i = 0; i < parsedData.players.length; i++) {
         let div = document.createElement("div")
         div.id="player" + i
         div.textContent=parsedData.players[i].name + " " + "points: " + parsedData.players[i].points
         playerDiv.appendChild(div)
-        // let lol = [];
-        
-        // lol.sort((a,b)=>{
-        //     return a - b
-        // });
+
         
     }
 
-    main.appendChild(playerDiv)
+    document.querySelector("main").appendChild(playerDiv)
 }
 
 
