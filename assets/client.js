@@ -397,12 +397,7 @@ async function fetchCard(CARDS,index, lobbyData) {
             div.id="player" + i
             div.textContent=parsedData.players[i].name + " " + "points: " + parsedData.players[i].points
             playerDiv.appendChild(div)
-            // let lol = [];
-            
-            // lol.sort((a,b)=>{
-            //     return a - b
-            // });
-            
+    
         }
 
        
