@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0048b4d-5069-4752-a166-dd1ad0b2428d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/cssPages/resultViewPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/cssPages/waitingViewRockBearPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/jsPages/resultViewPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/jsPages/waitingViewRockBearPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/waitYourTurnPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/waitYourTurnPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/wonRockBearPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/wonRockBearPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/jsPages/leaderboardPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/leaderboardPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/jsPages/questionPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/questionPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

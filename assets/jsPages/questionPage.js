@@ -5,7 +5,7 @@ export {renderQuestionPage}
 //{question[array of questions], song_tied_toquestion, correct answer, questionID}
 //most imoportant in this function is the questions other stuff is handled in game logic in
 //client.js
-function renderQuestionPage(questionTexts) {
+function renderQuestionPage(question, questionTexts) {
 
     // Hämta body
     const body = document.body;
@@ -87,15 +87,33 @@ function renderQuestionPage(questionTexts) {
     const questionPageText = document.createElement("div");
     questionPageText.classList.add("questionPage-text");
     questionPageText.innerHTML = `
-    <h2>Finnish the lyrics!</h2>
+    <h2>${question}</h2>
     <p>SOUND ON</p>
     `;
+    questionPageText.id = "questions";
 
     // Cards
     const questionContainer = document.createElement("div");
     questionContainer.id = "questionPage-card";
 
+    for (let i = 0; i < questionTexts.length; i++) {
+        const question = document.createElement("div");
+        question.classList.add("question");
+        question.id = "alternative" + i;
 
+        const questionText = document.createElement("p");
+        questionText.classList.add("question-text");
+        questionText.textContent = questionTexts[i];
+
+        question.appendChild(questionText);
+        questionContainer.appendChild(question);
+
+        // Lägg till klickhändelse
+        question.addEventListener("click", () => {
+            markSelectedQuestion(question);
+        });
+    }
+    /*
     questionTexts.forEach((text) => {
         const question = document.createElement("div");
         question.classList.add("question");
@@ -111,7 +129,7 @@ function renderQuestionPage(questionTexts) {
         question.addEventListener("click", () => {
             markSelectedQuestion(question);
         });
-    });
+    });*/
 
     // Footer
     const footer = document.createElement("footer");
@@ -133,11 +151,11 @@ function renderQuestionPage(questionTexts) {
 }
 
     // Card Questions Array
-    const questionTexts = [
+    /*const questionTexts = [
         "Hit me baby one more time...",
         "Hit me lady one more time...",
         "Hit me baby two more times...",
         "Hit me baby six more times...",
-    ];
+    ];*/
 
-renderQuestionPage(questionTexts);
+//renderQuestionPage(questionTexts);

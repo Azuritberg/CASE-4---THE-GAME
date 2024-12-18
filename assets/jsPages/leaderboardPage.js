@@ -2,7 +2,7 @@
 export {renderLeaderboardPage}
 
 //add parameter that is an array of the players in the game :)
-function renderLeaderboardPage() {
+function renderLeaderboardPage(lobbyData) {
 
     // Hämta body
     const body = document.body;
@@ -91,13 +91,8 @@ function renderLeaderboardPage() {
     //CHANGE
     //this should not be placeholder, instead loop through the parameter players[]
     //and create elements for each player based on their points
-    const players = [
-        { icon: "1", name: "Ronja77", place: "1st place", points: "24p" },
-        { icon: "2", name: "BBell", place: "2nd place", points: "19p" },
-        { icon: "3", name: "Bullwhips", place: "3rd place", points: "13p" },
-        { icon: "4", name: "Linnsant", place: "4th place", points: "9p" },
-        { icon: "5", name: "Venni", place: "5th place", points: "3p" },
-    ];
+    const players = lobbyData.players;
+    console.log(lobbyData);
 
 
     //players should also be assigned a color here
@@ -109,7 +104,7 @@ function renderLeaderboardPage() {
 
         const cardIcon = document.createElement("div");
         cardIcon.className = "card-icon";
-        cardIcon.textContent = player.icon;
+        cardIcon.textContent = player.id;
 
         const cardText = document.createElement("p");
         cardText.className = "card-text";
@@ -151,4 +146,4 @@ function renderLeaderboardPage() {
     //this view has no interactive elements and needs no return statement.
 }
 
-renderLeaderboardPage();
+//renderLeaderboardPage();

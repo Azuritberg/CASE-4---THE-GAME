@@ -64,22 +64,20 @@ socket.addEventListener("message", (event) => {
         }
     
         
-    }else if(data.message === "hostLeftRoom"){
+    } else if(data.message === "hostLeftRoom"){
         startApp();
         window.alert("host seems to have disconnected from our server u_u very sorry")
-    }else if (data.connection !== undefined) {
+    } else if (data.connection !== undefined) {
         myID = data.connection.myID; // Store the assigned connection ID
     }
 
-    else if(data.message==="returningStartGame")
-        {
+    else if (data.message==="returningStartGame") {
             console.log(data.data.players)
             for (let i = 0; i < data.data.players.length; i++) {
                 if (data.data.players[i].id===myID) {
                     if (data.data.players[i].turn===true) {
                         makeField(JSON.stringify(data.data));
-                    } else 
-                    {                  
+                    } else {
                         renderLeaderboard(JSON.stringify(data.data))
                     }
                 }          
@@ -105,17 +103,17 @@ socket.addEventListener("message", (event) => {
 
     }
 
-    else if(data.message==="returningGetCards"){
+    else if (data.message==="returningGetCards") {
         console.log(data)
         console.log("returingGetCards");
         fetchCard(data.data, data.input, data.lobbyData)
     }
-    else if(data.message === "returningGetCards_TurnFalse") {
+    else if (data.message === "returningGetCards_TurnFalse") {
         //call a function that renders the waiting view.
         console.log("returningGetCards_TurnFalse");
         renderWaitYourTurnPage(data.currentPlayer.name, data.currentPlayer.points);
     } else if (data.message === "returningPointUpdate"){
-        if(data.turn === true){
+        if (data.turn === true){
             renderResultViewPage(data.activePlayer.name, true, data.points);
             setTimeout(()=>{
                 renderLeaderboard(data.data);
@@ -141,11 +139,11 @@ socket.addEventListener("message", (event) => {
     } else if (data.message === "playerLeftRoom"){
 
     } else if (data.message === "returningFoundRockBear"){
-        if(data.isMe){
+        if (data.isMe) {
             //renderRockBearFound();
             let returnElements = renderWonRockBearPage(data.activePlayer.points);
             returnElements.greenButton.addEventListener("click", ()=>{
-                if(returnElements.canPickUp){
+                if (returnElements.canPickUp){
                     renderWonTheGamePage();
                 } else {
                     handleTurn("handleTurn", data.lobbyData.players, data.lobbyData.id);
@@ -159,7 +157,6 @@ socket.addEventListener("message", (event) => {
             //renderOtherPlayerFoundBear();
             console.log("renderWaitingViewRockBearPage()");
             renderWaitingViewRockBearPage(data.activePlayer.name, data.activePlayer.points);
-
         }
     }
 
@@ -176,8 +173,7 @@ socket.addEventListener("close", (event) =>{
 
 let main = document.querySelector("main");
 
-async function startApp() 
-{
+async function startApp() {
     //rendera första sidan
     /*
    main.innerHTML= `<button id="btnCreateForm">Create Game</button>
@@ -202,7 +198,6 @@ function getCards(modifier, inputValue, lobbyData){
         message : modifier,
         input : inputValue,
         lobbyData : lobbyData
-       
     }
     console.log(data);
     socket.send(JSON.stringify(data));
@@ -211,8 +206,7 @@ function getCards(modifier, inputValue, lobbyData){
 
  
 
-function createGame() 
-{
+function createGame() {
     /*
      main.innerHTML= `<input type="text" id="hostName" name="hostName" placeholder=" Enter your name">
                         <input type="text" id="gameName" name="name" placeholder=" Enter game code">
@@ -367,10 +361,7 @@ function startGame(modifier,room){
     let data = {
         message : modifier,
         room : room
-        
-   
     }
-
     socket.send(JSON.stringify(data));
 }
 
@@ -379,10 +370,7 @@ function handleTurn(modifier, players, roomID) {
         message : modifier,
         players : players,
         roomID  : roomID
-        
-   
     }
-
     socket.send(JSON.stringify(data));
 }
 
@@ -390,25 +378,30 @@ function handleTurn(modifier, players, roomID) {
 
 function makeField(lobbyData) {
 
-    
     document.querySelectorAll('main > div').forEach(div => div.remove());
     document.querySelectorAll('main > button').forEach(button => button.remove());
+    //renderLeaderboard(lobbyData);
+    let returnElements = renderPopUpPage();
+    /*
     let input = document.createElement("input")
     input.type="text"
     input.id="input"
     input.placeholder="Enter ID"
-    
-    
-   
-  
+    */
+    /*^
     let btnNext = document.createElement("button")
     btnNext.id="btnNext"
     btnNext.textContent="Next"
+    */
     let parsedData=JSON.parse(lobbyData)
+    /*
     btnNext.addEventListener("click",()=>{handleTurn("handleTurn", parsedData.players, parsedData.id)})
     document.querySelector("main").appendChild(btnNext)
     document.querySelector("main").appendChild(input)
-    let inputField = document.querySelector("#input");
+    */
+
+    let inputField = returnElements.inputField;
+    let btnNext = returnElements.button;
 
     inputField.addEventListener("keydown", function (event) {
         if (event.key === "Enter") {
@@ -446,7 +439,7 @@ async function fetchCard(CARDS,index, lobbyData) {
         
     let found = false;
 
-    document.querySelector("main").innerHTML = `
+    /*document.querySelector("main").innerHTML = `
         <div id="type"></div>
         <div id="questions"></div>
         <div id="alternatives">
@@ -455,13 +448,19 @@ async function fetchCard(CARDS,index, lobbyData) {
             <button id="alternative2"></button>
             <button id="alternative3"></button>
         </div>
-    `;
+    `;*/
+    /*
+    for(let i=0; i<CARDS.length; i++){
+        if(CARDS[i].id === parseInt(index)){
+            console.log("found card", CARDS[i]);
+            renderQuestionPage(CARDS[i].question, CARDS[i].answers);
+            break;
+        }
+    }*/
+    renderQuestionPage(CARDS[2].question, CARDS[2].answers);
 
     
-
-
-    
-    let questions = document.querySelector("#questions");
+    //let questions = document.querySelector("#questions");
     let child0 = document.querySelector("#alternative0");
     let child1 = document.querySelector("#alternative1");
     let child2 = document.querySelector("#alternative2");
@@ -472,21 +471,18 @@ async function fetchCard(CARDS,index, lobbyData) {
     for (let i = 0; i < CARDS.length; i++) {
         if (CARDS[i].id === parseInt(index)) {
             
-            questions.textContent = `Question: ${CARDS[i].question}`;
-            child0.textContent = CARDS[i].answers[0];
-            child1.textContent = CARDS[i].answers[1];
-            child2.textContent = CARDS[i].answers[2];
-            child3.textContent = CARDS[i].answers[3];
+            //questions.textContent = `Question: ${CARDS[i].question}`;
+            //child0.textContent = CARDS[i].answers[0];
+            //child1.textContent = CARDS[i].answers[1];
+            //child2.textContent = CARDS[i].answers[2];
+            //child3.textContent = CARDS[i].answers[3];
             correct = CARDS[i].correct
             points= CARDS[i].points
             
             found = true;
 
-            
             break; // Exit the loop after finding a match
         }
-
-        
     }
 
     child0.enabled=true
@@ -582,28 +578,30 @@ function correctChoise(id, correct, lobbyData, points ) {
 
     
 function renderLeaderboard(lobbyData) {
+
     document.querySelectorAll('main > div').forEach(div => div.remove());
     document.querySelectorAll('main > p').forEach(p => p.remove());
     document.querySelectorAll('main > button').forEach(button => button.remove());
 
-    let playerDiv=document.createElement("div")
+    //let playerDiv=document.createElement("div")
     let parsedData = lobbyData;
     if(typeof parsedData === "string"){
         parsedData = JSON.parse(parsedData);
     }
+    renderLeaderboardPage(parsedData);
     console.log("PARSED DATA!!!",parsedData,"PARSED DATA OVER!!!");
     //let parsedData=JSON.parse(lobbyData)
 
-    parsedData.players.sort((a, b) => b.points - a.points);
-
+    //parsedData.players.sort((a, b) => b.points - a.points);
+    /*
     for (let i = 0; i < parsedData.players.length; i++) {
         let div = document.createElement("div")
         div.id="player" + i
         div.textContent=parsedData.players[i].name + " " + "points: " + parsedData.players[i].points
         playerDiv.appendChild(div)
     }
-
-    document.querySelector("main").appendChild(playerDiv)
+    */
+    //document.querySelector("main").appendChild(playerDiv)
 }
 
 
