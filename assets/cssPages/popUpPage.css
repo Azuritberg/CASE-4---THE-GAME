@@ -22,19 +22,26 @@
 }
 
 
-
 #popUpPage-main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: fixed; /* För att täcka hela skärmen */
+    top: 0;
+    left: 327px; /* 324px */
     width: 393px;
     height: 852px;
-    background: #F3F0E7;
     margin: 0 auto;
     margin-top: 40px;
     font-family: 'Work Sans', sans-serif;
-    background-color: #6B6B6B;
+    background: rgba(0, 0, 0, 0.3); /* Halvgenomskinlig bakgrund */
+    z-index: 1000; /* Högre än vanliga element */
+
+    /*background: #F3F0E7;
+     background-color: #6B6B6B;
+     width: 100%;
+     height: 100%;*/
 }
 
 .popUp-content {
@@ -129,3 +136,18 @@ button#popUp-btn:hover {
 }
 
 
+
+
+
+/* Close modal on fade out
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+*/

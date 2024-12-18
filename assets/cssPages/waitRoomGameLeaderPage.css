@@ -145,7 +145,7 @@
     position: relative;
     top: 21%;
     text-align: center;
-    margin: 32px auto;
+    margin: 74px auto;
 }
 
 .waiting-players p {
@@ -164,7 +164,7 @@
     justify-content: center;
     width: 100%;
     margin-top: auto;
-    margin-bottom: 16px;
+    margin-bottom: 30px;
 }
 
 .button-green {

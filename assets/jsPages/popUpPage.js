@@ -3,6 +3,101 @@ export {renderPopUpPage}
 //this pop up appears over the leaderboard for the player who
 //is currently answering a question, or who's turn it is(player.turn === true)
 //this function needs no paramenters but must return it's inputfield and buttons!
+
+// Function to render the modal
+function renderPopUpPage() {
+    // Check if a modal already exists and remove it
+    const existingModal = document.getElementById("popUpPage-main");
+    if (existingModal) {
+        existingModal.remove();
+    }
+
+    // Create the modal container
+    const modal = document.createElement("div");
+    modal.id = "popUpPage-main";
+    modal.className = "modal-overlay";
+
+    // Create the modal content container
+    const popUpContent = document.createElement("div");
+    popUpContent.className = "popUp-content";
+
+    // Add text section
+    const popUpText = document.createElement("div");
+    popUpText.className = "popUp-text";
+    popUpText.innerHTML = `
+       <h1>Din runda börjar nu</h1>
+       <p>Slå tärningen och rör din spel pjäs, <br>landar du på en fråga skriv den i fältet</p>
+   `;
+    popUpContent.appendChild(popUpText);
+
+    // Add input field section
+    const popUpInputField = document.createElement("div");
+    popUpInputField.className = "popUp-input-field";
+
+    const inputField = document.createElement("input");
+    inputField.type = "text";
+    inputField.placeholder = "Brickans nummer";
+
+    const popUpButton = document.createElement("div");
+    popUpButton.className = "popUp-button";
+
+    const backButton = document.createElement("button");
+    backButton.className = "popUp-go-back";
+    backButton.innerHTML = `<img src="/static/icons/yellowbackarrow.svg" alt="Arrow">`;
+
+    popUpButton.appendChild(backButton);
+    popUpInputField.appendChild(inputField);
+    popUpInputField.appendChild(popUpButton);
+    popUpContent.appendChild(popUpInputField);
+
+    // Add button section
+    const button = document.createElement("button");
+    button.id = "popUp-btn";
+    button.textContent = "Jag landade inte på en bricka";
+    popUpContent.appendChild(button);
+
+    // Append everything to the modal
+    modal.appendChild(popUpContent);
+
+    // Append the modal to the body
+    document.body.appendChild(modal);
+
+    // Add event listener to close the modal when clicking outside
+    modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            modal.remove();
+        }
+    });
+
+    // Return the interactive elements
+    return { inputField, popUpButton, backButton, button };
+}
+
+// Call the function to render the pop-up
+renderPopUpPage();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+// GAMLA POP-UP koden
+export {renderPopUpPage}
+//this pop up appears over the leaderboard for the player who
+//is currently answering a question, or who's turn it is(player.turn === true)
+//this function needs no paramenters but must return it's inputfield and buttons!
 function renderPopUpPage() {
     // Get the body element
     const body = document.body;
@@ -60,7 +155,10 @@ function renderPopUpPage() {
     body.appendChild(main);
     //returns the interactive html tags to be used in the game logic loop
     return ({inputField, popUpButton, backButton, button});
-}
 
-// Call the function to render the pop-up page
+
+  // Call the function to render the pop-up page outside the curleybraces
 renderPopUpPage();
+}
+ // renderPopUpPage
+*/

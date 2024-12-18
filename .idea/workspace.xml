@@ -6,10 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="e0048b4d-5069-4752-a166-dd1ad0b2428d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/leaderboardPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/leaderboardPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsPages/questionPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/questionPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/cssPages/popUpPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/cssPages/popUpPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/cssPages/questionPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/cssPages/questionPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/cssPages/waitRoomAllPlayerPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/cssPages/waitRoomAllPlayerPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/cssPages/waitRoomGameLeaderPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/cssPages/waitRoomGameLeaderPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/cssPages/wonRockBearPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/cssPages/wonRockBearPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/jsPages/popUpPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/popUpPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/jsPages/wonRockBearPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/wonRockBearPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,12 +40,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1734517032" />
+                    <option name="branchName" value="bojana" />
+                    <option name="lastUsedInstant" value="1734553414" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="bojana" />
-                    <option name="lastUsedInstant" value="1734032545" />
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1734517032" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="lobbyLeaveAndRender" />
@@ -74,7 +77,7 @@
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;bojana&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/Bojana/MAU/SKOLA/WDU1/GitHub/CASE4THEGAME&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
