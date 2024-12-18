@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0048b4d-5069-4752-a166-dd1ad0b2428d" name="Changes" comment="" />
+    <list default="true" id="e0048b4d-5069-4752-a166-dd1ad0b2428d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/cssPages/resultViewPage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/cssPages/waitingViewRockBearPage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/jsPages/resultViewPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/jsPages/waitingViewRockBearPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/jsPages/waitYourTurnPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/waitYourTurnPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/jsPages/wonRockBearPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/wonRockBearPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,12 +43,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="bojana" />
-                    <option name="lastUsedInstant" value="1734032545" />
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1734517032" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1734032530" />
+                    <option name="branchName" value="bojana" />
+                    <option name="lastUsedInstant" value="1734032545" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="lobbyLeaveAndRender" />
@@ -68,7 +80,7 @@
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;bojana&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/Bojana/MAU/SKOLA/WDU1/GitHub/CASE4THEGAME&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,

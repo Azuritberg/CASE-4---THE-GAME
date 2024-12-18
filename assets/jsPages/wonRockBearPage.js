@@ -1,7 +1,7 @@
 "use strict";
 export {renderWonRockBearPage}
 
-function renderWonRockBearPage() {
+function renderWonRockBearPage(points) {
 
     // Hämta body
     const body = document.body;
@@ -69,6 +69,19 @@ function renderWonRockBearPage() {
 
     `;
 
+    let wonRockBearTextContent = "";
+    let buttonText = "";
+    let canPickUp = false;
+    if(points < 20) {
+        wonRockBearTextContent = "Du har tyvärr inte 20 kändis poäng och kan därför inte plocka upp Rockbjörnen"
+        buttonText = "Jag kan inte plocka upp och får gå vidare :("
+
+    } else {
+        wonRockBearTextContent = "Du har över 20 kändis poäng och kan därför plocka upp björnen!"
+        canPickUp = true;
+        buttonText = "Plocka upp och vinn björnen";
+    }
+
     // Append SVG och text i progress-container
     progressContainer.appendChild(svgIconBig);
     progressContainer.appendChild(progressTextBig);
@@ -78,7 +91,7 @@ function renderWonRockBearPage() {
     wonRockBearText.className = "wonRockBearPage-text";
     wonRockBearText.innerHTML = `
     <h2>Du har hittat Rockbjörnen!</h2>
-    <p>Du har över 20 kändis poäng och kan <br>därför plocka upp björnen!</p>
+    <p>${wonRockBearTextContent}</p>
     `;
 
     // Button Section
@@ -88,7 +101,7 @@ function renderWonRockBearPage() {
     const greenButton = document.createElement("div");
     greenButton.id = "green";
     greenButton.className = "buttons";
-    greenButton.innerHTML = `<p class="button-text">Plocka upp och vinn björnen</p>`;
+    greenButton.innerHTML = `<p class="button-text">${buttonText}</p>`;
 
     /*
     const redButton = document.createElement("div");
@@ -118,10 +131,11 @@ function renderWonRockBearPage() {
     body.appendChild(main);
 
     // Eventlyssnare på knapparna
+    /*
     greenButton.addEventListener("click", () => {
         alert("Grattis! Du har valt Rockbjörnen!");
-    });
-
+    });*/
+    return ({canPickUp, wonRockBearText, greenButton});
     /*
     redButton.addEventListener("click", () => {
         alert("Oj! Du valde att inte ta Rockbjörnen.");
@@ -129,4 +143,4 @@ function renderWonRockBearPage() {
      */
 }
 
-renderWonRockBearPage();
+//renderWonRockBearPage();

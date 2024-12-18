@@ -232,7 +232,13 @@ const CARDS = [ {
     "id": 21,
     "correct": 2,
     "points": 20
-}]
+}/*,{
+    "question": "rockbjörnen",
+    "answers": [undefined, undefined, undefined, undefined],
+    "id": 22,
+    "correct": undefined,
+    "points": undefined
+}*/]
 
 
 
@@ -331,7 +337,8 @@ function handleWebSocketRequest(request) {
 
     socket.addEventListener("message", (event) => {
         const data = JSON.parse(event.data);
-        console.log(data.message);
+        console.log("hej22");
+        console.log(data);
 
         //###              ###
         //PLAYER JOINING LOBBY
@@ -474,6 +481,7 @@ function handleWebSocketRequest(request) {
 
             else if (data.message ==="getCards")
                 {
+                    console.log("getCardzzzzzzzz");
                     console.log(data.message)
                     
                     let returnData = JSON.stringify({
@@ -481,10 +489,25 @@ function handleWebSocketRequest(request) {
                         data : CARDS,
                         input : data.input,
                         lobbyData : data.lobbyData
-                        
                     });
-                    
+                    let parsedLobby = JSON.parse(data.lobbyData);
+                    let players = parsedLobby.players;
                     socket.send(returnData);
+                    //we should also send an event to all other players(with turn "false")
+                    //in order to show the waiting room view
+                    let returnDataa = JSON.stringify({
+                        message: "returningGetCards_TurnFalse",
+                        currentPlayer: players.find((player) => player.turn === true),
+                        lobbyData : data.lobbyData
+                    });
+                    console.log("players", players);
+                    for (let i = 0; i < players.length; i++) {
+                        if(players[i].turn === false) {
+                            console.log(connections[String(players[i].id)]);
+
+                            connections[String(players[i].id)].socket.send(returnDataa);
+                        }
+                    }
                 }
 
                 else if(data.message === "pointUpdate"){
@@ -496,6 +519,37 @@ function handleWebSocketRequest(request) {
                         if(GAMES.rooms[parsedLobby.id - 1].players[i].id === data.playerId){
                             GAMES.rooms[parsedLobby.id - 1].players[i].points += data.points;
                         }
+                    }
+
+                    //send back to players
+                    //to show a view for 2 seconds with info on if the question
+                    //was answered correctly
+                    let activePlayer = "";
+                    for(let i = 0; i < parsedLobby.players.length; i++){
+                        if(parsedLobby.players[i].turn === true){
+                            activePlayer = parsedLobby.players[i];
+                        }
+                    }
+                    let returnDataTurnFalse = {
+                        message: "returningPointUpdate",
+                        data: parsedLobby,
+                        turn: false,
+                        activePlayer: activePlayer,
+                        points: data.points
+                    }
+                    let returnDataTurnTrue = {
+                        message: "returningPointUpdate",
+                        data: parsedLobby,
+                        turn: true,
+                        activePlayer: activePlayer,
+                        points: data.points
+                    }
+
+                    for(let i = 0; i < parsedLobby.players.length; i++){
+                        if(parsedLobby.players[i].turn === true)
+                            connections[parsedLobby.players[i].id].socket.send(JSON.stringify(returnDataTurnTrue));
+                        else
+                            connections[parsedLobby.players[i].id].socket.send(JSON.stringify(returnDataTurnFalse));
                     }
                     console.log(GAMES.rooms[parsedLobby.id - 1], data.points);
                 }
@@ -557,6 +611,57 @@ function handleWebSocketRequest(request) {
                     }
                 }
             }*/
+        } else if (data.message === "foundRockBear") {
+            //player has found rockbear
+            //player(active) must render rockbear page
+            //players(innactive) must render other player found rockbear page
+            console.log("foundRockBear");
+            let playerData
+            let activePlayer;
+            for (const player of data.lobbyData.players) {
+                if(data.playerID === player.id){
+                    activePlayer = player;
+
+                }
+            }
+            //this is weird and maybe wrong!
+            /*
+            for(const player in data.lobbyData.players){
+                if(player.turn === false){
+                    playerData = {
+                        message: "returningFoundRockBear",
+                        activePlayer: activePlayer,
+                        isMe: false,
+                        lobbyData: data.lobbyData
+                    }
+                } else {
+                    playerData = {
+                        message: "returningFoundRockBear",
+                        activePlayer: activePlayer,
+                        isMe: true,
+                        lobbyData: data.lobbyData
+                    }
+                }
+            }*/
+            playerData = {
+                message: "returningFoundRockBear",
+                activePlayer: activePlayer,
+                isMe: true,
+                lobbyData: data.lobbyData
+            }
+            console.log(playerData);
+            socket.send(JSON.stringify(playerData));
+
+            playerData = {
+                message: "returningFoundRockBear",
+                activePlayer: activePlayer,
+                isMe: false,
+                lobbyData: data.lobbyData
+            }
+            for (const player of data.lobbyData.players) {
+                if(player.id !== activePlayer.id)
+                connections[String(player.id)].socket.send(JSON.stringify(playerData));
+            }
         }
     })
 

@@ -1,0 +1,143 @@
+
+
+/*
+@font-face {
+    font-family: '...';
+    src: url(....);
+}
+
+:root{
+    --black:#000000;
+    --white:#FFFFFF;
+
+    --blue:rgba(49, 0, 211, 0.7)
+    --orange:#f87122;
+    --border-radios: 10px;
+} */
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* jag positionerade footern med position: fixed - vet inte om vi kommer skala appen såfall får vi kolla på css:en då */
+#resultViewPage-main {
+    position: relative; /* Gör att alla absoluta positioner inom detta block blir relativa till det */
+    display: flex;
+    flex-direction: column;
+
+    /*justify-content: flex-start;*/
+    justify-content: space-between;
+    align-items: center;
+
+    width: 393px;
+    height: 852px;
+    background: #F3F0E7;
+    margin: 0 auto;
+    padding: 40px 0;
+    margin-top: 40px;
+}
+
+.progress-container {
+    position: relative; /* placera texten i förhållande till containern */
+    width: 187px; /* Justera till SVG:ns bredd */
+    height: 155px; /* Justera till SVG:ns höjd */
+    margin-top: 40px;
+}
+
+.svg-icon {
+    width: 100%;
+    height: 100%;
+}
+
+.progress-text {
+    position: absolute; /* Placera texten relativt till .progress-container */
+    top: 50%; /* Vertikal mitten */
+    left: 50%; /* Horisontell mitten */
+    transform: translate(-52%, -37%); /* Centrerar texten exakt */
+    font-family: "Work Sans";
+    font-size: 2rem;
+    color: #BB3B4E;
+    font-weight: bold;
+}
+
+.resultViewPage-text {
+    margin-top: 20px; /* Avstånd från progress-container */
+    text-align: center;
+    font-family: "Playfair Display";
+}
+
+.resultViewPage-text h2 {
+    font-size: 30px;
+    font-weight: normal;
+    color: #000000;
+}
+/*
+.resultViewPage-text p {
+    font-size: 14px;
+    color: #000000;
+    margin-top: 5px;
+}
+
+
+#soundwawe {
+    position: relative;
+    width: 363px; /* Samma bredd som SVG
+    height: 159px; /* Samma höjd som SVG
+    margin-top: 20px;
+}
+
+.svg-wawe {
+    position: absolute;
+    top: -26px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.time-text {
+    position: absolute; /* Placera tidens text relativt till soundwawe *
+    bottom: 5px; /* Längst ner
+    right: 5px; /* Längst till höger *
+    font-family: "Work Sans";
+    font-size: 14px;
+    color: #000000;
+    font-weight: normal;
+}
+*/
+
+
+footer {
+    position: absolute; /* Footern placeras relativt #firstPage-main */
+    bottom: 0; /* Flytta till botten av #firstPage-main */
+    left: 0;
+    width: 100%; /* Begränsa bredden till #firstPage-main */
+    height: 32px;
+    background: #BB3B4E;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.footer-p {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+
+.footer-p > p {
+    color: #F3F0E7;
+    font-family: "Playfair Display";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.84px;
+
+    text-align: center;
+    margin-right: 10px;
+}

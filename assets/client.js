@@ -8,7 +8,10 @@ import {renderWaitRoomGameLeaderPage} from "./jsPages/waitRoomGameLeaderPage.js"
 
 import {renderQuestionPage} from "./jsPages/questionPage.js";
 import {renderWaitYourTurnPage} from "./jsPages/waitYourTurnPage.js";
+import {renderResultViewPage} from "./jsPages/resultViewPage.js";
 import {renderLeaderboardPage} from "./jsPages/leaderboardPage.js";
+
+import {renderWaitingViewRockBearPage} from "./jsPages/waitingViewRockBearPage.js";
 import {renderWonRockBearPage} from "./jsPages/wonRockBearPage.js";
 import {renderWonTheGamePage} from "./jsPages/wonTheGamePage.js";
 
@@ -83,32 +86,82 @@ socket.addEventListener("message", (event) => {
             }
         }
 
-        else if(data.message==="returningHandleTurn")
-            {
-    
-                console.log("handleTurn")
-    
-                for (let i = 0; i < data.data.players.length; i++) {
-                    if (data.data.players[i].id===myID) {
-                        if (data.data.players[i].turn===true) {
-                            makeField(JSON.stringify(data.data));
-                        } else 
-                        {
-                            
-                            renderLeaderboard(JSON.stringify(data.data))
-                        }
-                    }
-                    
+    else if(data.message==="returningHandleTurn"){
+        console.log("handleTurn")
+
+        for (let i = 0; i < data.data.players.length; i++) {
+            if (data.data.players[i].id===myID) {
+                if (data.data.players[i].turn===true) {
+                    makeField(JSON.stringify(data.data));
+                } else
+                {
+
+                    renderLeaderboard(JSON.stringify(data.data))
                 }
-                
-              
             }
 
-            else if(data.message==="returningGetCards")
-                {
-                    console.log(data)
-                  fetchCard(data.data, data.input, data.lobbyData)
+        }
+
+
+    }
+
+    else if(data.message==="returningGetCards"){
+        console.log(data)
+        console.log("returingGetCards");
+        fetchCard(data.data, data.input, data.lobbyData)
+    }
+    else if(data.message === "returningGetCards_TurnFalse") {
+        //call a function that renders the waiting view.
+        console.log("returningGetCards_TurnFalse");
+        renderWaitYourTurnPage(data.currentPlayer.name, data.currentPlayer.points);
+    } else if (data.message === "returningPointUpdate"){
+        if(data.turn === true){
+            renderResultViewPage(data.activePlayer.name, true, data.points);
+            setTimeout(()=>{
+                renderLeaderboard(data.data);
+                setTimeout(()=>{
+                    //handleTurn
+                    console.log("Time is up!");
+                    handleTurn("handleTurn", data.data.players, data.data.id);
+                }, 3000);
+            },2000);
+            // vänta 2 sekunder
+            //renderLeaderboard
+            //visa leaderboard
+            //efter 3 sekunder
+            //handleturn
+        } else {
+            renderResultViewPage(data.activePlayer.name, false, data.points);
+            setTimeout(()=>{
+                renderLeaderboard(data.data);
+            },2000);
+            //active player handlesTurn
+        }
+
+    } else if (data.message === "playerLeftRoom"){
+
+    } else if (data.message === "returningFoundRockBear"){
+        if(data.isMe){
+            //renderRockBearFound();
+            let returnElements = renderWonRockBearPage(data.activePlayer.points);
+            returnElements.greenButton.addEventListener("click", ()=>{
+                if(returnElements.canPickUp){
+                    renderWonTheGamePage();
+                } else {
+                    handleTurn("handleTurn", data.lobbyData.players, data.lobbyData.id);
                 }
+            });
+
+            //returns: knappar om att vinna eller inte
+            //if jag vill vinna ==> wonTheGamePage();
+            //if jag vill inte vinna ==> enter game loop again
+        } else {
+            //renderOtherPlayerFoundBear();
+            console.log("renderWaitingViewRockBearPage()");
+            renderWaitingViewRockBearPage(data.activePlayer.name, data.activePlayer.points);
+
+        }
+    }
 
 });
 
@@ -209,8 +262,7 @@ function createGame()
     
 }
 
-function joinGame() 
-{
+function joinGame() {
     /*main.innerHTML= `<input type="text" id="userName" placeholder=" Enter your name" />
         <input type="text" id="joinGameCode" placeholder=" Enter game code" />
         <button id="btnJoinGame">Join Game</button>
@@ -360,17 +412,35 @@ function makeField(lobbyData) {
 
     inputField.addEventListener("keydown", function (event) {
         if (event.key === "Enter") {
+
             const inputValue = inputField.value.trim();
+            console.log(inputValue);
             if (!inputValue) {
                 displayFeedback("Please enter a valid ID.");
                 return;
             }
-            getCards("getCards", inputValue, lobbyData)
+            if(inputValue === "22"){
+                //now rockbear should happen
+                let foundRockBearData = {
+                    message : "foundRockBear",
+                    playerID : myID,
+                    lobbyData : JSON.parse(lobbyData)
+                }
+                console.log(foundRockBearData);
+                socket.send(JSON.stringify(foundRockBearData))
+            } else {
+                getCards("getCards", inputValue, lobbyData);
+            }
+
         }
     });
 
 }
 
+
+//add timer, if the timer goes of before an answer has been chosen
+//send to server that the answer was wrong.
+//we should play the associated audio file.
 async function fetchCard(CARDS,index, lobbyData) {
     
         
@@ -423,17 +493,33 @@ async function fetchCard(CARDS,index, lobbyData) {
     child1.enabled=true
     child2.enabled=true
     child3.enabled=true
+    let timer = setTimeout(()=>{
+        correctChoise(child1.id, 999, lobbyData, points);
+    }, 10000);
+    child0.addEventListener("click", ()=>{
+        clearInterval(timer);
+        correctChoise(child0.id, correct, lobbyData, points);
+    });
+    child1.addEventListener("click", ()=>{
+        clearInterval(timer);
+        correctChoise(child1.id, correct, lobbyData, points);
+    });
+    child2.addEventListener("click", ()=>{
+        clearInterval(timer);
+        correctChoise(child2.id, correct, lobbyData, points);
+    });
+    child3.addEventListener("click", ()=>{
+        clearInterval(timer);
+        correctChoise(child3.id, correct, lobbyData, points)
+    });
 
-    child0.addEventListener("click", ()=>{correctChoise(child0.id, correct, lobbyData, points)})
-    child1.addEventListener("click", ()=>{correctChoise(child1.id, correct, lobbyData, points)})
-    child2.addEventListener("click", ()=>{correctChoise(child2.id, correct, lobbyData, points)})
-    child3.addEventListener("click", ()=>{correctChoise(child3.id, correct, lobbyData, points)})
-   
 
     if (!found) {
         console.log("No card found with this id", CARDS)
     }
 } 
+
+
 
 function correctChoise(id, correct, lobbyData, points ) {
     let parsedData=JSON.parse(lobbyData)
@@ -449,8 +535,10 @@ function correctChoise(id, correct, lobbyData, points ) {
             playerId: myID,
             lobbyData: lobbyData
         }));
+        /*
         let p = document.createElement("p");
         p.textContent = "YOU GOT IT!!!";
+        //setTimeOut(2s); ==> skicka till server
         let cont = document.createElement("button")
         cont.textContent="Continue"
         cont.addEventListener("click",()=>
@@ -462,10 +550,17 @@ function correctChoise(id, correct, lobbyData, points ) {
         document.querySelector("main").appendChild(cont)
         alternatives.forEach(button => {
             button.disabled = true
-        });
+        });*/
         
     } else {
         let p = document.createElement("p");
+        socket.send(JSON.stringify( {
+            message: "pointUpdate",
+            points: 0,
+            playerId: myID,
+            lobbyData: lobbyData
+        }));
+        /*
         p.textContent = "Sorry, that's wrong";
         let cont = document.createElement("button")
         cont.textContent="Continue"
@@ -479,19 +574,25 @@ function correctChoise(id, correct, lobbyData, points ) {
         document.querySelector("main").appendChild(cont)
         alternatives.forEach(button => {
             button.disabled = true
-        });
+        });*/
     }
 }
 
+
+
     
-function renderLeaderboard(lobbyData)
-{
+function renderLeaderboard(lobbyData) {
     document.querySelectorAll('main > div').forEach(div => div.remove());
     document.querySelectorAll('main > p').forEach(p => p.remove());
     document.querySelectorAll('main > button').forEach(button => button.remove());
 
     let playerDiv=document.createElement("div")
-    let parsedData=JSON.parse(lobbyData)
+    let parsedData = lobbyData;
+    if(typeof parsedData === "string"){
+        parsedData = JSON.parse(parsedData);
+    }
+    console.log("PARSED DATA!!!",parsedData,"PARSED DATA OVER!!!");
+    //let parsedData=JSON.parse(lobbyData)
 
     parsedData.players.sort((a, b) => b.points - a.points);
 
@@ -500,8 +601,6 @@ function renderLeaderboard(lobbyData)
         div.id="player" + i
         div.textContent=parsedData.players[i].name + " " + "points: " + parsedData.players[i].points
         playerDiv.appendChild(div)
-
-        
     }
 
     document.querySelector("main").appendChild(playerDiv)

@@ -1,8 +1,8 @@
 "use strict";
-export {renderWaitYourTurnPage}
+export {renderResultViewPage}
 //this funcition must take the current guessing players points and name as parameters
 //returns nothing
-function renderWaitYourTurnPage(name, points) {
+function renderResultViewPage(name, isPlayer, points) {
 
     // Hämta body
     const body = document.body;
@@ -12,7 +12,7 @@ function renderWaitYourTurnPage(name, points) {
 
     // Skapa huvudelementet
     const main = document.createElement("main");
-    main.id = "waitYourTurnPage-main";
+    main.id = "resultViewPage-main";
 
     // Progress Container
     const progressContainer = document.createElement("div");
@@ -74,16 +74,34 @@ function renderWaitYourTurnPage(name, points) {
     // Lägg till Progress Container i Main
     main.appendChild(progressContainer);
 
+    let isCorrect = false;
+    if(points != 0){
+        isCorrect = true;
+    }
+    let resultViewPageTextContent = "hi!";
+    if(isPlayer){
+        //gör text snuttar som säger
+        if(isCorrect)
+            resultViewPageTextContent = "You got it right! Great job <3";
+        else
+            resultViewPageTextContent = "No sorry :( try being smarter next time <3";
+    } else {
+        if(isCorrect)
+            resultViewPageTextContent = name + " got it right!!!";
+        else
+            resultViewPageTextContent = name + " got this one wrong u_u";
+    }
     // Second Page Text
-    const waitYourTurnPageText = document.createElement("div");
-    waitYourTurnPageText.className = "waitYourTurnPage-text";
-    waitYourTurnPageText.innerHTML = `
-    <h2> ${name} gissar just nu!</h2>
-    <p>Det kan bli din tur härnäst</p>
+    const resultViewPageText = document.createElement("div");
+    resultViewPageText.className = "resultViewPage-text";
+    resultViewPageText.innerHTML = `
+    <h2>${resultViewPageTextContent}</h2>
     `;
 
-    main.appendChild(waitYourTurnPageText);
+    main.appendChild(resultViewPageText);
 
+
+   /*
     // Second Page Soundwave
     const soundwave = document.createElement("div");
     soundwave.id = "soundwawe";
@@ -144,6 +162,8 @@ function renderWaitYourTurnPage(name, points) {
 
     // Lägg till Soundwave i Main
     main.appendChild(soundwave);
+    */
+
 
     // Footer
     const footer = document.createElement("footer");
@@ -162,4 +182,4 @@ function renderWaitYourTurnPage(name, points) {
 
 }
 
-renderWaitYourTurnPage();
+renderResultViewPage();
