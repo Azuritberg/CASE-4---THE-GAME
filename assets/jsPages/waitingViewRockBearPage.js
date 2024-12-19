@@ -61,7 +61,6 @@ function renderWaitingViewRockBearPage(name, points) {
                 </svg>
     `;
 
-
     // Lägg till SVG i Progress Container
     progressContainer.appendChild(svgIcon);
 
@@ -73,9 +72,11 @@ function renderWaitingViewRockBearPage(name, points) {
 
     // Lägg till Progress Container i Main
     main.appendChild(progressContainer);
+
+
     let isCorrect = false;
 
-    let waitingViewRockBearPageTextContent = `${name} har hittat Rockbjörnen!!!`;
+    let waitingViewRockBearPageTextContent = `${name} har hittat Rockbjörnen!`;
 
     // Second Page Text
     const waitingViewRockBearPageText = document.createElement("div");

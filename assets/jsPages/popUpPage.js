@@ -4,6 +4,7 @@ export {renderPopUpPage}
 //is currently answering a question, or who's turn it is(player.turn === true)
 //this function needs no paramenters but must return it's inputfield and buttons!
 
+
 // Function to render the modal
 function renderPopUpPage() {
     // Check if a modal already exists and remove it

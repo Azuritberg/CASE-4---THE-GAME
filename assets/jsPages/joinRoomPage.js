@@ -15,14 +15,14 @@ function renderJoinRoomPage() {
 
     // Skapa "go-back-info"-container
     const goBackInfo = document.createElement('div');
-    goBackInfo.id = 'go-back-info';
+    goBackInfo.id = 'go-back-join-info';
 
     // Skapa "top-bar"-container
     const topBar = document.createElement('div');
     topBar.className = 'top-bar';
 
     const goBack = document.createElement('div');
-    goBack.className = 'go-back';
+    goBack.className = 'go-back-join';
 
     const goBackImg = document.createElement('img');
     goBackImg.src = '/static/icons/redbackarrow.svg';
@@ -49,7 +49,7 @@ function renderJoinRoomPage() {
 
     // Skapa "main-text"-div och h2
     const mainTextContainer = document.createElement('div');
-    mainTextContainer.className = 'main-text-container';
+    mainTextContainer.className = 'main-text-join-container';
 
     const mainText = document.createElement("h2");
     mainText.classList.add("main-text-join");

@@ -33,17 +33,23 @@
     margin-top: 40px;
 }
 
-#go-back-info {
+#go-back-make-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 20px 6px;
+    margin-top: 20px;
+    padding-left: 11px;
 }
 
-.top-bar {}
+.top-bar {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+}
 
-.go-back img {
+.go-back-make img {
     width: 24px; /* Justera storlek på ikonen */
     height: 24px;
     cursor: pointer;
@@ -57,12 +63,12 @@
 }
 */
 
-.main-text-container {
+.main-text-make-container {
     width: 100%;
     display: flex;
     justify-content: start;
-    padding: 3px 20px;
-    margin-left: 5px;
+    padding: 0px 8px;
+    /*margin-left: 5px;*/
 }
 
 .main-text-make {
@@ -72,8 +78,8 @@
     color: #BB3B4E;
     text-align: left;
     width: 100%;
-    padding-left: 12px;
-    margin-bottom: 10px;
+    /*padding-left: 3px;
+    margin-bottom: 10px;*/
 }
 
 /*
@@ -111,6 +117,7 @@
     justify-content: center;
     gap: 15px;
     padding: 20px;
+    margin-bottom: 40px;
     width: 96%;
 }
 

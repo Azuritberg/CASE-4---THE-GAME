@@ -75,6 +75,35 @@ function renderResultViewPage(name, isPlayer, points) {
     main.appendChild(progressContainer);
 
     let isCorrect = false;
+    if (points !== 0) {
+        isCorrect = true;
+    }
+
+    let resultMessage = "";
+    let playerNameText = isPlayer ? "" : name;
+
+    if (isPlayer) {
+        // Om det är spelaren själv
+        resultMessage = isCorrect ? "You got it right!" : "No sorry wrong!";
+    } else {
+        // Om det är en annan spelare
+        resultMessage = isCorrect ? "Got it right!" : "No sorry wrong!";
+    }
+
+// Second Page Text
+    const resultViewPageText = document.createElement("div");
+    resultViewPageText.className = "resultViewPage-text";
+    resultViewPageText.innerHTML = `
+    <h2>${resultMessage}</h2>
+    <p>${playerNameText}</p>  
+`;
+    //<p>Det kan bli din tur härnäst</p>
+
+    main.appendChild(resultViewPageText);
+
+
+    /*
+    let isCorrect = false;
     if(points != 0){
         isCorrect = true;
     }
@@ -82,87 +111,89 @@ function renderResultViewPage(name, isPlayer, points) {
     if(isPlayer){
         //gör text snuttar som säger
         if(isCorrect)
-            resultViewPageTextContent = "You got it right! Great job <3";
+            resultViewPageTextContent = "You got it right!";
         else
-            resultViewPageTextContent = "No sorry :( try being smarter next time <3";
+            resultViewPageTextContent = "No sorry wrong!";
     } else {
         if(isCorrect)
-            resultViewPageTextContent = name + " got it right!!!";
+            resultViewPageTextContent = name + " Got it right!";
         else
-            resultViewPageTextContent = name + " got this one wrong u_u";
+            resultViewPageTextContent = name + " No sorry wrong!";
     }
     // Second Page Text
     const resultViewPageText = document.createElement("div");
     resultViewPageText.className = "resultViewPage-text";
     resultViewPageText.innerHTML = `
     <h2>${resultViewPageTextContent}</h2>
+    <p>Det kan bli din tur härnäst</p>
     `;
-
-    main.appendChild(resultViewPageText);
-
-
-   /*
-    // Second Page Soundwave
-    const soundwave = document.createElement("div");
-    soundwave.id = "soundwawe";
-    const svgWave = document.createElement("div");
-    svgWave.className = "svg-wawe";
-    svgWave.innerHTML = `
-     <svg width="363" height="159" viewBox="0 0 363 159" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="86.0449" y1="158.437" x2="86.0449" y2="79.2182" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="1" y1="158.437" x2="1" y2="81.1986" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="10.4492" y1="158.437" x2="10.4492" y2="23.7656" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="19.8984" y1="158.437" x2="19.8984" y2="43.5703" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="29.3496" y1="158.437" x2="29.3496" y2="101.004" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="38.7988" y1="158.437" x2="38.7988" y2="81.1986" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="48.248" y1="158.437" x2="48.248" y2="97.0424" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="57.6992" y1="158.437" x2="57.6992" y2="4.57764e-05" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="67.1465" y1="158.437" x2="67.1465" y2="81.1986" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="76.5977" y1="158.437" x2="76.5977" y2="79.2182" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="95.4922" y1="158.437" x2="95.4922" y2="104.965" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="104.945" y1="158.437" x2="104.945" y2="87.1401" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="86.0449" y1="158.437" x2="86.0449" y2="79.2182" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="114.393" y1="158.437" x2="114.393" y2="130.71" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="123.844" y1="158.437" x2="123.844" y2="87.1401" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="135.182" y1="158.437" x2="135.182" y2="7.92191" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="144.74" y1="55.4536" x2="144.74" y2="158.438" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="152.188" y1="158.437" x2="152.188" y2="85.1596" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="161.641" y1="158.437" x2="161.641" y2="114.866" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="171.092" y1="158.437" x2="171.092" y2="55.453" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="181.484" y1="158.444" x2="181.484" y2="7.91559" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="191.879" y1="158.437" x2="191.879" y2="55.453" stroke="#BB3B4E" stroke-width="2"/>
-                    <line y1="-1" x2="114.882" y2="-1" transform="matrix(-0.0164507 -0.999865 0.999837 -0.0180646 202.33 158.437)" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="210.777" y1="158.437" x2="210.777" y2="23.7656" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="220.227" y1="158.437" x2="220.227" y2="69.3163" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="228.732" y1="158.451" x2="228.732" y2="87.1261" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="239.127" y1="158.475" x2="239.127" y2="55.4146" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="248.578" y1="158.437" x2="248.578" y2="130.71" stroke="#BB3B4E" stroke-width="2"/>
-                    <line x1="258.137" y1="23.7662" x2="258.137" y2="158.438" stroke="#CCC5B9" stroke-width="2"/>
-                    <line x1="267.477" y1="158.437" x2="267.477" y2="43.5703" stroke="#CCC5B9" stroke-width="2"/>
-                    <line x1="276.924" y1="158.437" x2="276.924" y2="69.3163" stroke="#CCC5B9" stroke-width="2"/>
-                    <line x1="286.373" y1="158.437" x2="286.373" y2="81.1986" stroke="#CCC5B9" stroke-width="2"/>
-                    <line x1="295.822" y1="158.437" x2="295.822" y2="55.453" stroke="#CCC5B9" stroke-width="2"/>
-                    <line x1="305.271" y1="158.437" x2="305.271" y2="4.57764e-05" stroke="#CCC5B9" stroke-width="2"/>
-                    <line x1="314.725" y1="158.437" x2="314.725" y2="79.2182" stroke="#CCC5B9" stroke-width="2"/>
-                    <line x1="324.174" y1="158.437" x2="324.174" y2="81.1986" stroke="#CCC5B9" stroke-width="2"/>
-                    <line x1="333.623" y1="158.437" x2="333.623" y2="81.1986" stroke="#CCC5B9" stroke-width="2"/>
-                    <line x1="343.07" y1="158.437" x2="343.07" y2="112.886" stroke="#CCC5B9" stroke-width="2"/>
-                    <line x1="352.518" y1="158.437" x2="352.518" y2="106.945" stroke="#CCC5B9" stroke-width="2"/>
-                    <line x1="361.969" y1="158.437" x2="361.969" y2="136.652" stroke="#CCC5B9" stroke-width="2"/>
-                </svg>
-    `;
-
-    soundwave.appendChild(svgWave);
-
-    // Time Text
-    const timeText = document.createElement("div");
-    timeText.className = "time-text";
-    timeText.innerHTML = "<p>00:10</p>";
-    soundwave.appendChild(timeText);
-
-    // Lägg till Soundwave i Main
-    main.appendChild(soundwave);
     */
+
+   // main.appendChild(resultViewPageText);
+
+
+    /*
+     // Second Page Soundwave
+     const soundwave = document.createElement("div");
+     soundwave.id = "soundwawe";
+     const svgWave = document.createElement("div");
+     svgWave.className = "svg-wawe";
+     svgWave.innerHTML = `
+      <svg width="363" height="159" viewBox="0 0 363 159" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <line x1="86.0449" y1="158.437" x2="86.0449" y2="79.2182" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="1" y1="158.437" x2="1" y2="81.1986" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="10.4492" y1="158.437" x2="10.4492" y2="23.7656" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="19.8984" y1="158.437" x2="19.8984" y2="43.5703" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="29.3496" y1="158.437" x2="29.3496" y2="101.004" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="38.7988" y1="158.437" x2="38.7988" y2="81.1986" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="48.248" y1="158.437" x2="48.248" y2="97.0424" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="57.6992" y1="158.437" x2="57.6992" y2="4.57764e-05" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="67.1465" y1="158.437" x2="67.1465" y2="81.1986" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="76.5977" y1="158.437" x2="76.5977" y2="79.2182" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="95.4922" y1="158.437" x2="95.4922" y2="104.965" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="104.945" y1="158.437" x2="104.945" y2="87.1401" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="86.0449" y1="158.437" x2="86.0449" y2="79.2182" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="114.393" y1="158.437" x2="114.393" y2="130.71" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="123.844" y1="158.437" x2="123.844" y2="87.1401" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="135.182" y1="158.437" x2="135.182" y2="7.92191" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="144.74" y1="55.4536" x2="144.74" y2="158.438" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="152.188" y1="158.437" x2="152.188" y2="85.1596" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="161.641" y1="158.437" x2="161.641" y2="114.866" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="171.092" y1="158.437" x2="171.092" y2="55.453" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="181.484" y1="158.444" x2="181.484" y2="7.91559" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="191.879" y1="158.437" x2="191.879" y2="55.453" stroke="#BB3B4E" stroke-width="2"/>
+                     <line y1="-1" x2="114.882" y2="-1" transform="matrix(-0.0164507 -0.999865 0.999837 -0.0180646 202.33 158.437)" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="210.777" y1="158.437" x2="210.777" y2="23.7656" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="220.227" y1="158.437" x2="220.227" y2="69.3163" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="228.732" y1="158.451" x2="228.732" y2="87.1261" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="239.127" y1="158.475" x2="239.127" y2="55.4146" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="248.578" y1="158.437" x2="248.578" y2="130.71" stroke="#BB3B4E" stroke-width="2"/>
+                     <line x1="258.137" y1="23.7662" x2="258.137" y2="158.438" stroke="#CCC5B9" stroke-width="2"/>
+                     <line x1="267.477" y1="158.437" x2="267.477" y2="43.5703" stroke="#CCC5B9" stroke-width="2"/>
+                     <line x1="276.924" y1="158.437" x2="276.924" y2="69.3163" stroke="#CCC5B9" stroke-width="2"/>
+                     <line x1="286.373" y1="158.437" x2="286.373" y2="81.1986" stroke="#CCC5B9" stroke-width="2"/>
+                     <line x1="295.822" y1="158.437" x2="295.822" y2="55.453" stroke="#CCC5B9" stroke-width="2"/>
+                     <line x1="305.271" y1="158.437" x2="305.271" y2="4.57764e-05" stroke="#CCC5B9" stroke-width="2"/>
+                     <line x1="314.725" y1="158.437" x2="314.725" y2="79.2182" stroke="#CCC5B9" stroke-width="2"/>
+                     <line x1="324.174" y1="158.437" x2="324.174" y2="81.1986" stroke="#CCC5B9" stroke-width="2"/>
+                     <line x1="333.623" y1="158.437" x2="333.623" y2="81.1986" stroke="#CCC5B9" stroke-width="2"/>
+                     <line x1="343.07" y1="158.437" x2="343.07" y2="112.886" stroke="#CCC5B9" stroke-width="2"/>
+                     <line x1="352.518" y1="158.437" x2="352.518" y2="106.945" stroke="#CCC5B9" stroke-width="2"/>
+                     <line x1="361.969" y1="158.437" x2="361.969" y2="136.652" stroke="#CCC5B9" stroke-width="2"/>
+                 </svg>
+     `;
+
+     soundwave.appendChild(svgWave);
+
+     // Time Text
+     const timeText = document.createElement("div");
+     timeText.className = "time-text";
+     timeText.innerHTML = "<p>00:10</p>";
+     soundwave.appendChild(timeText);
+
+     // Lägg till Soundwave i Main
+     main.appendChild(soundwave);
+     */
 
 
     // Footer

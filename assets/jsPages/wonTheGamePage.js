@@ -1,7 +1,7 @@
 "use strict";
 export {renderWonTheGamePage}
 
-function renderWonTheGamePage() {
+function renderWonTheGamePage(name) {
 
    //Hämta body
     const body = document.body;
@@ -78,24 +78,27 @@ function renderWonTheGamePage() {
     progressContainer.appendChild(progressTextBig);
 
     // Text Section
+    const winnerName = name;
+
     const wonTheGamePageText = document.createElement("div");
     wonTheGamePageText.className = "wonTheGamePage-text";
     wonTheGamePageText.innerHTML = `
     <h2>GRATTIS!!</h2>
-    <h3>Venni har vunnit!!</h3>
+    <h3>${winnerName} har vunnit!</h3>  
     `;
+    // Change placeholder ${name} on player that winnes the Game
 
     // Button Section
     const wonTheGamePageButton = document.createElement("div");
     wonTheGamePageButton.id = "wonTheGamePage-card";
 
     const greenButton = document.createElement("div");
-    greenButton.id = "green";
+    greenButton.id = "green-wonGame";
     greenButton.className = "button";
     greenButton.innerHTML = `<p class="button-text">Spela igen</p>`;
 
     const redButton = document.createElement("div");
-    redButton.id = "red";
+    redButton.id = "red-wonGame";
     redButton.className = "button";
     redButton.innerHTML = `<p class="button-text">Avsluta</p>`;
 
@@ -119,6 +122,7 @@ function renderWonTheGamePage() {
     // Append main to body
     body.appendChild(main);
 
+    /*
     // Eventlyssnare på knapparna - vet inte om vi ska ha något liknande
     greenButton.addEventListener("click", () => {
         alert("Grattis! Du har valt Rockbjörnen!");
@@ -127,6 +131,6 @@ function renderWonTheGamePage() {
     redButton.addEventListener("click", () => {
         alert("Oj! Du valde att inte ta Rockbjörnen.");
     });
-
+    */
 }
 renderWonTheGamePage();

@@ -73,9 +73,8 @@ function renderWonRockBearPage(points) {
     let buttonText = "";
     let canPickUp = false;
     if(points < 20) {
-        wonRockBearTextContent = "Du har tyvärr inte 20 kändis poäng och kan<br>därför inte plocka upp Rockbjörnen"
+        wonRockBearTextContent = "Du har tyvärr inte 20 kändis poäng och kan<br>därför inte plocka upp Rockbjörnen. Vänta<br>här så skickas du snart tillbaka till spelet!" //Du har tyvärr inte 20 kändis poäng och kan därför inte plocka upp Rockbjörnen. Vänta här så skickas du snart tillbaka till spelet!
         buttonText = "Kan inte plocka upp björnen"  // Jag kan inte plocka upp och får gå vidare :(
-
     } else {
         wonRockBearTextContent = "Du har över 20 kändis poäng och kan<br>därför plocka upp björnen!"
         canPickUp = true;
@@ -99,7 +98,7 @@ function renderWonRockBearPage(points) {
     wonRockBearButton.id = "wonRockBearPage-button";
 
     const greenButton = document.createElement("div");
-    greenButton.id = "green";
+    greenButton.id = "green-bear";
     greenButton.className = "buttons";
     greenButton.innerHTML = `<p class="button-text">${buttonText}</p>`;
 

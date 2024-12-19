@@ -122,7 +122,7 @@ socket.addEventListener("message", (event) => {
                     console.log("Time is up!");
                     handleTurn("handleTurn", data.data.players, data.data.id);
                 }, 3000);
-            },2000);
+            },2000); // ändra tiden för att css sidan 2000
             // vänta 2 sekunder
             //renderLeaderboard
             //visa leaderboard
@@ -132,7 +132,7 @@ socket.addEventListener("message", (event) => {
             renderResultViewPage(data.activePlayer.name, false, data.points);
             setTimeout(()=>{
                 renderLeaderboard(data.data);
-            },2000);
+            },2000);   // ändra tiden för att css sidan 2000
             //active player handlesTurn
         }
 
@@ -144,7 +144,7 @@ socket.addEventListener("message", (event) => {
             let returnElements = renderWonRockBearPage(data.activePlayer.points);
             returnElements.greenButton.addEventListener("click", ()=>{
                 if (returnElements.canPickUp){
-                    renderWonTheGamePage();
+                    renderWonTheGamePage(data.activePlayer.name);
                 } else {
                     handleTurn("handleTurn", data.lobbyData.players, data.lobbyData.id);
                 }

@@ -68,6 +68,7 @@
     margin-top: 20px; /* Avstånd från progress-container */
     text-align: center;
     font-family: "Playfair Display";
+    margin-bottom: 400px;
 }
 
 .resultViewPage-text h2 {
@@ -75,14 +76,16 @@
     font-weight: normal;
     color: #000000;
 }
-/*
+
 .resultViewPage-text p {
-    font-size: 14px;
+    font-size: 30px;
     color: #000000;
     margin-top: 5px;
+    font-weight: normal;
+    font-family: "Work Sans";
 }
 
-
+/*
 #soundwawe {
     position: relative;
     width: 363px; /* Samma bredd som SVG
