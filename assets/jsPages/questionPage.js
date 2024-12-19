@@ -66,7 +66,7 @@ function renderQuestionPage(question, questionTexts) {
     `;
 
     // Intervall till Timer
-    let seconds = 60; // ändra tillbaka till 10 sec
+    let seconds = 10; 
 
     const progressText = document.createElement("div");
     progressText.classList.add("progress-text");
