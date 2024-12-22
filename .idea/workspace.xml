@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e0048b4d-5069-4752-a166-dd1ad0b2428d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/jsPages/leaderboardPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/leaderboardPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/jsPages/waitingViewRockBearPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsPages/waitingViewRockBearPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,11 +36,11 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="bojana" />
-                    <option name="lastUsedInstant" value="1734608414" />
+                    <option name="lastUsedInstant" value="1734869963" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1734608410" />
+                    <option name="lastUsedInstant" value="1734869959" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="lobbyLeaveAndRender" />
