@@ -19,7 +19,11 @@ import {renderWonTheGamePage} from "./jsPages/wonTheGamePage.js";
 const socket = new WebSocket("http://localhost:8000")
 
 let myID = null;
-
+let music = [];
+for(let i = 0; i < 22; i++){
+    let audio = new Audio("/static/ljud" + i + ".mp3");
+    music.push(audio);
+}
 
 socket.addEventListener("open", (event) =>{
     console.log("Connected!")
@@ -457,6 +461,13 @@ async function fetchCard(CARDS,index, lobbyData) {
             break;
         }
     }*/
+    music[index].load();
+    music[index].play();
+    let musicTimer = setTimeout(() => {
+        music[index].pause();
+        music[index].currentTime = 0;
+    }, 6000);
+
     renderQuestionPage(CARDS[2].question, CARDS[2].answers);
 
     
@@ -494,18 +505,31 @@ async function fetchCard(CARDS,index, lobbyData) {
     }, 10000);
     child0.addEventListener("click", ()=>{
         clearInterval(timer);
+        music[index].pause();
+        music[index].currentTime = 0;
+        clearInterval(musicTimer);
+
         correctChoise(child0.id, correct, lobbyData, points);
     });
     child1.addEventListener("click", ()=>{
         clearInterval(timer);
+        music[index].pause();
+        music[index].currentTime = 0;
+        clearInterval(musicTimer);
         correctChoise(child1.id, correct, lobbyData, points);
     });
     child2.addEventListener("click", ()=>{
         clearInterval(timer);
+        music[index].pause();
+        music[index].currentTime = 0;
+        clearInterval(musicTimer);
         correctChoise(child2.id, correct, lobbyData, points);
     });
     child3.addEventListener("click", ()=>{
         clearInterval(timer);
+        music[index].pause();
+        music[index].currentTime = 0;
+        clearInterval(musicTimer);
         correctChoise(child3.id, correct, lobbyData, points)
     });
 
