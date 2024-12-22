@@ -513,11 +513,14 @@ function handleWebSocketRequest(request) {
                 else if(data.message === "pointUpdate"){
                     //select GAMES.rooms from parsed lobby data
                     let parsedLobby = JSON.parse(data.lobbyData);
+                    let returnLobby;
                     console.log(GAMES.rooms[parsedLobby.id - 1].players, data.playerId, data);
                     for(let i = 0; i < GAMES.rooms[parsedLobby.id - 1].players.length; i++){
                         console.log(GAMES.rooms[parsedLobby.id - 1].players[i].name);
                         if(GAMES.rooms[parsedLobby.id - 1].players[i].id === data.playerId){
+                            returnLobby = GAMES.rooms[parsedLobby.id - 1];
                             GAMES.rooms[parsedLobby.id - 1].players[i].points += data.points;
+
                         }
                     }
 
@@ -532,14 +535,14 @@ function handleWebSocketRequest(request) {
                     }
                     let returnDataTurnFalse = {
                         message: "returningPointUpdate",
-                        data: parsedLobby,
+                        data: returnLobby,
                         turn: false,
                         activePlayer: activePlayer,
                         points: data.points
                     }
                     let returnDataTurnTrue = {
                         message: "returningPointUpdate",
-                        data: parsedLobby,
+                        data: returnLobby,
                         turn: true,
                         activePlayer: activePlayer,
                         points: data.points
