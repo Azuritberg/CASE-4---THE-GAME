@@ -76,13 +76,14 @@ function renderWaitingViewRockBearPage(name, points) {
 
     let isCorrect = false;
 
-    let waitingViewRockBearPageTextContent = `${name} har hittat Rockbjörnen!`;
+    let waitingViewRockBearPageTextContent = `${name}`;
 
     // Second Page Text
     const waitingViewRockBearPageText = document.createElement("div");
     waitingViewRockBearPageText.className = "waitingViewRockBearPage-text";
     waitingViewRockBearPageText.innerHTML = `
     <h2>${waitingViewRockBearPageTextContent}</h2>
+    <h2>har hittat Rockbjörnen!</h2>
     <p>Vänta för att se om den plockas upp</p>
     `;
 
