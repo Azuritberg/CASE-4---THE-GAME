@@ -121,7 +121,7 @@ function renderWonTheGamePage(name) {
 
     // Append main to body
     body.appendChild(main);
-
+    return({greenButton, redButton});
     /*
     // Eventlyssnare på knapparna - vet inte om vi ska ha något liknande
     greenButton.addEventListener("click", () => {
@@ -133,4 +133,4 @@ function renderWonTheGamePage(name) {
     });
     */
 }
-renderWonTheGamePage();
+//renderWonTheGamePage();

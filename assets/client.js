@@ -19,7 +19,11 @@ import {renderWonTheGamePage} from "./jsPages/wonTheGamePage.js";
 const socket = new WebSocket("http://localhost:8000")
 
 let myID = null;
-
+let music = [];
+for(let i = 0; i < 22; i++){
+    let audio = new Audio("/static/ljud/" + i + ".mp3");
+    music.push(audio);
+}
 
 socket.addEventListener("open", (event) =>{
     console.log("Connected!")
@@ -144,7 +148,23 @@ socket.addEventListener("message", (event) => {
             let returnElements = renderWonRockBearPage(data.activePlayer.points);
             returnElements.greenButton.addEventListener("click", ()=>{
                 if (returnElements.canPickUp){
-                    renderWonTheGamePage(data.activePlayer.name);
+                    let interactionElements = renderWonTheGamePage(data.activePlayer.name);
+                    interactionElements.greenButton.addEventListener("click", ()=>{
+                        //play again
+                        //reset lobby 
+                        //go back to lobby view for all players
+                        socket.send(JSON.stringify({
+                            message: "playAgain",
+                            data: data.lobbyData
+                        }));
+                    });
+                    interactionElements.redButton.addEventListener("click", () => {
+                        //delete lobby, take all players back to home view
+                        socket.send(JSON.stringify({
+                            message: "stopPlaying",
+                            data: data.lobbyData
+                        }));
+                    })
                 } else {
                     handleTurn("handleTurn", data.lobbyData.players, data.lobbyData.id);
                 }
@@ -158,6 +178,8 @@ socket.addEventListener("message", (event) => {
             console.log("renderWaitingViewRockBearPage()");
             renderWaitingViewRockBearPage(data.activePlayer.name, data.activePlayer.points);
         }
+    } else if (data.message === "returningStopPlaying"){
+        startApp();
     }
 
 });
@@ -457,7 +479,14 @@ async function fetchCard(CARDS,index, lobbyData) {
             break;
         }
     }*/
-    renderQuestionPage(CARDS[2].question, CARDS[2].answers);
+    music[index].load();
+    music[index].play();
+    let musicTimer = setTimeout(() => {
+        music[index].pause();
+        music[index].currentTime = 0;
+    }, 10000);
+
+    renderQuestionPage(CARDS[index].question, CARDS[index].answers);
 
     
     //let questions = document.querySelector("#questions");
@@ -476,7 +505,7 @@ async function fetchCard(CARDS,index, lobbyData) {
             //child1.textContent = CARDS[i].answers[1];
             //child2.textContent = CARDS[i].answers[2];
             //child3.textContent = CARDS[i].answers[3];
-            correct = CARDS[i].correct
+            correct = CARDS[i].correct - 1;
             points= CARDS[i].points
             
             found = true;
@@ -491,21 +520,34 @@ async function fetchCard(CARDS,index, lobbyData) {
     child3.enabled=true
     let timer = setTimeout(()=>{
         correctChoise(child1.id, 999, lobbyData, points);
-    }, 10000);
+    }, 14000);
     child0.addEventListener("click", ()=>{
         clearInterval(timer);
+        music[index].pause();
+        music[index].currentTime = 0;
+        clearInterval(musicTimer);
+
         correctChoise(child0.id, correct, lobbyData, points);
     });
     child1.addEventListener("click", ()=>{
         clearInterval(timer);
+        music[index].pause();
+        music[index].currentTime = 0;
+        clearInterval(musicTimer);
         correctChoise(child1.id, correct, lobbyData, points);
     });
     child2.addEventListener("click", ()=>{
         clearInterval(timer);
+        music[index].pause();
+        music[index].currentTime = 0;
+        clearInterval(musicTimer);
         correctChoise(child2.id, correct, lobbyData, points);
     });
     child3.addEventListener("click", ()=>{
         clearInterval(timer);
+        music[index].pause();
+        music[index].currentTime = 0;
+        clearInterval(musicTimer);
         correctChoise(child3.id, correct, lobbyData, points)
     });
 
@@ -521,7 +563,7 @@ function correctChoise(id, correct, lobbyData, points ) {
     let parsedData=JSON.parse(lobbyData)
     
     const alternatives = document.querySelectorAll("#alternatives > button");
-    
+    console.log("ID:",id, "CORRECT",correct,"POINTS", points);
     const selectedNumber = id.replace("alternative", ""); // Remove the "alternative" part
     if (selectedNumber === correct.toString()) { // Compare only the numeric part
         console.log(selectedNumber, correct)

@@ -9,7 +9,7 @@ const CARDS = [ {
         "Fleetwood Mac - Go Your Own Way",
         "Blondie - Heart of Glass"
     ],
-    "id": 1,
+    "id": 0,
     "correct": 1,
     "points": 10
 },{
@@ -20,7 +20,7 @@ const CARDS = [ {
         "Wake me to see the sky so blue",
         "Wake me and bring me home again"
     ],
-    "id": 2,
+    "id": 1,
     "correct": 1,
     "points": 30
 },{
@@ -31,7 +31,7 @@ const CARDS = [ {
         "Måns Zelmerlöw",
         "Eric Saade"
     ],
-    "id": 3,
+    "id": 2,
     "correct": 3,
     "points": 20,
 },{
@@ -42,7 +42,7 @@ const CARDS = [ {
         "... the same old things",
         "... what they're told to do"
     ],
-    "id": 4,
+    "id": 3,
     "correct": 2,
     "points": 30
 },{
@@ -53,9 +53,9 @@ const CARDS = [ {
         "In my black car, where we collide",
         "Driving fast in my black car tonight"
     ],
-    "id": 5,
+    "id": 4,
     "correct": 4,
-    "points": 30
+    "points": 100
 },{
     "question": "Gissa artisten?",
     "answers": [
@@ -64,7 +64,7 @@ const CARDS = [ {
         "Darin",
         "Oscar Zia"
     ],
-    "id": 6,
+    "id": 5,
     "correct": 2,
     "points": 20
 },{
@@ -75,7 +75,7 @@ const CARDS = [ {
         "... feeling I’m free",
         "... rush of adrenaline"
     ],
-    "id": 7,
+    "id": 6,
     "correct": 2,
     "points": 30
 },{
@@ -86,7 +86,7 @@ const CARDS = [ {
         "Symphony",
         "Ruin My Life"
     ],
-    "id": 8,
+    "id": 7,
     "correct": 1,
     "points": 30
 },{
@@ -97,7 +97,7 @@ const CARDS = [ {
         "Ace of Base",
         "ABBA"
     ],
-    "id": 9,
+    "id": 8,
     "correct": 1,
     "points": 10
 },{
@@ -108,7 +108,7 @@ const CARDS = [ {
         "Stay Gold",
         "Emmylou"
     ],
-    "id": 10,
+    "id": 9,
     "correct": 1,
     "points": 20
 },{
@@ -119,7 +119,7 @@ const CARDS = [ {
         "Veronica Maggio",
         "Laleh"
     ],
-    "id": 11,
+    "id": 10,
     "correct": 3,
     "points": 30
 },{
@@ -130,7 +130,7 @@ const CARDS = [ {
         "Levels",
         "The Nights"
     ],
-    "id": 12,
+    "id": 11,
     "correct": 4,
     "points": 10
 },{
@@ -141,7 +141,7 @@ const CARDS = [ {
         "Riddarna",
         "The virtues"
     ],
-    "id": 13,
+    "id": 12,
     "correct": 2,
     "points": 20
 },{
@@ -152,7 +152,7 @@ const CARDS = [ {
         "Keep on Walking",
         "Keep aiming"
     ],
-    "id": 14,
+    "id": 13,
     "correct": 3,
     "points": 10
 },{
@@ -163,7 +163,7 @@ const CARDS = [ {
         "2009",
         "2011"
     ],
-    "id": 15,
+    "id": 14,
     "correct": 2,
     "points": 30
 },{
@@ -174,7 +174,7 @@ const CARDS = [ {
         "Sabina Ddumba",
         "Zara Larsson"
     ],
-    "id": 16,
+    "id": 15,
     "correct": 3,
     "points": 20
 },{
@@ -185,7 +185,7 @@ const CARDS = [ {
         "1984",
         "1990"
     ],
-    "id": 17,
+    "id": 16,
     "correct": 3,
     "points": 30
 },{
@@ -196,7 +196,7 @@ const CARDS = [ {
         "Got a bug from you girl",
         "All the good love"
     ],
-    "id": 18,
+    "id": 17,
     "correct": 1,
     "points": 20
 },{
@@ -207,7 +207,7 @@ const CARDS = [ {
         "Är det du, är det jag",
         "Inget stoppar oss nu"
     ],
-    "id": 19,
+    "id": 18,
     "correct": 4,
     "points": 10
 },{
@@ -218,7 +218,7 @@ const CARDS = [ {
         "2009",
         "2011"
     ],
-    "id": 20,
+    "id": 19,
     "correct": 4,
     "points": 30
 },{
@@ -229,7 +229,7 @@ const CARDS = [ {
         "Ingen sommar utan ragga",
         "Ja, Jag sa raggae"
     ],
-    "id": 21,
+    "id": 20,
     "correct": 2,
     "points": 20
 }/*,{
@@ -662,6 +662,44 @@ function handleWebSocketRequest(request) {
                 if(player.id !== activePlayer.id)
                 connections[String(player.id)].socket.send(JSON.stringify(playerData));
             }
+        } else if (data.message === "playAgain"){
+            //reset lobby points
+            //reset turn order
+            //tell players what to render
+            console.log("PLAY AGAIN DATA: ",data);
+            let lData = data.data;
+            console.log("lData", lData);
+            console.log("TARGET GAME: ",GAMES.rooms, "target id:", lData.id);
+            for (let i = 0; i < GAMES.rooms[lData.id - 1].players.length; i++) {
+                GAMES.rooms[lData.id - 1].players[i].points = 0;
+                if(GAMES.rooms[lData.id - 1].players[i].id === lData.hostID){
+                    GAMES.rooms[lData.id - 1].players[i].turn = true;
+                    let pID = GAMES.rooms[lData.id - 1].players[i].id;
+                    connections[String(pID)].socket.send(JSON.stringify({
+                        message: "returningInitializeLobbyCreate",
+                        data: lData
+                    }));
+                } else {
+                    let pID = GAMES.rooms[lData.id - 1].players[i].id;
+                    GAMES.rooms[lData.id - 1].players[i].turn = false;
+                    connections[String(pID)].socket.send(JSON.stringify({
+                        message: "returningInitializeLobbyJoin",
+                        data: lData
+                    }));
+                }
+            }
+            
+            //connections[playerID].socket.send()//send command to render correct view
+        }else if(data.message === "stopPlaying"){
+            let lData = data.data;
+            for (let i = 0; i < GAMES.rooms[lData.id - 1].players.length; i++) {
+                let pID = GAMES.rooms[lData.id - 1].players[i].id;
+                connections[String(pID)].socket.send(JSON.stringify({
+                    message: "returningStopPlaying",
+                    data: lData
+                }));
+            }
+            GAMES.rooms.splice(lData.id - 1, 1);
         }
     })
 

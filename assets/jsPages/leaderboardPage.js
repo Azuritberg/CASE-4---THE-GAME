@@ -94,17 +94,22 @@ function renderLeaderboardPage(lobbyData) {
     const players = lobbyData.players;
     console.log(lobbyData);
 
-
+    let index = 1
     //players should also be assigned a color here
     //color is not attached to specific players but rather their position so
     //this is quite trivial to implement.
     players.forEach(player => {
+        
         const card = document.createElement("div");
         card.className = "cards-score";
 
         const cardIcon = document.createElement("div");
         cardIcon.className = "card-icon";
         cardIcon.textContent = player.id;
+        if(index % 2 === 0){
+            cardIcon.classList.add("red-modifier-card-icon");
+        }
+        index++;
 
         const cardText = document.createElement("p");
         cardText.className = "card-text";
