@@ -264,22 +264,18 @@ async function handleHTTPRequest(request) {
     const pathname = new URL(request.url).pathname
 
     if (pathname.startsWith("/static")) {
-        return serveDir(request,
-            {
-                fsRoot: "assets",
-                urlRoot: "static"
-            })
+        return serveDir(request, {
+            fsRoot: "assets",
+            urlRoot: "static"
+        })
     }
 
     if (pathname == "/api/cards") {
-        const options =
-        {
+        const options = {
             headers: { "Content-Type": "application/json" }
         }
 
-
         if (request.method == "GET") {
-
             return new Response(JSON.stringify(CARDS), options)
         }
 
@@ -289,23 +285,17 @@ async function handleHTTPRequest(request) {
 
             let roomID = GAMES.rooms.length + 1
 
-
             // Create a new object with the "id" key first
             const game = {
                 roomID,
                 ...requestData,
-
-
             };
 
             GAMES.rooms.push(game);
             console.log(GAMES)
         
-        
             return new Response(JSON.stringify(game), options);
         }
-
-
 
         if (request.method == "DELETE") {
             GAMES.rooms = []; // Reassign to an empty array
@@ -314,9 +304,10 @@ async function handleHTTPRequest(request) {
         }
     }
 
-
     return serveFile(request, "./index.html")
 }
+
+
 
 let connections = {}
 let connectionID = 1
@@ -402,6 +393,7 @@ function handleWebSocketRequest(request) {
                     }
                 ]
             }
+
             GAMES.rooms.push(newGame);
             let returnData = JSON.stringify({
                 message: "returningInitializeLobbyCreate",
@@ -410,154 +402,147 @@ function handleWebSocketRequest(request) {
             console.log(GAMES);
             socket.send(returnData);
 
-        }  
-        
-        else if(data.message==="startGame")
-            {
-                console.log("startGame")
-                
-                let returnData = JSON.stringify({
-                    message: "returningStartGame",
-                    data: data.room
-                    
-                });
-                for (let i = 0; i < data.room.players.length; i++) {
-                    connections[data.room.players[i].id].socket.send(returnData);
-                }
-                
+        } else if (data.message==="startGame") {
+            console.log("startGame")
+
+            let returnData = JSON.stringify({
+                message: "returningStartGame",
+                data: data.room
+
+            });
+            for (let i = 0; i < data.room.players.length; i++) {
+                connections[data.room.players[i].id].socket.send(returnData);
             }
 
-            else if (data.message === "handleTurn") {
+        } else if (data.message === "handleTurn") {
 
-            
-
-                // Update player turns
-                for (let i = 0; i < data.players.length; i++) {
-                    if (data.players[i].turn === true) { // Check for the current player's turn
-                        data.players[i].turn = false; // End the current player's turn
-                        const nextPlayerIndex = (i + 1) % data.players.length; // Move to the next player, wrapping around
-                        data.players[nextPlayerIndex].turn = true; // Start the next player's turn
-                        break; // Exit the loop once the turn is updated
-                    }
+            // Update player turns
+            for (let i = 0; i < data.players.length; i++) {
+                if (data.players[i].turn === true) { // Check for the current player's turn
+                    data.players[i].turn = false; // End the current player's turn
+                    const nextPlayerIndex = (i + 1) % data.players.length; // Move to the next player, wrapping around
+                    data.players[nextPlayerIndex].turn = true; // Start the next player's turn
+                    break; // Exit the loop once the turn is updated
                 }
+            }
     
                
-    
-            
-                // Update game state in the server
-                for (let i = 0; i < GAMES.rooms[data.roomID - 1].players.length; i++) {
-                    let player = GAMES.rooms[data.roomID - 1].players[i];
-                    console.log("console log player",player)
-                    GAMES.rooms[data.roomID - 1].players[i].turn = data.players[i].turn
-                    player = GAMES.rooms[data.roomID - 1].players[i]
-                    console.log("console log player2:",player)
-                }
-                //GAMES.rooms[data.roomID - 1].players = data.players; // Update the room with the modified player turns
-                const updatedGame = GAMES.rooms[data.roomID - 1];
-            
-                // Notify all players in the room about the updated game state
-                for (const player of updatedGame.players) {
-                    const connection = connections[String(player.id)];
-                    
-                    if (connection && connection.socket) {
-                    
-                        try {
-                            console.log("this is the connection " + connection.socket)
-                            connection.socket.send(JSON.stringify({
-                                message: "returningHandleTurn",
-                                data: updatedGame,
-                            }));
-                        } catch (error) {
-                            console.error(`Failed to send update to player ${player.id}:`, error);
-                        }
-                    } else {
-                        console.warn(`No active connection for player ${player.id}`);
+
+            // Update game state in the server
+            for (let i = 0; i < GAMES.rooms[data.roomID - 1].players.length; i++) {
+                let player = GAMES.rooms[data.roomID - 1].players[i];
+                console.log("console log player",player)
+                GAMES.rooms[data.roomID - 1].players[i].turn = data.players[i].turn
+                player = GAMES.rooms[data.roomID - 1].players[i]
+                console.log("console log player2:",player)
+            }
+            //GAMES.rooms[data.roomID - 1].players = data.players; // Update the room with the modified player turns
+            const updatedGame = GAMES.rooms[data.roomID - 1];
+
+            // Notify all players in the room about the updated game state
+            for (const player of updatedGame.players) {
+                const connection = connections[String(player.id)];
+
+                if (connection && connection.socket) {
+
+                    try {
+                        console.log("this is the connection " + connection.socket)
+                        connection.socket.send(JSON.stringify({
+                            message: "returningHandleTurn",
+                            data: updatedGame,
+                        }));
+                    } catch (error) {
+                        console.error(`Failed to send update to player ${player.id}:`, error);
                     }
+                } else {
+                    console.warn(`No active connection for player ${player.id}`);
                 }
-            
-                // No need for additional `socket.send(returnData);`
-                console.log("Updated game state sent to all players:", updatedGame);
             }
 
-            else if (data.message ==="getCards")
-                {
-                    console.log("getCardzzzzzzzz");
-                    console.log(data.message)
-                    
-                    let returnData = JSON.stringify({
-                        message: "returningGetCards",
-                        data : CARDS,
-                        input : data.input,
-                        lobbyData : data.lobbyData
-                    });
-                    let parsedLobby = JSON.parse(data.lobbyData);
-                    let players = parsedLobby.players;
-                    socket.send(returnData);
-                    //we should also send an event to all other players(with turn "false")
-                    //in order to show the waiting room view
-                    let returnDataa = JSON.stringify({
-                        message: "returningGetCards_TurnFalse",
-                        currentPlayer: players.find((player) => player.turn === true),
-                        lobbyData : data.lobbyData
-                    });
-                    console.log("players", players);
-                    for (let i = 0; i < players.length; i++) {
-                        if(players[i].turn === false) {
-                            console.log(connections[String(players[i].id)]);
+            // No need for additional `socket.send(returnData);`
+            console.log("Updated game state sent to all players:", updatedGame);
 
-                            connections[String(players[i].id)].socket.send(returnDataa);
-                        }
-                    }
+        } else if (data.message ==="getCards") {
+            console.log("getCardzzzzzzzz");
+            console.log(data.message)
+
+            let returnData = JSON.stringify({
+                message: "returningGetCards",
+                data : CARDS,
+                input : data.input,
+                lobbyData : data.lobbyData
+            });
+
+            let parsedLobby = JSON.parse(data.lobbyData);
+            let players = parsedLobby.players;
+            socket.send(returnData);
+            //we should also send an event to all other players(with turn "false")
+            //in order to show the waiting room view
+            let returnDataa = JSON.stringify({
+                message: "returningGetCards_TurnFalse",
+                currentPlayer: players.find((player) => player.turn === true),
+                lobbyData : data.lobbyData
+            });
+
+            console.log("players", players);
+            for (let i = 0; i < players.length; i++) {
+                if(players[i].turn === false) {
+                    console.log(connections[String(players[i].id)]);
+
+                    connections[String(players[i].id)].socket.send(returnDataa);
                 }
+            }
 
-                else if(data.message === "pointUpdate"){
-                    //select GAMES.rooms from parsed lobby data
-                    let parsedLobby = JSON.parse(data.lobbyData);
-                    let returnLobby;
-                    console.log(GAMES.rooms[parsedLobby.id - 1].players, data.playerId, data);
-                    for(let i = 0; i < GAMES.rooms[parsedLobby.id - 1].players.length; i++){
-                        console.log(GAMES.rooms[parsedLobby.id - 1].players[i].name);
-                        if(GAMES.rooms[parsedLobby.id - 1].players[i].id === data.playerId){
-                            returnLobby = GAMES.rooms[parsedLobby.id - 1];
-                            GAMES.rooms[parsedLobby.id - 1].players[i].points += data.points;
+        } else if (data.message === "pointUpdate") {
+            //select GAMES.rooms from parsed lobby data
+            let parsedLobby = JSON.parse(data.lobbyData);
+            let returnLobby;
+            console.log(GAMES.rooms[parsedLobby.id - 1].players, data.playerId, data);
+            for(let i = 0; i < GAMES.rooms[parsedLobby.id - 1].players.length; i++) {
+                console.log(GAMES.rooms[parsedLobby.id - 1].players[i].name);
+                if(GAMES.rooms[parsedLobby.id - 1].players[i].id === data.playerId){
+                    returnLobby = GAMES.rooms[parsedLobby.id - 1];
+                    GAMES.rooms[parsedLobby.id - 1].players[i].points += data.points;
 
-                        }
-                    }
-
-                    //send back to players
-                    //to show a view for 2 seconds with info on if the question
-                    //was answered correctly
-                    let activePlayer = "";
-                    for(let i = 0; i < parsedLobby.players.length; i++){
-                        if(parsedLobby.players[i].turn === true){
-                            activePlayer = parsedLobby.players[i];
-                        }
-                    }
-                    let returnDataTurnFalse = {
-                        message: "returningPointUpdate",
-                        data: returnLobby,
-                        turn: false,
-                        activePlayer: activePlayer,
-                        points: data.points
-                    }
-                    let returnDataTurnTrue = {
-                        message: "returningPointUpdate",
-                        data: returnLobby,
-                        turn: true,
-                        activePlayer: activePlayer,
-                        points: data.points
-                    }
-
-                    for(let i = 0; i < parsedLobby.players.length; i++){
-                        if(parsedLobby.players[i].turn === true)
-                            connections[parsedLobby.players[i].id].socket.send(JSON.stringify(returnDataTurnTrue));
-                        else
-                            connections[parsedLobby.players[i].id].socket.send(JSON.stringify(returnDataTurnFalse));
-                    }
-                    console.log(GAMES.rooms[parsedLobby.id - 1], data.points);
                 }
-        
-        else if(data.message === "playerLeftRoom"){
+            }
+
+            //send back to players
+            //to show a view for 2 seconds with info on if the question
+            //was answered correctly
+            let activePlayer = "";
+            for (let i = 0; i < parsedLobby.players.length; i++) {
+                if (parsedLobby.players[i].turn === true) {
+                    activePlayer = parsedLobby.players[i];
+                }
+            }
+
+            let returnDataTurnFalse = {
+                message: "returningPointUpdate",
+                data: returnLobby,
+                turn: false,
+                activePlayer: activePlayer,
+                points: data.points
+            }
+
+            let returnDataTurnTrue = {
+                message: "returningPointUpdate",
+                data: returnLobby,
+                turn: true,
+                activePlayer: activePlayer,
+                points: data.points
+            }
+
+            for (let i = 0; i < parsedLobby.players.length; i++) {
+                if (parsedLobby.players[i].turn === true)
+                    connections[parsedLobby.players[i].id].socket.send(JSON.stringify(returnDataTurnTrue));
+                else
+                    connections[parsedLobby.players[i].id].socket.send(JSON.stringify(returnDataTurnFalse));
+            }
+            console.log(GAMES.rooms[parsedLobby.id - 1], data.points);
+
+        } else if (data.message === "playerLeftRoom") {
+
             console.log("playerLeftRoooooooom");
             let leftID = data.playerID;
             let leftPlayer = undefined;
@@ -619,6 +604,7 @@ function handleWebSocketRequest(request) {
             //player(active) must render rockbear page
             //players(innactive) must render other player found rockbear page
             console.log("foundRockBear");
+
             let playerData
             let activePlayer;
             for (const player of data.lobbyData.players) {
@@ -627,25 +613,7 @@ function handleWebSocketRequest(request) {
 
                 }
             }
-            //this is weird and maybe wrong!
-            /*
-            for(const player in data.lobbyData.players){
-                if(player.turn === false){
-                    playerData = {
-                        message: "returningFoundRockBear",
-                        activePlayer: activePlayer,
-                        isMe: false,
-                        lobbyData: data.lobbyData
-                    }
-                } else {
-                    playerData = {
-                        message: "returningFoundRockBear",
-                        activePlayer: activePlayer,
-                        isMe: true,
-                        lobbyData: data.lobbyData
-                    }
-                }
-            }*/
+
             playerData = {
                 message: "returningFoundRockBear",
                 activePlayer: activePlayer,
@@ -662,9 +630,10 @@ function handleWebSocketRequest(request) {
                 lobbyData: data.lobbyData
             }
             for (const player of data.lobbyData.players) {
-                if(player.id !== activePlayer.id)
+                if (player.id !== activePlayer.id)
                 connections[String(player.id)].socket.send(JSON.stringify(playerData));
             }
+
         } else if (data.message === "playAgain"){
             //reset lobby points
             //reset turn order
@@ -673,6 +642,7 @@ function handleWebSocketRequest(request) {
             let lData = data.data;
             console.log("lData", lData);
             console.log("TARGET GAME: ",GAMES.rooms, "target id:", lData.id);
+
             for (let i = 0; i < GAMES.rooms[lData.id - 1].players.length; i++) {
                 GAMES.rooms[lData.id - 1].players[i].points = 0;
                 if(GAMES.rooms[lData.id - 1].players[i].id === lData.hostID){
@@ -693,7 +663,7 @@ function handleWebSocketRequest(request) {
             }
             
             //connections[playerID].socket.send()//send command to render correct view
-        }else if(data.message === "stopPlaying"){
+        } else if (data.message === "stopPlaying") {
             let lData = data.data;
             for (let i = 0; i < GAMES.rooms[lData.id - 1].players.length; i++) {
                 let pID = GAMES.rooms[lData.id - 1].players[i].id;
@@ -723,6 +693,7 @@ function handleWebSocketRequest(request) {
                 }
             }
         }
+
         let data;
         if (!hostLeave) {
             for (const player of leftRoom.players) {
@@ -733,6 +704,7 @@ function handleWebSocketRequest(request) {
                 console.log("sending", data, "to", connections[String(player.id)]);
                 connections[String(player.id)].socket.send(JSON.stringify(data))
             }
+
         } else {
             for (const player of leftRoom.players) {
                 data = {
@@ -741,6 +713,7 @@ function handleWebSocketRequest(request) {
                 }
                 connections[String(player.id)].socket.send(JSON.stringify(data));
             }
+
             for (let i = 0; i < GAMES.rooms.length; i++) {
                 console.log(GAMES.rooms[i]);
                 if (GAMES.rooms[i].id === data.newRoom.id)
@@ -760,6 +733,5 @@ function handleRequest(request) {
         return handleWebSocketRequest(request)
     } else { return handleHTTPRequest(request) }
 }
-
 
 Deno.serve(handleRequest)
