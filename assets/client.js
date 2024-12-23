@@ -423,10 +423,12 @@ function makeField(lobbyData) {
     */
 
     let inputField = returnElements.inputField;
-    let btnNext = returnElements.button;
+    let btnNext = returnElements.backButton;
+    let btnBack = returnElements.button
+    console.log(returnElements)
 
-    inputField.addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
+    btnNext.addEventListener("click", () =>  {
+        
 
             const inputValue = inputField.value.trim();
             console.log(inputValue);
@@ -445,10 +447,15 @@ function makeField(lobbyData) {
                 socket.send(JSON.stringify(foundRockBearData))
             } else {
                 getCards("getCards", inputValue, lobbyData);
-            }
+            
 
         }
     });
+
+btnBack.addEventListener("click", () =>{
+    console.log(lobbyData)
+    handleTurn("handleTurn", parsedData.players, parsedData.id)
+} )
 
 }
 
