@@ -24,12 +24,13 @@
 
 #popUpPage-main {
     display: flex;
-    flex-direction: column;
+   /* flex-direction: column; */
     justify-content: center;
     align-items: center;
+
     position: fixed; /* För att täcka hela skärmen */
     top: 0;
-    left: 327px; /* 324px */
+    left: 40%; /* 324px */
     width: 393px;
     height: 852px;
     margin: 0 auto;

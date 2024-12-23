@@ -55,7 +55,7 @@ const CARDS = [ {
     ],
     "id": 4,
     "correct": 4,
-    "points": 100
+    "points": 30
 },{
     "question": "Gissa artisten?",
     "answers": [
