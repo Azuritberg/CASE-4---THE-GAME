@@ -506,6 +506,8 @@ function handleWebSocketRequest(request) {
 
                 }
             }
+            
+            returnLobby.players.sort((a, b) => b.points - a.points);
 
             //send back to players
             //to show a view for 2 seconds with info on if the question
