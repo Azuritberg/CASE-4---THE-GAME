@@ -93,10 +93,19 @@ function renderResultViewPage(name, isPlayer, points) {
 // Second Page Text
     const resultViewPageText = document.createElement("div");
     resultViewPageText.className = "resultViewPage-text";
-    resultViewPageText.innerHTML = `
-    <h2>${resultMessage}</h2>
-    <p>${playerNameText}</p>  
-`;
+    if(isCorrect){
+        resultViewPageText.innerHTML = `
+        <p>${playerNameText}</p>  
+        <h2>${resultMessage}</h2>
+    `;
+    }
+    else{
+        resultViewPageText.innerHTML = `
+        <h2>${resultMessage}</h2>
+        <p>${playerNameText}</p>  
+    `;   
+    }
+    
     //<p>Det kan bli din tur härnäst</p>
 
     main.appendChild(resultViewPageText);
