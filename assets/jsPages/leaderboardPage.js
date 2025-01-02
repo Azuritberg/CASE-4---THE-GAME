@@ -105,7 +105,7 @@ function renderLeaderboardPage(lobbyData) {
 
         const cardIcon = document.createElement("div");
         cardIcon.className = "card-icon";
-        cardIcon.textContent = player.id;
+        cardIcon.textContent = index;
         if(index % 2 === 0) {
             cardIcon.classList.add("red-modifier-card-icon");
         }
