@@ -30,9 +30,12 @@
 
     position: fixed; /* För att täcka hela skärmen */
     top: 0;
-    left: 40%; /* 324px */
-    width: 393px;
+    left: 0; /* 324px, 40% */
+    right: 0;
+    max-width: 393px;
     height: 852px;
+    /*width: 393px;
+    height: 852px;*/
     margin: 0 auto;
     margin-top: 40px;
     font-family: 'Work Sans', sans-serif;

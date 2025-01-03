@@ -22,15 +22,16 @@
 
 
 #mainPage-main {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 393px;
-    height: 852px;
+    max-width: 393px;
+    height: 852px;  /* 852px */
     background: #F3F0E7;
     margin: 0 auto;
-    margin-top: 115px;
+    margin-top: 40px;
 }
 
 #graphic {
