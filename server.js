@@ -189,6 +189,17 @@ const CARDS = [ {
     "correct": 3,
     "points": 30
 },{
+    "question": "Gissa låten?",
+    "answers": [
+        "Måndag morgon",
+        "I natt",
+        "Är det du, är det jag",
+        "Inget stoppar oss nu"
+    ],
+    "id": 17,
+    "correct": 4,
+    "points": 10
+},{
     "question": "Fyll i låttexten...",
     "answers": [
         "Lips as sweet as candy",
@@ -196,7 +207,7 @@ const CARDS = [ {
         "Got a bug from you girl",
         "All the good love"
     ],
-    "id": 17,
+    "id": 18,
     "correct": 1,
     "points": 20
 },{
@@ -207,7 +218,7 @@ const CARDS = [ {
         "Är det du, är det jag",
         "Inget stoppar oss nu"
     ],
-    "id": 18,
+    "id": 19,
     "correct": 4,
     "points": 10
 },{
@@ -218,7 +229,7 @@ const CARDS = [ {
         "2009",
         "2011"
     ],
-    "id": 19,
+    "id": 20,
     "correct": 4,
     "points": 30
 },{
@@ -229,7 +240,7 @@ const CARDS = [ {
         "Ingen sommar utan ragga",
         "Ja, Jag sa raggae"
     ],
-    "id": 20,
+    "id": 21,
     "correct": 2,
     "points": 20
 }/*,{
