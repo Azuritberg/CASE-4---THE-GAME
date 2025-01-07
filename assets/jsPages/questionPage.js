@@ -78,7 +78,7 @@ function renderQuestionPage(question, questionTexts) {
         if ( seconds == 0 ) {
             clearInterval(interval);
         }
-    },2000)
+    },1200)
 
     progressContainer.appendChild(svgIcon);
     progressContainer.appendChild(progressText);
