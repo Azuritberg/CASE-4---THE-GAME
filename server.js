@@ -381,7 +381,28 @@ function handleWebSocketRequest(request) {
             //USER CREATING A GAME
             //####            ####
         } else if (data.message === "initalizeLobbyCreate") {
-            //we should now create a game and add the host
+            
+            let ok = true
+
+            
+                
+            
+            for (let i = 0; i < GAMES.rooms.length; i++) {
+                if (data.gameName === GAMES.rooms[i].name) {
+                    ok = false
+
+                    let returnData = JSON.stringify({
+                        message: "returningGameAlreadyExists",
+                        
+                    });
+                   
+                    socket.send(returnData);
+                }
+            }
+        
+
+        if (ok) {
+               //we should now create a game and add the host
             //increment ID for new room
             console.log("TJA");
             let newID = 0;
@@ -414,6 +435,9 @@ function handleWebSocketRequest(request) {
             });
             console.log(GAMES);
             socket.send(returnData);
+        }
+         
+        
 
         } else if (data.message === "startGame") {
             console.log("startGame")
@@ -426,7 +450,7 @@ function handleWebSocketRequest(request) {
             for (let i = 0; i < data.room.players.length; i++) {
                 connections[data.room.players[i].id].socket.send(returnData);
             }
-
+        
         } else if (data.message === "handleTurn") {
 
             // Update player turns

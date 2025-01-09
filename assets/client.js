@@ -40,6 +40,11 @@ socket.addEventListener("message", (event) => {
     } else if (data.message === "returningInitializeLobbyCreate") {
         console.log("recived this data from server: ", data, ":3");
         renderLobbyHost(JSON.stringify(data.data));
+
+
+    } else if(data.message === "returningGameAlreadyExists"){
+        window.alert("This game name already exists! Please enter another name")
+
     } else if (data.message === "YOU HAVE BEEN NOTIFIED") {
         console.log(data.message);
         
