@@ -393,7 +393,7 @@ async function fetchCard(CARDS,index, lobbyData) {
     child3.enabled=true
     let timer = setTimeout(()=> {
         correctChoise(child1.id, 999, lobbyData, points);
-    }, 14000);
+    }, 12000);
     child0.addEventListener("click", ()=> {
         clearInterval(timer);
         music[index].pause();
